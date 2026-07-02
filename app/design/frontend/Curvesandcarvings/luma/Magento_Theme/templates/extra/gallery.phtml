@@ -1,0 +1,59 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+<style>
+#loader {  
+    position: fixed;  
+    left: 0px;  
+    top: 0px;  
+    width: 100%;  
+    height: 100%;  
+    z-index: 9999;  
+    background: url('pageloader.gif') 50% 50% no-repeat rgb(249,249,249);  
+}  
+</style>
+<div class="section05 galle-sec">
+    <div class="container1">
+        <div class="galleryhed01">
+            <h5 class="heding-desc">Browse Gallery to have a look at some of our finished delivered work, and factory work-in-progress images.</h5>
+            <div class="tabbing">
+                <ul class="tabNav">
+                    <li><a href="#tab1">Gallery</a></li>
+                </ul>
+                <div class="tabContainer">
+                    <div class="tabContent" id="tab1">
+                        <div class="gallery_page">
+                        <div class="gallery-1 gallery galerybox">
+						<?php
+						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+						$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+						$connection = $resource->getConnection();
+						$sql = "SELECT * FROM `dr_gallery_image` WHERE `NAME` = 'finished' ORDER BY `image_id` DESC LIMIT 500";
+						$data = $connection->fetchAll($sql);?>
+						<?php foreach($data as $gallery1){ ?>
+                                <a href="<?php echo $mediaUrl; ?><?php echo $gallery1['path']; ?>">
+                                    <img src="<?php echo $mediaUrl; ?><?php echo $gallery1['path']; ?>" alt="">
+                                </a>
+						<?php } ?>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'snapGallery'
+    ], function ($) {
+        $('.gallery-1').snapGallery({
+            minWidth: 100,
+            maxCols: 4,
+            margin: 5
+        });
+    });
+</script>

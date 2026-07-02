@@ -1,0 +1,212 @@
+<?php
+/**
+ * @var \Curvesandcarvings\Homepage\Block\Home $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$media = [$block, 'getMediaUrl'];
+$customProducts = $block->getProductsBySkuFragments(['CAB0001', 'CAB0002', 'CAB0003', 'CAB0018', 'CAB0029', 'CAB0041']);
+$tableProducts = $block->getProductsBySkuFragments(['TAB0004', 'TAB0009', 'TAB0012', 'TAB0016']);
+$testimonials = $block->getTestimonials();
+$blogPosts = $block->getBlogPosts();
+$banners = [
+    ['Banner-1.jpg', 'Designer Sofa Mumbai'],
+    ['Banner-2.jpg', 'Designer Dining Table Online'],
+    ['Banner-3.jpg', 'Luxury Beds Mumbai'],
+    ['Banner-4.jpg', 'Luxury Dining Table Online'],
+    ['Banner-5.jpg', 'Designer sofa set online'],
+    ['Banner-6.jpg', 'Buy Modern Dining Sets'],
+];
+?>
+<div class="cc-home-old">
+
+<div class="hbanner-slider owl-carousel owl-theme">
+    <?php foreach ($banners as [$file, $alt]): ?>
+    <div>
+        <div class="banner-inner">
+            <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/' . $file)) ?>"
+                 alt="<?= $escaper->escapeHtmlAttr($alt) ?>">
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<div class="section02">
+    <div class="container1">
+        <div class="section02left">
+            <h3>FINEST COLLECTION OF LUXURY DESIGNER FURNITURE</h3>
+            <p>We are India’s finest store where you can turn your idea of a dream home into reality! With an extensive range of 1000+ furniture designs, we present to you mesmerising furniture options to exude elegance in your lovely abode.</p>
+            <p>Our product range is inclusive of Antique and Colonial Furniture designs, all made of authentic teak wood. Discover a collection of the best-quality Antique furniture and French furniture at Curves and Carvings!</p>
+            <p class="colle-btn"><a href="<?= $escaper->escapeUrl($block->getUrl('beds-bedsides/beds/antique')) ?>">Buy Collection</a></p>
+        </div>
+        <div class="section02rigt">
+            <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/dream-home.jpg')) ?>" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="section03">
+    <div class="container1">
+        <div class="section03rigt">
+            <h3>IT’S All ABOUT ELEGANCE AND SOPHISTICATION</h3>
+            <p>Add a touch of luxury and liveliness to your home with premium-quality luxury furniture. Meticulously crafted from solid teak wood, our furniture pieces are lifelong companions.</p>
+            <p><a href="<?= $escaper->escapeUrl($block->getUrl('beds-bedsides')) ?>">Buy Collection</a></p>
+        </div>
+    </div>
+</div>
+
+<div class="section04">
+    <div class="containe1 galleryhed01">
+        <h3>Our Google Reviews</h3>
+        <div data-romw-token="PnugRLE5Ysf70ncuLZfgnY9x67CZQAAcAjrsnIO6aarSpzHTvG"></div>
+        <script src="https://reviewsonmywebsite.com/js/v2/embed.js?id=c338ae55b38e487f19ae" type="text/javascript"></script>
+    </div>
+</div>
+
+<div class="section05 section04">
+    <div class="container1">
+        <div class="galleryhed01">
+            <?= $block->getLayout()->createBlock(\Curvesandcarvings\Homepage\Block\Home::class)
+                ->setTemplate('Curvesandcarvings_Homepage::extra/product-carousel.phtml')
+                ->setData([
+                    'carousel_title' => 'Product customisation',
+                    'carousel_description' => 'From wood to polish and paint to fabric-customise anything and everything for your furniture.',
+                    'carousel_products' => $customProducts,
+                ])->toHtml() ?>
+            <?= $block->getLayout()->createBlock(\Curvesandcarvings\Homepage\Block\Home::class)
+                ->setTemplate('Curvesandcarvings_Homepage::extra/product-carousel.phtml')
+                ->setData([
+                    'carousel_title' => 'Center Tables',
+                    'carousel_description' => '',
+                    'carousel_products' => $tableProducts,
+                ])->toHtml() ?>
+        </div>
+    </div>
+</div>
+
+<div class="section05">
+    <div class="container1">
+        <div class="galleryhed01">
+            <h3>Gallery</h3>
+            <h5 class="heding-desc">Explore our gallery to view a selection of some of our completed &amp; delivered projects and work-in-progress images from our factory.</h5>
+            <div class="gallery galerybox">
+                <?= $block->getCmsBlockHtml('gallery_completed') ?>
+            </div>
+            <div class="galrytxt01"><a href="<?= $escaper->escapeUrl($block->getUrl('gallery')) ?>">View All</a></div>
+        </div>
+    </div>
+</div>
+
+<div class="section06">
+    <div class="container1">
+        <div class="section06lft">
+            <h3>ABOUT US</h3>
+            <?= $block->getCmsBlockHtml('about-us-home') ?>
+            <p><a href="<?= $escaper->escapeUrl($block->getUrl('about-us')) ?>">Know More</a></p>
+        </div>
+        <div class="section06rigt">
+            <a href="https://youtu.be/_yTtYa-Phcs" target="_blank" rel="noopener">
+                <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/youtubevideo01.jpg')) ?>" alt="">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="section07">
+    <div class="container1">
+        <div class="botcall01">
+            <ul>
+                <li>
+                    <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/boticon01.png')) ?>" alt="">
+                    <h3>QUESTIONS</h3>
+                    <p>For any questions contact <a href="mailto:contact@curvesandcarvings.com">contact@curvesandcarvings.com</a> or call <a href="tel:00917722080791">0091 7722080791</a></p>
+                </li>
+                <li>
+                    <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/boticon02.png')) ?>" alt="">
+                    <h3>STRESS FREE DELIVERY</h3>
+                    <p>"If its broken, it's ours". We deliver your furniture with utmost care.</p>
+                </li>
+                <li>
+                    <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/boticon03.png')) ?>" alt="">
+                    <h3>PRODUCT CUSTOMISATION</h3>
+                    <p>We offer customization of almost everything you want, be it Wood, Polish, Paint or Fabric.</p>
+                </li>
+                <li>
+                    <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/boticon04.png')) ?>" alt="">
+                    <h3>PRODUCT RANGE</h3>
+                    <p>We offer best online collection of Exquisite Designer &amp; Luxury Solid Wood Furniture across categories.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<?php if ($testimonials->getSize()): ?>
+<div class="section08">
+    <div class="container1">
+        <div class="hometesti01">
+            <h3>What client says</h3>
+            <div class="cst-row">
+                <div class="cst-col">
+                    <div class="owl-carousel owl-theme testimonial">
+                        <?php foreach ($testimonials as $testimonial): ?>
+                        <div class="item">
+                            <div class="hometesti01box">
+                                <img src="<?= $escaper->escapeUrl($block->getTestimonialImageUrl($testimonial->getImage())) ?>" alt="">
+                                <h5><?= $escaper->escapeHtml($testimonial->getAuthor()) ?></h5>
+                                <p><?= $escaper->escapeHtml($testimonial->getTestimonialContent()) ?></p>
+                            </div>
+                        </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <p><a href="<?= $escaper->escapeUrl($block->getUrl('testimonials')) ?>">View All</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<?php if ($blogPosts): ?>
+<div class="section09">
+    <div class="container1">
+        <div class="homeblog">
+            <h3>Blogs</h3>
+            <div class="owl-carousel owl-theme hmblog">
+                <?php foreach ($blogPosts as $post): ?>
+                <div class="item">
+                    <div class="homeblogbox">
+                        <?php if ($post['image']): ?>
+                        <div class="homeblogboximg"><img src="<?= $escaper->escapeUrl($post['image']) ?>" alt=""></div>
+                        <?php endif; ?>
+                        <div class="homeblogboxtxt">
+                            <h4><?= $escaper->escapeHtml($post['title']) ?></h4>
+                            <p><?= $escaper->escapeHtml($post['excerpt']) ?></p>
+                            <p class="blg-more"><a href="<?= $escaper->escapeUrl($post['url']) ?>">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="section010 desk-view">
+    <div class="container1">
+        <div class="homseco01">
+            <img src="<?= $escaper->escapeUrl($block->getMediaUrl('images/wood-luxury.jpg')) ?>" alt="">
+            <h3>Buy Colonial Furniture in Mumbai at Curves and Carvings</h3>
+            <p>We at Curves and Carvings are known for making some of the finest pieces of luxury furniture in India. As a leading online store for customised furniture in Mumbai, we specialise in creating hand-crafted luxury and designer furniture.</p>
+            <p>At Curves and Carvings, customer satisfaction is a top priority. Bring us any references or photographs, and we will customise that piece for you.</p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<script>
+require(['jquery', 'Curvesandcarvings_Homepage/js/homepage'], function ($, homepage) {
+    homepage.init();
+});
+</script>

@@ -1,0 +1,28 @@
+app/design/frontend/Curvesandcarvings/luma/
+├── registration.php              # Registers theme with Magento
+├── theme.xml                     # Parent: Magento/luma
+├── composer.json                 # Theme package metadata (for composer-based deploy)
+├── web/
+│   ├── css/                      # styles-m.css, styles-l.css, owl, catalog-fixes
+│   ├── js/                       # owl, lightbox, tabs, navigation
+│   └── requirejs-config.js       # JS module paths
+├── Magento_Theme/
+│   ├── layout/
+│   │   ├── default.xml           # Footer (nvdfooter), header structure
+│   │   └── default_head_blocks.xml  # CSS/JS loaded via layout (not vendor)
+│   └── templates/
+│       ├── extra/                # CMS page templates (from live vendor customizations)
+│       │   ├── home-view.phtml
+│       │   ├── our-store.phtml
+│       │   ├── gallery.phtml
+│       │   ├── testimonials.phtml
+│       │   └── expert-zone-new.phtml
+│       └── html/
+│           ├── skip.phtml        # Top bar (phone, email, social)
+│           └── nvdfooter.phtml   # Custom footer
+└── Magento_Search/
+    └── templates/
+        └── form.mini.phtml       # Header search + nav links
+
+CMS pages reference templates as: Magento_Theme::extra/home-view.phtml
+Magento resolves these from the theme above — no vendor/ edits needed.

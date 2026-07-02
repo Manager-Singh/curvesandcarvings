@@ -1,0 +1,580 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+<style>
+.expert-zone-first p, .expert-zone-second p{font-weight: 600;}
+.expert-zone-first{background:#fff0d6;padding:4rem 0rem;}
+.expert-zone-first h3{
+	font-family: 'Cinzel', serif;
+    font-size: 40px;
+    margin-bottom:4rem;
+    font-weight: 400;
+    line-height: 57px;
+    margin-top: 0px;text-align:center}
+	
+.expert-zone-first h3:after{
+	display: block;
+    margin: auto;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #9f7c21;
+    width: 80px;
+    margin-top: 7px;}
+.expert-zone-second{padding:4rem 0rem;}
+
+.expert-zone-second	h3{font-family: 'Cinzel', serif;
+    font-size: 45px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    line-height: 57px;
+    margin-top: 0px;}	
+	
+.expert-zone-second	h3:after{display: block;
+    margin: 0px;
+    height: 4px;
+    content: " ";
+    text-shadow: none;
+    background-color: #9f7c21;
+    width: 80px;
+    margin-top: 7px;}
+.col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+	padding-right: 15px;
+    padding-left: 15px;
+	position:relative;
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+	align-items:center;
+}
+.text-justify{text-align:justify}
+
+.text-center{text-align:center}
+
+.collapsibleTab.active{
+background: #caa648;}
+.collapsibleTab:hover{background: #caa648;}
+.collapsibleTab:hover h4:after{color:#fff;}
+.collapsibleTab h4{margin-top:0.5rem;margin-bottom:0.5rem;}
+
+.collapsibleTab {
+  background: transparent;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: .8rem;
+font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  transition: 0.5s ease-in-out;
+}
+.collapsibleTab:first-child {
+    border-bottom: 1px solid #ddd;
+  }
+
+
+.collapsibleContent {
+  padding: 1rem;
+  background:#fff3df;
+}
+.hover-img {
+  position: relative;
+  overflow: hidden;
+ 
+}
+
+.hover-img:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transform: scaleX(0);
+  opacity: 0;
+}
+
+.hover-img:hover:before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.hover-img:after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+.hover-img:hover:after {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+@media (max-width: 760px){
+	.col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+	padding-right: 15px;
+    padding-left: 15px;
+	position:relative;
+}
+.expert-zone-first .container1 {
+    width: 100%;
+}
+.expert-zone-second .container1 {
+    width: 100%;
+}
+.expert-zone-second h3, .expert-zone-first h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 33px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    line-height: 40px;
+margin-top: 0px;}
+.expert-zone-second table tr{border-bottom: 1px solid #ccc;}
+.expert-zone-second tbody td:last-child {border: none;padding: 5px 10px !important;}
+}
+.cms-export-zone-new .column.main, .categorypath-export-zone  .column.main {
+    min-height: 0;
+	padding-bottom: 2px;
+}
+.cms-export-zone-new .page-wrapper, .categorypath-export-zone .page-wrapper{min-height: auto;}
+.categorypath-export-zone #maincontent{display:none;}
+.collapsibleTab h4{position:relative;display: flex;
+    align-items: center;font-weight: 600;line-height: 1.5;padding-left: 2.5rem;}
+	
+.collapsibleTab h4:before{content: "\f005";font-family:FontAwesome;color: #000;
+    font-size: 1.5rem;position: absolute;left: 0;}
+	
+.collapsibleTab h4:after{content: "\f067";font-family:FontAwesome;color: #706f6f;
+    font-size: 1.5rem;position: absolute;
+    right: 0;}
+.collapsibleTab.active h4:after{content: "\f068";color:#fff;}
+
+.vn-orange a{
+background-color:#caa648;
+  display:inline-block;
+  position:relative;
+  margin:30px 5px;
+  padding:20px 20px 20px 80px;
+  color:#fff;
+  transition:all 0.4s ease;
+  border-radius:3px;
+  text-decoration:none;
+}
+.vn-orange a:before{
+  content:"\f019";
+  font-family:fontAwesome;
+  position:absolute;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size:28px;
+  border-radius:0 20px 0 0;
+  color:#000;
+  background-color:#fff;
+  opacity:0.3;
+  padding:20px;
+  top:0;
+  left:0
+}
+.vn-orange a:hover{
+  background:#caa648
+}
+.table-wrapper table tr th, .table-wrapper table tr td {
+    border: 1px solid #ddd;
+    padding-left: 10px;
+	    text-align: center;
+}
+</style>
+</div>
+</div>
+</div>
+<section class="expert-zone-first">
+	<div class="container1">
+		<h3>EXPORT ZONE</h3>
+		<div class="row">
+			<div class="col-md-4">
+				<p class="text-justify">Thanks for patronising our website. We are encouraged by your regular calls and mails 
+				seeking information about our Furniture. Over last 7 years, we have handled your enquiries from USA, UK, Australia, Singapore & Middle-East on regular. basis We are glad for providing us with 
+				opportunities of furnishing your homes.</p>
+			</div>
+			<div class="col-md-4">
+			<div class="hover-img">
+				<img src="<?php echo $mediaUrl; ?>images/zone-center.jpg" class="" alt="Expert Zone">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<p class="text-justify">Also delighted to announce that we have started our export division. We are certified exporter with Import Export code (IEC) No AAMFC8924H. As furniture exports from India are exempt from paying any GST, you can now directly purchase from us at our Ex-factory Pricing. We will be providing options of Free-on-board (FOB) & Port delivery at your nearest commercial port anywhere across the world.</p>
+			</div>
+		</div>
+		<br><br>
+		<p class="text-center">At C&C, We are ever happy to assist you in making right purchase decisions. A whole lot of customers continue to seek information to furnish their homes in India and overseas. No-one understands your purchase concerns better than C&C.  Based on our interaction and accumulated wisdom of personally speaking with 2000+ NRI / overseas customers, we now bring to you a <b>‘furniture import guide’</b> in form of FAQs. Apart from calling us on <b><a href="tel:0091 7722080791">0091 7722080791</a></b> / or writing us on <b><a href="mailto:contact@curvesandcarvings.com">contact@curvesandcarvings.com</a></b> you can also post your questions on this forum to seek accurate guidance. </p>
+		
+	</div>
+</section>
+<section class="expert-zone-second">
+	<div class="container1">
+		<h3>Frequently asked questions (FAQs)</h3>
+		<div id="accordion" data-mage-init='{
+        "accordion":{
+            "active": [0],
+            "collapsible": true,
+            "openedState": "active",
+            "multipleCollapsible": false
+        }}'>
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>Where is your showroom in India?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>Currently, we have two, showrooms, one at Mumbai and other at Patiala. At Mumbai, we have 1500 sq feet of display setup at 23G,
+Laxmi Industrial Estate, Near Lokhandwala circle, Andheri West. At Patiala, we have 10000 sq feet of display setup with integrated
+production facility of 40000 sq feet. You are welcome to visit us anytime. Please check about us and contact us sections for knowing
+more about us.</p>
+		</div>
+
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>Apart from product pricing listed on your website, what is shipping cost to import furniture from India?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>Import costing is largely dependent on the shipping rates, which fluctuates every fortnight depending on the month of import.
+Typically, they are highest during Oct-Nov period as it’s a festive season in Europe, and shipping vessels are in demand. The
+following table can give you a tentative idea of an average cost of importing furniture to the major shipping destinations. The rates
+mentioned in INR are upto destination ports only.</p>
+		<div class="additional-attributes-wrapper table-wrapper">
+		<table class="data table additional-attributes">
+<tbody>
+<tr>
+<th width="136">Item Description</th>
+<th width="159">Dimensions / CBM</th>
+<th width="74">Toronto</th>
+<th width="74">Vancouver</th>
+<th width="118">Felixtowe, London</th>
+<th width="62">Newyork</th>
+<th width="124">California, Oakland</th>
+<th width="65">Sydney</th>
+<th width="71">Melbourne</th>
+<th width="85">Auckland,NZ</th>
+<th width="52">Durban</th>
+<th width="50">Riyadh</th>
+<th width="50">Dubai</th>
+</tr>
+<tr>
+<td data-th="Item Description">20 Feet Container</td>
+<td data-th="Dimensions / CBM">W 20 X B 8 X H 7.7 feet</td>
+<td data-th="Toronto">390000</td>
+<td data-th="Vancouver">270000</td>
+<td data-th="Felixtowe, London">260000</td>
+<td data-th="Newyork">290000</td>
+<td data-th="California, Oakland">280000</td>
+<td data-th="Sydney">190000</td>
+<td data-th="Melbourne">170000</td>
+<td data-th="Auckland,NZ">280000</td>
+<td data-th="Durban">170000</td>
+<td data-th="Riyadh">200000</td>
+<td data-th="Dubai">90000</td>
+</tr>
+<tr>
+<td data-th="Item Description">40 Feet Container</td>
+<td data-th="Dimensions / CBM">W 40 X B 8 X H 8.7 feet</td>
+<td data-th="Toronto">460000</td>
+<td data-th="Vancouver">33000</td>
+<td data-th="Felixtowe, London">310000</td>
+<td data-th="Newyork">330000</td>
+<td data-th="California, Oakland">350000</td>
+<td data-th="Sydney">225000</td>
+<td data-th="Melbourne">225000</td>
+<td data-th="Auckland,NZ">290000</td>
+<td data-th="Durban">240000</td>
+<td data-th="Riyadh">270000</td>
+<td data-th="Dubai">140000</td>
+</tr>
+<tr>
+<td data-th="Item Description">Sofa Set 3+1+1 seater</td>
+<td data-th="Dimensions / CBM">6 CBM</td>
+<td data-th="Toronto">55000</td>
+<td data-th="Vancouver">50000</td>
+<td data-th="Felixtowe, London">45000</td>
+<td data-th="Newyork">52000</td>
+<td data-th="California, Oakland">64000</td>
+<td data-th="Sydney">54000</td>
+<td data-th="Melbourne">54000</td>
+<td data-th="Auckland,NZ">60000</td>
+<td data-th="Durban">42000</td>
+<td data-th="Riyadh">70000</td>
+<td data-th="Dubai">35000</td>
+</tr>
+<tr>
+<td data-th="Item Description">Bed without storage with 2 side tables</td>
+<td data-th="Dimensions / CBM">4 CBM</td>
+<td data-th="Toronto">40000</td>
+<td data-th="Vancouver">35000</td>
+<td data-th="Felixtowe, London">34000</td>
+<td data-th="Newyork">40000</td>
+<td data-th="California, Oakland">50000</td>
+<td data-th="Sydney">42000</td>
+<td data-th="Melbourne">42000</td>
+<td data-th="Auckland,NZ">44000</td>
+<td data-th="Durban">33000</td>
+<td data-th="Riyadh">53000</td>
+<td data-th="Dubai">27000</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><b>Pls note the following</b></p>
+<ul>
+<li>Sea container size mentioned in above table is an external size in feet. Internal size available may be marginally lower than
+mentioned.</li>
+<li>For single items required to be imported from India, we have mentioned approx Cubic Meter size of the said items for your
+reference. It may vary as per the design selected by you.</li>
+<li>Pricing mentioned above is an approximate pricing, it may vary as per the current shipping rates applicable at the time of
+shipping</li>
+<li>Customer must nominate their import agent at the importing port for smooth clearance of imported items, after paying local
+customs duty and other relevant charges as applicable</li>
+<li>Above mentioned rates included GST 18%.</li>
+<li>All destination charges are on consignee account.</li>
+</ul>
+
+		</div>
+
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4> What all documentation is required to import furniture from India to my country?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<ol>
+		<li>There is a specific packaging requirement by all countries for an import shipment to enter their country. For Ex- Australia and
+New Zealand wants all furniture items to be packaged in wooden or plywood pallets, so that they can take them out for a
+random inspection. We understand these country specific packaging requirements quite well. Our export packaging is
+compliant to meet specific packaging norms as per country of import.</li>
+		<li>All importing countries have defined their specific set of documentation, which exporter must provide to enable an entry of
+container in the country. Among other documents, there are set of documents like ISMP-15, Phytosanitary certificate,
+Certificate of Origin, Declarations, Fumigation certificate etc which are mandated by few countries. Our products are made to
+meet these specific norms, and we will arrange to get the country specific documentation done.</li>
+		<li>We will arrange to get all the necessary accurate shipping documentation like Shipping Bill, Bill of Lading etc done for speedy
+movement of container to the destination port.</li>
+		<li>You will need to appoint local import agent / Clearing and Forwarding agent in your country of import to get your container /
+shipment cleared from the port, after paying country import duty and other clearing charges. We will require your import
+agent details before vessel departure from India, as these details needs to be mentioned in the Bill of Lading. In case you
+don’t have an import agent, we can nominate one on your behalf and your can coordinate with him/her.</li>
+		
+		</ol>
+		<p>Overall, the entire process of importing container to your country is a very smooth and hassle-free process. And we ensure that your furniture import experience with us remains fabulous.</p>
+		</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>It’s all very confusing, please tell me door-to-door cost for import to my country including everything.</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>You will appreciate that it’s not possible for us to be able to tell you an exact door-to-door pricing for all the cities. However, the following table will give you tentative estimate of what is going to be the total door-to-door shipping cost.</p>
+		<div class="additional-attributes-wrapper table-wrapper">
+		<table class="data table additional-attributes">
+<tbody>
+<tr>
+<th width="136">Destination</th>
+<th width="159">Shipment</th>
+<th width="74" colspan="3">To be paid in IndiaTo</th>
+<th width="74" colspan="5">To be paid in importing country</th>
+<th width="118">Total</th>
+</tr>
+<tr>
+<th width="136"></th>
+<th width="159"></th>
+<th width="74">Export Packaging</th>
+<th width="74">Documentation</th>
+<th width="118">Shipping</th>
+<th width="62">Shipping Line Charges</th>
+<th width="124">Charges Custom </th>
+<th width="65">Clearance GST/VAT</th>
+<th width="71">Documentation</th>
+<th width="85">Inland Truck
+charges to your
+home</th>
+<th width="52"></th>
+</tr>
+
+<tr>
+<td data-th="Destination"><b>Southampton, UK</b></td>
+<td data-th="Shipment">20 feet container </td>
+<td data-th="Export Packaging">125000</td>
+<td data-th="Documentation">25000</td>
+<td data-th="Shipping">260000</td>
+<td data-th="Importing country" colspan="5">180000</td></td>
+<td data-th="Total">590000</td>
+</tr>
+
+<tr>
+<td data-th="Destination"><b>Brampton, Canada</b></td>
+<td data-th="Shipment">20 feet container </td>
+<td data-th="Export Packaging">125000</td>
+<td data-th="Documentation">25000</td>
+<td data-th="Shipping">350000</td>
+<td data-th="Importing country" colspan="5">230000</td></td>
+<td data-th="Total">730000</td>
+</tr>
+
+<tr>
+<td data-th="Destination"><b>Adelaide, Australia</b></td>
+<td data-th="Shipment">20 feet container </td>
+<td data-th="Export Packaging">125000</td>
+<td data-th="Documentation">25000</td>
+<td data-th="Shipping">190000</td>
+<td data-th="Importing country" colspan="5">210000</td></td>
+<td data-th="Total">550000</td>
+</tr>
+
+<tr>
+<td data-th="Destination"><b>Auckland, NZ</b></td>
+<td data-th="Shipment">20 feet container </td>
+<td data-th="Export Packaging">175000</td>
+<td data-th="Documentation">25000</td>
+<td data-th="Shipping">280000</td>
+<td data-th="Importing country" colspan="5">250000</td></td>
+<td data-th="Total">730000</td>
+</tr>
+<tr>
+
+</tr>
+
+
+</tbody>
+</table>
+</div>
+<p>Destination Charges are subject to customs duty / VAT and other charges of importing country at the time of clearance. Above mentioned pricing is made as per the current rates in Oct 2023</p>
+		</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>What payment mechanisms are available like L/C, Account transfer, Cash transfer, Wallet payment, Crypto currency,
+Paypal, Credit card, Debit card and Netbanking?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">For export shipment, we will accept payment only via bank transfer (netbanking) to our bank account. It has to be made from buyer’s own account or NRE account (for NRIs). All the export documentation will be made on the name from which we have received the payment. Your Export invoice will be made for the amount transferred to our account minus shipping cost.
+<p>Please note that amount mentioned on your purchase invoice will be considered for levying import duty and GST/VAT in your
+country.</p>
+</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>Is it possible to make payment in India for export to be done to my country?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>If you are making a payment in India in INR, it will be considered at domestic sales and will be subject to GST. We will provide our domestic invoice for the same. If required, we will arrange all export documentation and have it exported to your country as your personal purchase, where you will act as both shipment sender and receiver.</p>
+		<p>However, there is a time limit of 6 months between purchase in India and shipment to be done. And buyer must have returned to
+importing country before shipment is done.</p>
+		</div>
+		
+		
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>I am a business person and interested in collaborating with you for doing this business in my country. Are you open for
+such arrangement?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent"><p>We are quite open to explore such collaboration, provided you have business credentials for do the same in your country.</p></div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>I need furniture for my Bangalore flat. If I make payment from my UK account to your bank account, can I get exemption
+for 18% GST to be paid in India under deemed exports?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>Regret it can’t be considered as deemed exports. All furniture shipments originating in India and getting delivered anywhere in Indiawill be subject to GST on an invoice value.</p>
+		</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>I have a Bungalow at Kolkata. Can you arrange a visit to get dimensions take and finalize the order?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>If it is a flat / villa you are looking to get fully / partially furnished, we can definitely send someone from our side to go and take the measurements on-site.</p>
+		<p>To enable us to do that, you will have to do an upfront payment of return airfare ex-Chandigarh or ex-Mumbai (for &gt; 250 km travel), local lodging and boarding (if required) amount for one individual for one day.</p>
+		</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>Which wood is used to make furniture?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>We use only M.P/Nagpur government auctioned Grade 1 Teak wood (Sagwaan) for manufacturing our furniture along with
+waterproof termite resistant Plywood. Plywood is also sourced from renowned companies like Greenply &amp; Century.</p>
+		
+		</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>Will we get exact quality and finish as shown on your website? Where can we see these items first-hand?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p>We strive to get exact Quality and finish as is displayed in our website. However, you must understand these are hand-crafted
+products, and that wood grains differ from tree to tree. As a result, there may be a possibility of slight variation in finish of particular
+products. Generally, you can expect 85-90% match when it comes to finish and quality. You are welcome to visit us at any of our
+facility to experience the quality and finish.</p>
+		
+		</div>
+		
+		<div data-role="collapsible" class="collapsibleTab">
+			<div data-role="trigger">
+				<h4>What are your credentials?</h4>
+			</div>
+		</div>
+		<div data-role="content" class="collapsibleContent">
+		<p><b>Mumbai Showroom</b> - 23G, Laxmi Industrial Estate, Andheri (West), Near Lokhandwala circle, Mumbai 400053. GSTIN-
+27AATFV9874G1Z4</p>
+<p><b>Patiala Showroom &amp; Workshop</b> - Hirabagh, Patiala-Rajpura Highway, Patiala 147002. GSTIN - 03AAJPA9908Q1ZC</p>
+<p><b>Saharanpur Workshop</b> - Plot 395 397, Siddharth Nagar, Chilkana Road, Saharanpur 247001. GSTIN – 09AAMFC8924H1Z1</p>
+<p><b>Import Export Code (IEC)- AAMFC8924H</b></p>
+<p><a href="www.instagram.com/curvesandcarvings" data-target="_blank">www.instagram.com/curvesandcarvings</a></p>
+<p><a href="www.facebook.com/curvesandcarvings" data-target="_blank">www.facebook.com/curvesandcarvings</a></p>
+<p>India GST No- 09AAMFC8924H</p>
+<p><b>Mobile / Whatsapp India No - 0091 7722080791</b></p>
+<p><b>Mobile / Whatsapp UK No - 0044 7472508671</b></p>
+<p><b>Mobile / Whatsapp Dubai No – 00971 0526715177</b></p>
+		
+		</div>
+		
+		
+</div>
+<div class="vn-orange" style="text-align: center;">
+<a href="<?php echo $mediaUrl; ?>pdf/curves-and-carvings-export-zone.pdf" class="btn-wrap" download>Download Above <i class="fa fa-rocket fa-lg fa-spin"></i></a>
+</div>
+	</div>
+</section>
+<!--<script>
+$("#accordion").accordion();
+</script>-->

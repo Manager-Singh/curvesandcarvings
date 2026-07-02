@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="en">
+    <head >
+        <script>
+    var BASE_URL = 'https://www.curvesandcarvings.com/';
+    var require = {
+        "baseUrl": "https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US"
+    };
+</script>
+        <meta charset="utf-8"/>
+<meta name="description" content="Page description"/>
+<meta name="keywords" content="Page keywords"/>
+<meta name="robots" content="INDEX,FOLLOW"/>
+<meta name="title" content="404 Not Found"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+<meta name="format-detection" content="telephone=no"/>
+<title>404 Not Found</title>
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/mage/calendar.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/Yereone_Testimonials/css/slick.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/Yereone_Testimonials/css/slick-theme.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/Yereone_Testimonials/css/testimonial.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/css/styles-m.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/Bss_SocialLogin/css/sociallogin.css" />
+<link  rel="stylesheet" type="text/css"  media="all" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/Bss_SocialLogin/css/jquery.fancybox.min.css" />
+<link  rel="stylesheet" type="text/css"  media="screen and (min-width: 768px)" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/css/styles-l.css" />
+<link  rel="stylesheet" type="text/css"  media="print" href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/css/print.css" />
+<script  type="text/javascript"  src="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/requirejs/require.js"></script>
+<script  type="text/javascript"  src="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/mage/requirejs/mixins.js"></script>
+<script  type="text/javascript"  src="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/requirejs-config.js"></script>
+<script  type="text/javascript"  src="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/mage/polyfill.js"></script>
+<link  href="https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US" />
+<link  rel="icon" type="image/x-icon" href="https://www.curvesandcarvings.com/media/favicon/stores/1/favicon.png" />
+<link  rel="shortcut icon" type="image/x-icon" href="https://www.curvesandcarvings.com/media/favicon/stores/1/favicon.png" />
+<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		  ga('create', 'UA-59439058-1', 'auto');
+		  ga('send', 'pageview');
+		</script>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LdI7vYfAAAAAMts-_wKdXW__bzKkv4UMBUYoG9G"></script>
+<script>
+	grecaptcha.ready(function () {
+		grecaptcha.execute('6LdI7vYfAAAAAMts-_wKdXW__bzKkv4UMBUYoG9G', { action: 'submit' }).then(function (token) {
+			$('form').append('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');			
+		});
+	});
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LGYPD47FY5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LGYPD47FY5');
+</script>            </head>
+    <body data-container="body" data-mage-init='{"loaderAjax": {}, "loader": { "icon": "https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/images/loader-2.gif"}}' class="cms-no-route cms-noroute-index page-layout-2columns-right">
+        
+<script>
+    require.config({
+        map: {
+            '*': {
+                wysiwygAdapter: 'mage/adminhtml/wysiwyg/tiny_mce/tinymce4Adapter'
+            }
+        }
+    });
+</script>
+    <script>
+        require.config({
+            deps: [
+                'jquery',
+                'mage/translate',
+                'jquery/jquery-storageapi'
+            ],
+            callback: function ($) {
+                'use strict';
+
+                var dependencies = [],
+                    versionObj;
+
+                $.initNamespaceStorage('mage-translation-storage');
+                $.initNamespaceStorage('mage-translation-file-version');
+                versionObj = $.localStorage.get('mage-translation-file-version');
+
+                
+                if (versionObj.version !== '210f24bfeb9b359480ee6603f2ecbbde563aad73') {
+                    dependencies.push(
+                        'text!js-translation.json'
+                    );
+
+                }
+
+                require.config({
+                    deps: dependencies,
+                    callback: function (string) {
+                        if (typeof string === 'string') {
+                            $.mage.translate.add(JSON.parse(string));
+                            $.localStorage.set('mage-translation-storage', string);
+                            $.localStorage.set(
+                                'mage-translation-file-version',
+                                {
+                                    version: '210f24bfeb9b359480ee6603f2ecbbde563aad73'
+                                }
+                            );
+                        } else {
+                            $.mage.translate.add($.localStorage.get('mage-translation-storage'));
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "mage/cookies": {
+                "expires": null,
+                "path": "/pub",
+                "domain": ".www.curvesandcarvings.com",
+                "secure": false,
+                "lifetime": "360000"
+            }
+        }
+    }
+</script>
+    <noscript>
+        <div class="message global noscript">
+            <div class="content">
+                <p>
+                    <strong>JavaScript seems to be disabled in your browser.</strong>
+                    <span>For the best experience on our site, be sure to turn on Javascript in your browser.</span>
+                </p>
+            </div>
+        </div>
+    </noscript>
+<form style="display:none;" class="form"
+              action="https://www.curvesandcarvings.com/sociallogin/account/loginPost/?SID=ru8kd2pleip84b5bmo46onrhhd"
+              method="post"
+              id="sociallogin-login-form"
+              >
+    <input id="sociallogin-login-referer" name="refress-redirect-url" type="hidden" value="" />
+    <input id="sociallogin-login-submit" type="submit" value="" />
+</form><div class="page-wrapper"><header class="page-header"><div class="panel wrapper"><div class="panel header">
+
+<div class="topleftcal01">
+	<ul>
+    	<li><i class="fa fa-phone"></i> <a href="tel:7722080791">7722080791</a></li>
+        <li><i class="fa fa-envelope"></i> <a href="mailto:contact@curvesandcarvings.com">contact@curvesandcarvings.com</a></li>
+    </ul>
+</div>
+
+<div class="toprigtsocl">
+	<!-- <ul>
+        <li><a href="https://facebook.com/curvesandcarvings" target="_blank"><i class="fa fa-facebook"></i></a></li>
+        <li><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+        <li><a href="https://twitter.com/curvesncarvings" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a href="https://www.youtube.com/watch?v=lLgK-wb8yCc&amp;feature=youtu.be" target="_blank"><i class="fa fa-youtube"></i></a></li>
+        <li><a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+    </ul> -->
+    <ul>
+        <li>
+            <a href="https://facebook.com/curvesandcarvings" target="_blank">
+                <img src="https://www.curvesandcarvings.com/pub/media/images/facebook.png" alt="facebook">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/curvesandcarvings/" target="_blank">
+                <img src="https://www.curvesandcarvings.com/pub/media/images/instagram.png" alt="instagram">
+            </a>
+        </li>
+        <li>
+            <a href="https://twitter.com/curvesncarvings" target="_blank">
+                <img src="https://www.curvesandcarvings.com/pub/media/images/twitter.png" alt="twitter">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank">
+                <img src="https://www.curvesandcarvings.com/pub/media/images/linkedin.png" alt="linkedin">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.youtube.com/watch?v=lLgK-wb8yCc&amp;feature=youtu.be" target="_blank">
+                <img src="https://www.curvesandcarvings.com/pub/media/images/youtube.png" alt="youtube">
+            </a>
+        </li>
+        <li>
+            <a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank">
+                <img src="https://www.curvesandcarvings.com/pub/media/images/pinterest.png" alt="pinterest"> 
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+<ul class="header links">
+        <li class="greet welcome" data-bind="scope: 'customer'">
+            <!-- ko if: customer().fullname  -->
+            <span class="logged-in" data-bind="text: new String('Welcome, %1!').replace('%1', customer().fullname)">
+            </span>
+            <!-- /ko -->
+            <!-- ko ifnot: customer().fullname  -->
+            <span class="not-logged-in" data-bind='html:""'></span>
+                        <!-- /ko -->
+        </li>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+    <!-- Owl Stylesheets -->
+<link rel="stylesheet" href="https://www.curvesandcarvings.com/pub/static/frontend/Magento/luma/en_US/css/owl.carousel.min.css">
+<link rel="stylesheet" href="https://www.curvesandcarvings.com/pub/static/frontend/Magento/luma/en_US/css/owl.theme.default.min.css">
+<link href="https://www.curvesandcarvings.com/pub/static/frontend/Magento/luma/en_US/css/newstyle.css" />
+<li class="authorization-link" data-label="or">
+    <a href="https://www.curvesandcarvings.com/customer/account/login/referer/aHR0cHM6Ly93d3cuY3VydmVzYW5kY2FydmluZ3MuY29tL2Ntcy9ub3JvdXRlL2luZGV4L2x1bWEvZW5fVVMvY3NzL25ld3N0eWxlLmNzcy8_U0lEPXJ1OGtkMnBsZWlwODRiNWJtbzQ2b25yaGhk/?SID=ru8kd2pleip84b5bmo46onrhhd">
+        Sign In    </a>
+</li>
+<li><a href="https://www.curvesandcarvings.com/customer/account/create/?SID=ru8kd2pleip84b5bmo46onrhhd" >Create an Account</a></li></ul></div></div><div class="header content"><span data-action="toggle-nav" class="action nav-toggle"><span>Toggle Nav</span></span>
+<a class="logo" href="https://www.curvesandcarvings.com/?SID=ru8kd2pleip84b5bmo46onrhhd" title="">
+    <img src="https://www.curvesandcarvings.com/media/logo/stores/1/fotlogo.png"
+         title=""
+         alt=""
+         width="148"         height="43"    />
+</a>
+
+<div data-block="minicart" class="minicart-wrapper">
+    <a class="action showcart" href="https://www.curvesandcarvings.com/checkout/cart/?SID=ru8kd2pleip84b5bmo46onrhhd"
+       data-bind="scope: 'minicart_content'">
+        <span class="text">My Cart</span>
+        <span class="counter qty empty"
+              data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
+            <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
+            <span class="counter-label">
+            <!-- ko if: getCartParam('summary_count') -->
+                <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
+                <!-- ko i18n: 'items' --><!-- /ko -->
+            <!-- /ko -->
+            </span>
+        </span>
+    </a>
+            <div class="block block-minicart"
+             data-role="dropdownDialog"
+             data-mage-init='{"dropdownDialog":{
+                "appendTo":"[data-block=minicart]",
+                "triggerTarget":".showcart",
+                "timeout": "2000",
+                "closeOnMouseLeave": false,
+                "closeOnEscape": true,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "buttons":[]}}'>
+            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            </div>
+                    </div>
+        <script>
+        window.checkout = {"shoppingCartUrl":"https:\/\/www.curvesandcarvings.com\/checkout\/cart\/?SID=ru8kd2pleip84b5bmo46onrhhd","checkoutUrl":"https:\/\/www.curvesandcarvings.com\/checkout\/?SID=ru8kd2pleip84b5bmo46onrhhd","updateItemQtyUrl":"https:\/\/www.curvesandcarvings.com\/checkout\/sidebar\/updateItemQty\/?SID=ru8kd2pleip84b5bmo46onrhhd","removeItemUrl":"https:\/\/www.curvesandcarvings.com\/checkout\/sidebar\/removeItem\/?SID=ru8kd2pleip84b5bmo46onrhhd","imageTemplate":"Magento_Catalog\/product\/image_with_borders","baseUrl":"https:\/\/www.curvesandcarvings.com\/","minicartMaxItemsVisible":5,"websiteId":"1","maxItemsToDisplay":10,"storeId":"1","customerLoginUrl":"https:\/\/www.curvesandcarvings.com\/customer\/account\/login\/referer\/aHR0cHM6Ly93d3cuY3VydmVzYW5kY2FydmluZ3MuY29tL2Ntcy9ub3JvdXRlL2luZGV4L2x1bWEvZW5fVVMvY3NzL25ld3N0eWxlLmNzcy8_U0lEPXJ1OGtkMnBsZWlwODRiNWJtbzQ2b25yaGhk\/?SID=ru8kd2pleip84b5bmo46onrhhd","isRedirectRequired":false,"autocomplete":"off","captcha":{"user_login":{"isCaseSensitive":false,"imageHeight":50,"imageSrc":"","refreshUrl":"https:\/\/www.curvesandcarvings.com\/captcha\/refresh\/?SID=ru8kd2pleip84b5bmo46onrhhd","isRequired":false,"timestamp":1782903599}}};
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart']": {
+            "Magento_Ui/js/core/app": {"components":{"minicart_content":{"children":{"subtotal.container":{"children":{"subtotal":{"children":{"subtotal.totals":{"config":{"display_cart_subtotal_incl_tax":0,"display_cart_subtotal_excl_tax":1,"template":"Magento_Tax\/checkout\/minicart\/subtotal\/totals"},"children":{"subtotal.totals.msrp":{"component":"Magento_Msrp\/js\/view\/checkout\/minicart\/subtotal\/totals","config":{"displayArea":"minicart-subtotal-hidden","template":"Magento_Msrp\/checkout\/minicart\/subtotal\/totals"}}},"component":"Magento_Tax\/js\/view\/checkout\/minicart\/subtotal\/totals"}},"component":"uiComponent","config":{"template":"Magento_Checkout\/minicart\/subtotal"}}},"component":"uiComponent","config":{"displayArea":"subtotalContainer"}},"item.renderer":{"component":"uiComponent","config":{"displayArea":"defaultRenderer","template":"Magento_Checkout\/minicart\/item\/default"},"children":{"item.image":{"component":"Magento_Catalog\/js\/view\/image","config":{"template":"Magento_Catalog\/product\/image","displayArea":"itemImage"}},"checkout.cart.item.price.sidebar":{"component":"uiComponent","config":{"template":"Magento_Checkout\/minicart\/item\/price","displayArea":"priceSidebar"}}}},"extra_info":{"component":"uiComponent","config":{"displayArea":"extraInfo"}},"promotion":{"component":"uiComponent","config":{"displayArea":"promotion"}}},"config":{"itemRenderer":{"default":"defaultRenderer","simple":"defaultRenderer","virtual":"defaultRenderer"},"template":"Magento_Checkout\/minicart\/content"},"component":"Magento_Checkout\/js\/view\/minicart"}},"types":[]}        },
+        "*": {
+            "Magento_Ui/js/block-loader": "https://www.curvesandcarvings.com/static/frontend/Magento/luma/en_US/images/loader-1.gif"
+        }
+    }
+    </script>
+</div>
+
+
+
+<div class="hedleftcal01">
+	<ul>
+    	<li><a href="https://www.curvesandcarvings.com/">Home</a></li>   
+        <!--<li><a href="https://www.curvesandcarvings.com/our-store">Our work</a></li>-->
+        <li><a href="https://www.curvesandcarvings.com/blog">Blogs</a></li>
+        <!--<li><a href="interior-designer/">Interior Design</a></li>-->
+    </ul>
+</div>
+
+<div class="hedserch01">
+	<div class="hedserch01icon"><a href="#"><i class="fa fa-search"></i> Search</a></div>
+    <div class="hedserch01serch">
+    	<div class="block block-search">
+    <div class="block block-title"><strong>Search</strong></div>
+    <div class="block block-content">
+        <form class="form minisearch" id="search_mini_form" action="https://www.curvesandcarvings.com/catalogsearch/result/?SID=ru8kd2pleip84b5bmo46onrhhd" method="get">
+            <div class="field search">
+                <label class="label" for="search" data-role="minisearch-label">
+                    <span>Search</span>
+                </label>
+                <div class="control">
+                    <input id="search"
+                           data-mage-init='{"quickSearch":{
+                                "formSelector":"#search_mini_form",
+                                "url":"https://www.curvesandcarvings.com/search/ajax/suggest/?SID=ru8kd2pleip84b5bmo46onrhhd",
+                                "destinationSelector":"#search_autocomplete"}
+                           }'
+                           type="text"
+                           name="q"
+                           value=""
+                           placeholder="Search entire store here..."
+                           class="input-text"
+                           maxlength="128"
+                           role="combobox"
+                           aria-haspopup="false"
+                           aria-autocomplete="both"
+                           autocomplete="off"/>
+                    <div id="search_autocomplete" class="search-autocomplete"></div>
+                    <div class="nested">
+    <a class="action advanced" href="https://www.curvesandcarvings.com/catalogsearch/advanced/?SID=ru8kd2pleip84b5bmo46onrhhd" data-action="advanced-search">
+        Advanced Search    </a>
+</div>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="submit"
+                        title="Search"
+                        class="action search">
+                    <span>Search</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+    </div>
+</div>
+
+<div class="topragister01"><a href="https://www.curvesandcarvings.com/customer/account/login/">Login</a></div>
+
+
+<ul class="compare wrapper"><li class="item link compare" data-bind="scope: 'compareProducts'" data-role="compare-products-link">
+    <a class="action compare no-display" title="Compare Products"
+       data-bind="attr: {'href': compareProducts().listUrl}, css: {'no-display': !compareProducts().count}"
+    >
+        Compare Products        <span class="counter qty" data-bind="text: compareProducts().countCaption"></span>
+    </a>
+</li>
+<script type="text/x-magento-init">
+{"[data-role=compare-products-link]": {"Magento_Ui/js/core/app": {"components":{"compareProducts":{"component":"Magento_Catalog\/js\/view\/compare-products"}}}}}
+</script>
+</ul></div></header>    <div class="sections nav-sections">
+                <div class="section-items nav-sections-items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                                            <div class="section-item-title nav-sections-item-title" data-role="collapsible">
+                    <a class="nav-sections-item-switch" data-toggle="switch" href="#store.menu">Menu</a>
+                </div>
+                <div class="section-item-content nav-sections-item-content" id="store.menu" data-role="content">
+    <script>
+
+        require([
+            'jquery',
+            'ibnabmodernizr'
+        ], function ($) {
+
+
+            $('.menu > ul > li:has( > ul)').addClass('menu-dropdown-icon');
+            //Checks if li has sub (ul) and adds class for toggle icon - just an UI
+
+
+            $('.menu > ul > li > ul:not(:has(ul))').addClass('normal-sub');
+            //Checks if drodown menu's li elements have anothere level (ul), if not the dropdown is shown as regular dropdown, not a mega menu (thanks Luka Kladaric)
+
+            $(".menu > ul").before("<a href=\"#\" class=\"menu-mobile\">Navigation</a>");
+
+            //Adds menu-mobile class (for mobile toggle menu) before the normal menu
+            //Mobile menu is hidden if width is more then 959px, but normal menu is displayed
+            //Normal menu is hidden if width is below 959px, and jquery adds mobile menu
+            //Done this way so it can be used with wordpress without any trouble
+
+            $(".menu > ul > li").hover(function (e) {
+                if ($(window).width() > 943) {
+                    $(this).children("ul").stop(true, false).fadeToggle(150);
+                    e.preventDefault();
+                }
+            });
+            //If width is more than 943px dropdowns are displayed on hover
+
+            $(".menu > ul > li").click(function () {
+                if ($(window).width() <= 943) {
+                    $(this).children("ul").fadeToggle(150);
+                }
+            });
+            //If width is less or equal to 943px dropdowns are displayed on click (thanks Aman Jain from stackoverflow)
+
+            $(".menu-mobile").click(function (e) {
+                $(".menu > ul").toggleClass('show-on-mobile');
+                e.preventDefault();
+            });
+
+
+
+
+        });
+
+    </script>
+        <nav class="navigation" role="navigation" >
+
+        <div class="menu" id="om">
+            <ul>
+                <li><a href="https://www.curvesandcarvings.com/beds-bedsides"  class="level-top" ><span>BEDS AND BEDSIDES</span></a><ul><div class="ulmain"><div class="lichildmain"><li  class="level1 nav-1-1 first parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds" ><span>BEDS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-1-1-1 first"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds/antique" ><span>ANTIQUE BEDS</span></a></li><li  class="level2 nav-1-1-2"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds/contemporary" ><span>MODERN BEDS</span></a></li><li  class="level2 nav-1-1-3 last"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds/luxury" ><span>LUXURY BEDS</span></a></li></div></ul></li><li  class="level1 nav-1-2 parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets" ><span>BEDROOM SETS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-1-2-1 first"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets/antique" ><span>ANTIQUE BEDROOM SETS</span></a></li><li  class="level2 nav-1-2-2"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets/contemporary" ><span>MODERN BEDROOM SETS</span></a></li><li  class="level2 nav-1-2-3 last"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets/luxury" ><span>LUXURY BEDROOM SETS</span></a></li></div></ul></li><li  class="level1 nav-1-3 column_mega_menu4"><a href="https://www.curvesandcarvings.com/beds-bedsides/four-poster-beds" ><span>FOUR POSTER BEDS</span></a></li><li  class="level1 nav-1-4 last column_mega_menu4"><a href="https://www.curvesandcarvings.com/beds-bedsides/dressers" ><span>DRESSERS</span></a></li></div><div class="rightstatic" ><p><img src="https://www.curvesandcarvings.com/pub/media/catalog/category/resized/Bed.jpg" alt=""></p></div><div class="bottomstatic" ></div></div></ul></li><li><a href="https://www.curvesandcarvings.com/dining-sets"  class="level-top" ><span>DINING TABLE</span></a><ul><div class="ulmain"><div class="lichildmain"><li  class="level1 nav-2-1 first parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/dining-sets/antique" ><span>ANTIQUE DINING TABLE</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-2-1-1 first"><a href="https://www.curvesandcarvings.com/dining-sets/antique/4-seater" ><span>4-Seater Dining Table</span></a></li><li  class="level2 nav-2-1-2"><a href="https://www.curvesandcarvings.com/dining-sets/antique/6-seater" ><span>6-Seater Dining Table</span></a></li><li  class="level2 nav-2-1-3"><a href="https://www.curvesandcarvings.com/dining-sets/antique/8-seater" ><span>8-Seater Dining Table</span></a></li><li  class="level2 nav-2-1-4 last"><a href="https://www.curvesandcarvings.com/dining-sets/antique/9-seater" ><span>9+ Seater Dining Table</span></a></li></div></ul></li><li  class="level1 nav-2-2 parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/dining-sets/modern" ><span>MODERN DINING TABLE</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-2-2-1 first"><a href="https://www.curvesandcarvings.com/dining-sets/modern/4-seater" ><span>4-Seater Dining Table</span></a></li><li  class="level2 nav-2-2-2"><a href="https://www.curvesandcarvings.com/dining-sets/modern/6-seater" ><span>6-Seater Dining Table</span></a></li><li  class="level2 nav-2-2-3 last"><a href="https://www.curvesandcarvings.com/dining-sets/modern/8-seater" ><span>8-Seater Dining Table</span></a></li></div></ul></li><li  class="level1 nav-2-3 last parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/dining-sets/round" ><span>ROUND DINING TABLE</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-2-3-1 first last"><a href="https://www.curvesandcarvings.com/dining-sets/round/4-seater" ><span>4-SEATER DINING TABLE</span></a></li></div></ul></li></div><div class="rightstatic" ><img src="https://www.curvesandcarvings.com/pub/media/catalog/category/c_c_dtc0086_2.jpg" alt="" /></div><div class="bottomstatic" ></div></div></ul></li><li><a href="https://www.curvesandcarvings.com/living"  class="level-top" ><span>LIVING</span></a><ul><div class="ulmain"><div class="lichildmain"><li  class="level1 nav-3-1 first parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/living/sofas" ><span>SOFAS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-3-1-1 first"><a href="https://www.curvesandcarvings.com/living/sofas/antique" ><span>ANTIQUE SOFAS</span></a></li><li  class="level2 nav-3-1-2"><a href="https://www.curvesandcarvings.com/living/sofas/wooden-sofas" ><span>WOODEN SOFAS</span></a></li><li  class="level2 nav-3-1-3 last"><a href="https://www.curvesandcarvings.com/living/sofas/diwans" ><span>DIWANS</span></a></li></div></ul></li><li  class="level1 nav-3-2 last parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/living/chairs" ><span>CHAIRS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-3-2-1 first"><a href="https://www.curvesandcarvings.com/living/chairs/accent-chairs" ><span>ACCENT CHAIRS</span></a></li><li  class="level2 nav-3-2-2"><a href="https://www.curvesandcarvings.com/living/chairs/lounge-chairs" ><span>LOUNGE CHAIRS</span></a></li><li  class="level2 nav-3-2-3"><a href="https://www.curvesandcarvings.com/living/chairs/rocking-chairs" ><span>ROCKING CHAIRS</span></a></li><li  class="level2 nav-3-2-4"><a href="https://www.curvesandcarvings.com/living/chairs/wing-chairs" ><span>WING CHAIRS</span></a></li><li  class="level2 nav-3-2-5"><a href="https://www.curvesandcarvings.com/living/chairs/high-back-chairs" ><span>HIGH BACK CHAIRS</span></a></li><li  class="level2 nav-3-2-6"><a href="https://www.curvesandcarvings.com/living/chairs/designer-chair" ><span>DESIGNER CHAIRS</span></a></li><li  class="level2 nav-3-2-7 last"><a href="https://www.curvesandcarvings.com/living/chairs/exclusive-chairs" ><span>EXCLUSIVE CHAIRS</span></a></li></div></ul></li></div><div class="rightstatic" ><img src="https://www.curvesandcarvings.com/pub/media/catalog/c_c_bed0002_2.jpg" alt="" /></div><div class="bottomstatic" ></div></div></ul></li><li><a href="https://www.curvesandcarvings.com/storage"  class="level-top" ><span>STORAGE</span></a><ul><div class="ulmain"><div class="lichildmain"><li  class="level1 nav-4-1 first parent column_mega_menu4"><a href="https://www.curvesandcarvings.com/storage/wardrobes" ><span>Wardrobes</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 nav-4-1-1 first"><a href="https://www.curvesandcarvings.com/storage/wardrobes/2-door" ><span>2-DOOR WARDROBE</span></a></li><li  class="level2 nav-4-1-2 last"><a href="https://www.curvesandcarvings.com/storage/wardrobes/4-door" ><span>4-DOOR WARDROBE</span></a></li></div></ul></li><li  class="level1 nav-4-2 column_mega_menu4"><a href="https://www.curvesandcarvings.com/storage/chest-of-drawers" ><span>Chest of Drawers</span></a></li><li  class="level1 nav-4-3 last column_mega_menu4"><a href="https://www.curvesandcarvings.com/storage/display-units" ><span>Display Units</span></a></li></div><div class="rightstatic" ><img src="https://www.curvesandcarvings.com/pub/media/catalog/c_c_du0048_2.jpg" alt="" /></div><div class="bottomstatic" ></div></div></ul></li><li><a href="https://www.curvesandcarvings.com/tables"  class="level-top" ><span>TABLES</span></a><ul><div class="ulmain"><div class="lichildmain"><li  class="level1 nav-5-1 first column_mega_menu4"><a href="https://www.curvesandcarvings.com/tables/study-table" ><span>STUDY TABLES</span></a></li><li  class="level1 nav-5-2 column_mega_menu4"><a href="https://www.curvesandcarvings.com/tables/tables" ><span>CENTER TABLES</span></a></li><li  class="level1 nav-5-3 last column_mega_menu4"><a href="https://www.curvesandcarvings.com/tables/console-tables" ><span>CONSOLE TABLES</span></a></li></div><div class="rightstatic" ><img src="https://www.curvesandcarvings.com/pub/media/catalog/c_c_con0092_2.jpg" alt="" /></div><div class="bottomstatic" ></div></div></ul></li><li><a href="https://www.curvesandcarvings.com/more"  class="level-top" ><span>MORE</span></a><ul><div class="ulmain"><div class="lichildmain"><li  class="level1 nav-6-1 first column_mega_menu3"><a href="https://www.curvesandcarvings.com/more/mirrors" ><span>ANTIQUE MIRRORS</span></a></li><li  class="level1 nav-6-2 column_mega_menu3"><a href="https://www.curvesandcarvings.com/more/others" ><span>ANTIQUE SWINGS</span></a></li><li  class="level1 nav-6-3 column_mega_menu3"><a href="https://www.curvesandcarvings.com/more/fire-place" ><span>ANTIQUE FIRE-PLACE</span></a></li><li  class="level1 nav-6-4 last column_mega_menu3"><a href="https://www.curvesandcarvings.com/more/bone-inlay" ><span>BONE INLAY</span></a></li></div><div class="rightstatic" ><img src="https://www.curvesandcarvings.com/pub/media/catalog/fire6.jpg" alt="" /></div><div class="bottomstatic" ></div></div></ul></li><li><a href="https://www.curvesandcarvings.com/export-zone"  class="level-top" ><span>EXPORT ZONE</span></a></li><li><a href="https://www.curvesandcarvings.com/catalog/category/view/s/our-stores/id/156/"  class="level-top" ><span>OUR STORES</span></a></li><li><a href="https://www.curvesandcarvings.com/our-gallery"  class="level-top" ><span>OUR GALLERY</span></a></li>            </ul>
+        </div>
+        <ul id="dm" data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+            <div class="lichildmain"><li  class="level0 ui-menu-item nav-1 first level-top parent"><a href="https://www.curvesandcarvings.com/beds-bedsides"  class="level-top" ><span>BEDS AND BEDSIDES</span></a><ul class="level0 submenu"><div class="lichildmain"><li  class="level1 ui-menu-item nav-1-1 first parent"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds" ><span>BEDS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-1-1-1 first"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds/antique" ><span>ANTIQUE BEDS</span></a></li><li  class="level2 ui-menu-item nav-1-1-2"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds/contemporary" ><span>MODERN BEDS</span></a></li><li  class="level2 ui-menu-item nav-1-1-3 last"><a href="https://www.curvesandcarvings.com/beds-bedsides/beds/luxury" ><span>LUXURY BEDS</span></a></li></div></ul></li><li  class="level1 ui-menu-item nav-1-2 parent"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets" ><span>BEDROOM SETS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-1-2-1 first"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets/antique" ><span>ANTIQUE BEDROOM SETS</span></a></li><li  class="level2 ui-menu-item nav-1-2-2"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets/contemporary" ><span>MODERN BEDROOM SETS</span></a></li><li  class="level2 ui-menu-item nav-1-2-3 last"><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets/luxury" ><span>LUXURY BEDROOM SETS</span></a></li></div></ul></li><li  class="level1 ui-menu-item nav-1-3"><a href="https://www.curvesandcarvings.com/beds-bedsides/four-poster-beds" ><span>FOUR POSTER BEDS</span></a></li><li  class="level1 ui-menu-item nav-1-4 last"><a href="https://www.curvesandcarvings.com/beds-bedsides/dressers" ><span>DRESSERS</span></a></li></div></ul></li><li  class="level0 ui-menu-item nav-2 level-top parent"><a href="https://www.curvesandcarvings.com/dining-sets"  class="level-top" ><span>DINING TABLE</span></a><ul class="level0 submenu"><div class="lichildmain"><li  class="level1 ui-menu-item nav-2-1 first parent"><a href="https://www.curvesandcarvings.com/dining-sets/antique" ><span>ANTIQUE DINING TABLE</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-2-1-1 first"><a href="https://www.curvesandcarvings.com/dining-sets/antique/4-seater" ><span>4-Seater Dining Table</span></a></li><li  class="level2 ui-menu-item nav-2-1-2"><a href="https://www.curvesandcarvings.com/dining-sets/antique/6-seater" ><span>6-Seater Dining Table</span></a></li><li  class="level2 ui-menu-item nav-2-1-3"><a href="https://www.curvesandcarvings.com/dining-sets/antique/8-seater" ><span>8-Seater Dining Table</span></a></li><li  class="level2 ui-menu-item nav-2-1-4 last"><a href="https://www.curvesandcarvings.com/dining-sets/antique/9-seater" ><span>9+ Seater Dining Table</span></a></li></div></ul></li><li  class="level1 ui-menu-item nav-2-2 parent"><a href="https://www.curvesandcarvings.com/dining-sets/modern" ><span>MODERN DINING TABLE</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-2-2-1 first"><a href="https://www.curvesandcarvings.com/dining-sets/modern/4-seater" ><span>4-Seater Dining Table</span></a></li><li  class="level2 ui-menu-item nav-2-2-2"><a href="https://www.curvesandcarvings.com/dining-sets/modern/6-seater" ><span>6-Seater Dining Table</span></a></li><li  class="level2 ui-menu-item nav-2-2-3 last"><a href="https://www.curvesandcarvings.com/dining-sets/modern/8-seater" ><span>8-Seater Dining Table</span></a></li></div></ul></li><li  class="level1 ui-menu-item nav-2-3 last parent"><a href="https://www.curvesandcarvings.com/dining-sets/round" ><span>ROUND DINING TABLE</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-2-3-1 first last"><a href="https://www.curvesandcarvings.com/dining-sets/round/4-seater" ><span>4-SEATER DINING TABLE</span></a></li></div></ul></li></div></ul></li><li  class="level0 ui-menu-item nav-3 level-top parent"><a href="https://www.curvesandcarvings.com/living"  class="level-top" ><span>LIVING</span></a><ul class="level0 submenu"><div class="lichildmain"><li  class="level1 ui-menu-item nav-3-1 first parent"><a href="https://www.curvesandcarvings.com/living/sofas" ><span>SOFAS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-3-1-1 first"><a href="https://www.curvesandcarvings.com/living/sofas/antique" ><span>ANTIQUE SOFAS</span></a></li><li  class="level2 ui-menu-item nav-3-1-2"><a href="https://www.curvesandcarvings.com/living/sofas/wooden-sofas" ><span>WOODEN SOFAS</span></a></li><li  class="level2 ui-menu-item nav-3-1-3 last"><a href="https://www.curvesandcarvings.com/living/sofas/diwans" ><span>DIWANS</span></a></li></div></ul></li><li  class="level1 ui-menu-item nav-3-2 last parent"><a href="https://www.curvesandcarvings.com/living/chairs" ><span>CHAIRS</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-3-2-1 first"><a href="https://www.curvesandcarvings.com/living/chairs/accent-chairs" ><span>ACCENT CHAIRS</span></a></li><li  class="level2 ui-menu-item nav-3-2-2"><a href="https://www.curvesandcarvings.com/living/chairs/lounge-chairs" ><span>LOUNGE CHAIRS</span></a></li><li  class="level2 ui-menu-item nav-3-2-3"><a href="https://www.curvesandcarvings.com/living/chairs/rocking-chairs" ><span>ROCKING CHAIRS</span></a></li><li  class="level2 ui-menu-item nav-3-2-4"><a href="https://www.curvesandcarvings.com/living/chairs/wing-chairs" ><span>WING CHAIRS</span></a></li><li  class="level2 ui-menu-item nav-3-2-5"><a href="https://www.curvesandcarvings.com/living/chairs/high-back-chairs" ><span>HIGH BACK CHAIRS</span></a></li><li  class="level2 ui-menu-item nav-3-2-6"><a href="https://www.curvesandcarvings.com/living/chairs/designer-chair" ><span>DESIGNER CHAIRS</span></a></li><li  class="level2 ui-menu-item nav-3-2-7 last"><a href="https://www.curvesandcarvings.com/living/chairs/exclusive-chairs" ><span>EXCLUSIVE CHAIRS</span></a></li></div></ul></li></div></ul></li><li  class="level0 ui-menu-item nav-4 level-top parent"><a href="https://www.curvesandcarvings.com/storage"  class="level-top" ><span>STORAGE</span></a><ul class="level0 submenu"><div class="lichildmain"><li  class="level1 ui-menu-item nav-4-1 first parent"><a href="https://www.curvesandcarvings.com/storage/wardrobes" ><span>Wardrobes</span></a><ul class="level1 submenu"><div class="lichildmain"><li  class="level2 ui-menu-item nav-4-1-1 first"><a href="https://www.curvesandcarvings.com/storage/wardrobes/2-door" ><span>2-DOOR WARDROBE</span></a></li><li  class="level2 ui-menu-item nav-4-1-2 last"><a href="https://www.curvesandcarvings.com/storage/wardrobes/4-door" ><span>4-DOOR WARDROBE</span></a></li></div></ul></li><li  class="level1 ui-menu-item nav-4-2"><a href="https://www.curvesandcarvings.com/storage/chest-of-drawers" ><span>Chest of Drawers</span></a></li><li  class="level1 ui-menu-item nav-4-3 last"><a href="https://www.curvesandcarvings.com/storage/display-units" ><span>Display Units</span></a></li></div></ul></li><li  class="level0 ui-menu-item nav-5 level-top parent"><a href="https://www.curvesandcarvings.com/tables"  class="level-top" ><span>TABLES</span></a><ul class="level0 submenu"><div class="lichildmain"><li  class="level1 ui-menu-item nav-5-1 first"><a href="https://www.curvesandcarvings.com/tables/study-table" ><span>STUDY TABLES</span></a></li><li  class="level1 ui-menu-item nav-5-2"><a href="https://www.curvesandcarvings.com/tables/tables" ><span>CENTER TABLES</span></a></li><li  class="level1 ui-menu-item nav-5-3 last"><a href="https://www.curvesandcarvings.com/tables/console-tables" ><span>CONSOLE TABLES</span></a></li></div></ul></li><li  class="level0 ui-menu-item nav-6 level-top parent"><a href="https://www.curvesandcarvings.com/more"  class="level-top" ><span>MORE</span></a><ul class="level0 submenu"><div class="lichildmain"><li  class="level1 ui-menu-item nav-6-1 first"><a href="https://www.curvesandcarvings.com/more/mirrors" ><span>ANTIQUE MIRRORS</span></a></li><li  class="level1 ui-menu-item nav-6-2"><a href="https://www.curvesandcarvings.com/more/others" ><span>ANTIQUE SWINGS</span></a></li><li  class="level1 ui-menu-item nav-6-3"><a href="https://www.curvesandcarvings.com/more/fire-place" ><span>ANTIQUE FIRE-PLACE</span></a></li><li  class="level1 ui-menu-item nav-6-4 last"><a href="https://www.curvesandcarvings.com/more/bone-inlay" ><span>BONE INLAY</span></a></li></div></ul></li><li  class="level0 ui-menu-item nav-7 level-top"><a href="https://www.curvesandcarvings.com/export-zone"  class="level-top" ><span>EXPORT ZONE</span></a></li><li  class="level0 ui-menu-item nav-8 level-top"><a href="https://www.curvesandcarvings.com/catalog/category/view/s/our-stores/id/156/"  class="level-top" ><span>OUR STORES</span></a></li><li  class="level0 ui-menu-item nav-9 last level-top"><a href="https://www.curvesandcarvings.com/our-gallery"  class="level-top" ><span>OUR GALLERY</span></a></li></div>        </ul>
+    </nav>
+	
+	
+
+</div>
+                                            <div class="section-item-title nav-sections-item-title" data-role="collapsible">
+                    <a class="nav-sections-item-switch" data-toggle="switch" href="#store.links">Account</a>
+                </div>
+                <div class="section-item-content nav-sections-item-content" id="store.links" data-role="content"><!-- Account links --></div>
+                                    </div>
+    </div>
+<main id="maincontent" class="page-main"><a id="contentarea" tabindex="-1"></a>
+<div class="page-title-wrapper">
+    <h1 class="page-title"
+                >
+        <span class="base" data-ui-id="page-title-wrapper" >Whoops, our bad...</span>    </h1>
+    </div>
+<div class="page messages"><div data-placeholder="messages"></div>
+<div data-bind="scope: 'messages'">
+    <!-- ko if: cookieMessages && cookieMessages.length > 0 -->
+    <div role="alert" data-bind="foreach: { data: cookieMessages, as: 'message' }" class="messages">
+        <div data-bind="attr: {
+            class: 'message-' + message.type + ' ' + message.type + ' message',
+            'data-ui-id': 'message-' + message.type
+        }">
+            <div data-bind="html: message.text"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: messages().messages && messages().messages.length > 0 -->
+    <div role="alert" data-bind="foreach: { data: messages().messages, as: 'message' }" class="messages">
+        <div data-bind="attr: {
+            class: 'message-' + message.type + ' ' + message.type + ' message',
+            'data-ui-id': 'message-' + message.type
+        }">
+            <div data-bind="html: message.text"></div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                        "messages": {
+                            "component": "Magento_Theme/js/view/messages"
+                        }
+                    }
+                }
+            }
+    }
+</script>
+</div><div class="columns"><div class="column main"><input name="form_key" type="hidden" value="lbrXjynGIHMRbZvp" /><div id="authenticationPopup" class="vikrant123" data-bind="scope:'authenticationPopup'" style="display: none;">
+    <script>
+        window.authenticationPopup = {"autocomplete":"off","customerRegisterUrl":"https:\/\/www.curvesandcarvings.com\/customer\/account\/create\/?SID=ru8kd2pleip84b5bmo46onrhhd","customerForgotPasswordUrl":"https:\/\/www.curvesandcarvings.com\/customer\/account\/forgotpassword\/?SID=ru8kd2pleip84b5bmo46onrhhd","baseUrl":"https:\/\/www.curvesandcarvings.com\/"};
+    </script>
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+        {
+            "#authenticationPopup": {
+                "Magento_Ui/js/core/app": {"components":{"authenticationPopup":{"component":"Magento_Customer\/js\/view\/authentication-popup","children":{"messages":{"component":"Magento_Ui\/js\/view\/messages","displayArea":"messages"},"msp_recaptcha":{"component":"MSP_ReCaptcha\/js\/reCaptcha","displayArea":"additional-login-form-fields","configSource":"checkoutConfig","reCaptchaId":"msp-recaptcha-popup-login","zone":"login","badge":"inline","settings":{"siteKey":"6LdI7vYfAAAAAMts-_wKdXW__bzKkv4UMBUYoG9G","size":"invisible","badge":"inline","theme":null,"lang":null,"enabled":{"login":true,"create":true,"forgot":true,"contact":true}}},"captcha":{"component":"Magento_Captcha\/js\/view\/checkout\/loginCaptcha","displayArea":"additional-login-form-fields","formId":"user_login","configSource":"checkout"},"amazon-button":{"component":"Amazon_Login\/js\/view\/login-button-wrapper","sortOrder":"0","displayArea":"additional-login-form-fields","config":{"tooltip":"Securely login to our website using your existing Amazon details."}}}}}}            },
+            "*": {
+                "Magento_Ui/js/block-loader": "https\u003A\u002F\u002Fwww.curvesandcarvings.com\u002Fstatic\u002Ffrontend\u002FMagento\u002Fluma\u002Fen_US\u002Fimages\u002Floader\u002D1.gif"
+            }
+        }
+    </script>
+</div>
+<script type="text/x-magento-init">
+{"*":{"Magento_Customer\/js\/section-config":{"sections":{"stores\/store\/switch":"*","directory\/currency\/switch":"*","*":["messages"],"customer\/account\/logout":["recently_viewed_product","recently_compared_product"],"customer\/account\/loginpost":"*","customer\/account\/createpost":"*","customer\/account\/editpost":"*","customer\/ajax\/login":["checkout-data","cart","captcha"],"catalog\/product_compare\/add":["compare-products"],"catalog\/product_compare\/remove":["compare-products"],"catalog\/product_compare\/clear":["compare-products"],"sales\/guest\/reorder":["cart"],"sales\/order\/reorder":["cart"],"checkout\/cart\/add":["cart"],"checkout\/cart\/delete":["cart"],"checkout\/cart\/updatepost":["cart"],"checkout\/cart\/updateitemoptions":["cart"],"checkout\/cart\/couponpost":["cart"],"checkout\/cart\/estimatepost":["cart"],"checkout\/cart\/estimateupdatepost":["cart"],"checkout\/onepage\/saveorder":["cart","checkout-data","last-ordered-items","checkout-fields"],"checkout\/sidebar\/removeitem":["cart"],"checkout\/sidebar\/updateitemqty":["cart"],"rest\/*\/v1\/carts\/*\/payment-information":["cart","checkout-data","last-ordered-items","instant-purchase"],"rest\/*\/v1\/guest-carts\/*\/payment-information":["cart"],"rest\/*\/v1\/guest-carts\/*\/selected-payment-method":["cart","checkout-data"],"rest\/*\/v1\/carts\/*\/selected-payment-method":["cart","checkout-data","instant-purchase"],"paypal\/express\/placeorder":["cart","checkout-data"],"paypal\/payflowexpress\/placeorder":["cart","checkout-data"],"paypal\/express\/onauthorization":["cart","checkout-data"],"sociallogin\/account\/loginpost":"*","customer\/address\/*":["instant-purchase"],"customer\/account\/*":["instant-purchase"],"vault\/cards\/deleteaction":["instant-purchase"],"multishipping\/checkout\/overviewpost":["cart"],"braintree\/paypal\/placeorder":["cart","checkout-data"],"persistent\/index\/unsetcookie":["persistent"],"authorizenet\/directpost_payment\/place":["cart","checkout-data"],"review\/product\/post":["review"],"wishlist\/index\/add":["wishlist"],"wishlist\/index\/remove":["wishlist"],"wishlist\/index\/updateitemoptions":["wishlist"],"wishlist\/index\/update":["wishlist"],"wishlist\/index\/cart":["wishlist","cart"],"wishlist\/index\/fromcart":["wishlist","cart"],"wishlist\/index\/allcart":["wishlist","cart"],"wishlist\/shared\/allcart":["wishlist","cart"],"wishlist\/shared\/cart":["cart"],"ccavenuepay\/controller\/ccavenuepay\/place":["cart","checkout-data"],"weltpixel_quickview\/index\/updatecart":["cart"]},"clientSideSections":["checkout-data","cart-data"],"baseUrls":["https:\/\/www.curvesandcarvings.com\/?SID=ru8kd2pleip84b5bmo46onrhhd"]}}}</script>
+<script type="text/x-magento-init">
+{"*":{"Magento_Customer\/js\/customer-data":{"sectionLoadUrl":"https:\/\/www.curvesandcarvings.com\/customer\/section\/load\/?SID=ru8kd2pleip84b5bmo46onrhhd","expirableSectionLifetime":60,"expirableSectionNames":["cart","persistent"],"cookieLifeTime":"360000","updateSessionUrl":"https:\/\/www.curvesandcarvings.com\/customer\/account\/updateSession\/?SID=ru8kd2pleip84b5bmo46onrhhd"}}}</script>
+<script type="text/x-magento-init">
+{"*":{"Magento_Customer\/js\/invalidation-processor":{"invalidationRules":{"website-rule":{"Magento_Customer\/js\/invalidation-rules\/website-rule":{"scopeConfig":{"websiteId":1}}}}}}}</script>
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "pageCache": {"url":"https:\/\/www.curvesandcarvings.com\/page_cache\/block\/render\/luma\/en_US\/css\/newstyle.css\/?SID=ru8kd2pleip84b5bmo46onrhhd","handles":["default","cms_noroute_index","cms_page_view","cms_noroute_index_id_no-route"],"originalRequest":{"route":"cms","controller":"noroute","action":"index","uri":"\/pub\/static\/frontend\/Magento\/luma\/en_US\/css\/newstyle.css"},"versionCookieName":"private_content_version"}        }
+    }
+</script>
+
+<dl>
+<dt>The page you requested was not found, and we have a fine guess why.</dt>
+<dd>
+<ul class="disc">
+<li>If you typed the URL directly, please make sure the spelling is correct.</li>
+<li>If you clicked on a link to get here, the link is outdated.</li>
+</ul></dd>
+</dl>
+<dl>
+<dt>What can you do?</dt>
+<dd>Have no fear, help is near! There are many ways you can get back on track with Magento Store.</dd>
+<dd>
+<ul class="disc">
+<li><a href="#" onclick="history.go(-1); return false;">Go back</a> to the previous page.</li>
+<li>Use the search bar at the top of the page to search for your products.</li>
+<li>Follow these links to get you back on track!<br /><a href="https://www.curvesandcarvings.com/?SID=ru8kd2pleip84b5bmo46onrhhd">Store Home</a> <span class="separator">|</span> <a href="https://www.curvesandcarvings.com/customer/account/?SID=ru8kd2pleip84b5bmo46onrhhd">My Account</a></li></ul></dd></dl>
+</div><div class="sidebar sidebar-additional"><div class="block block-compare" data-bind="scope: 'compareProducts'" data-role="compare-products-sidebar">
+    <div class="block-title">
+        <strong id="block-compare-heading" role="heading" aria-level="2">Compare Products</strong>
+        <span class="counter qty no-display" data-bind="text: compareProducts().countCaption, css: {'no-display': !compareProducts().count}"></span>
+    </div>
+    <!-- ko if: compareProducts().count -->
+    <div class="block-content no-display" aria-labelledby="block-compare-heading" data-bind="css: {'no-display': !compareProducts().count}">
+        <ol id="compare-items" class="product-items product-items-names" data-bind="foreach: compareProducts().items">
+                <li class="product-item">
+                    <input type="hidden" class="compare-item-id" data-bind="value: id"/>
+                    <strong class="product-item-name">
+                        <a data-bind="attr: {href: product_url}, html: name" class="product-item-link"></a>
+                    </strong>
+                    <a href="#" data-bind="attr: {'data-post': remove_url}" title="Remove This Item" class="action delete">
+                        <span>Remove This Item</span>
+                    </a>
+                </li>
+        </ol>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <a data-bind="attr: {'href': compareProducts().listUrl}" class="action compare primary"><span>Compare</span></a>
+            </div>
+            <div class="secondary">
+                <a id="compare-clear-all" href="#" class="action clear" data-post="{&quot;action&quot;:&quot;https:\/\/www.curvesandcarvings.com\/catalog\/product_compare\/clear\/?SID=ru8kd2pleip84b5bmo46onrhhd&quot;,&quot;data&quot;:{&quot;uenc&quot;:&quot;&quot;,&quot;confirmation&quot;:true,&quot;confirmationMessage&quot;:&quot;Are you sure you want to remove all items from your Compare Products list?&quot;}}">
+                    <span>Clear All</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko ifnot: compareProducts().count -->
+    <div class="empty">You have no items to compare.</div>
+    <!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+{"[data-role=compare-products-sidebar]": {"Magento_Ui/js/core/app": {"components":{"compareProducts":{"component":"Magento_Catalog\/js\/view\/compare-products"}}}}}
+</script>
+    <div class="block block-wishlist" data-bind="scope: 'wishlist'">
+        <div class="block-title">
+            <strong role="heading" aria-level="2">My Wish List</strong>
+            <!-- ko if: wishlist().counter -->
+            <span data-bind="text: wishlist().counter" class="counter"></span>
+            <!-- /ko -->
+        </div>
+        <div class="block-content">
+            <strong class="subtitle">Last Added Items</strong>
+            <!-- ko if: wishlist().counter -->
+                <ol class="product-items no-display" id="wishlist-sidebar" data-bind="foreach: wishlist().items, css: {'no-display': null}">
+                    <li class="product-item">
+                        <div class="product-item-info">
+                            <a class="product-item-photo" data-bind="attr: { href: product_url, title: product_name }">
+                                <!-- ko template: {name: $data.image.template, data: $data.image} --><!-- /ko -->
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a data-bind="attr: { href: product_url }" class="product-item-link">
+                                        <span data-bind="html: product_name"></span>
+                                    </a>
+                                </strong>
+                                <div data-bind="html: product_price"></div>
+                                <div class="product-item-actions">
+                                    <!-- ko if: product_is_saleable_and_visible -->
+                                    <div class="actions-primary">
+                                        <!-- ko if: product_has_required_options -->
+                                        <a href="#" data-bind="attr: {'data-post': add_to_cart_params}" class="action tocart primary"><span>Add to Cart</span></a>
+                                        <!-- /ko -->
+                                        <!-- ko ifnot: product_has_required_options -->
+                                            <button type="button" class="action tocart primary" data-bind="attr: {'data-post': add_to_cart_params}"><span>Add to Cart</span></button>
+                                        <!-- /ko -->
+                                    </div>
+                                    <!-- /ko -->
+                                    <div class="actions-secondary">
+                                        <a href="#"  data-bind="attr: {'data-post': delete_item_params}"
+                                           title="Remove&#x20;This&#x20;Item"
+                                           class="btn-remove action delete">
+                                            <span>Remove This Item</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+                <div class="actions-toolbar no-display" data-bind="css: {'no-display': null}">
+                    <div class="primary">
+                        <a class="action details"
+                           href="https://www.curvesandcarvings.com/wishlist/?SID=ru8kd2pleip84b5bmo46onrhhd"
+                           title="Go&#x20;to&#x20;Wish&#x20;List"><span>Go to Wish List</span></a>
+                    </div>
+                </div>
+            <!-- /ko -->
+            <!-- ko ifnot: wishlist().counter -->
+                <div class="empty">You have no items in your wish list.</div>
+            <!-- /ko -->
+        </div>
+    </div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "wishlist": {
+                        "component": "Magento_Wishlist/js/view/wishlist"
+                    }
+                }
+            }
+        }
+    }
+</script>
+</div></div></main><footer class="page-footer"><div class="footer content"><!--<div class="block newsletter">
+    <div class="title"><strong>Newsletter</strong></div>
+    <div class="content">
+        <form class="form subscribe"
+            novalidate
+            action="https://www.curvesandcarvings.com/newsletter/subscriber/new/?SID=ru8kd2pleip84b5bmo46onrhhd"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <label class="label" for="newsletter"><span>Sign Up for Our Newsletter:</span></label>
+                <div class="control">
+                    <input name="email" type="email" id="newsletter"
+                           placeholder="Enter your email address"
+                           data-mage-init='{"mage/trim-input":{}}'
+                           data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary" title="Subscribe" type="submit">
+                    <span>Subscribe</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+-->
+
+<!--
+<div class="isocertipop_open certibtnnew">ISO certified</div>
+<div id="isocertipop" class="isobtomain">
+    <div class="icobox">
+        <h3>ISO Certificate<div class="isobtomainclose isocertipop_close">X</div></h3>
+        <img src="pub/media/images/ISO-Certificate.jpg" />
+    </div>
+</div>-->
+<style>
+.whatsapp_float {position: fixed;width: 60px;height: 60px;bottom: 4rem;right: 15px;background-color: #2ca01c;color: #fff !important;border-radius: 10px;text-align: center;font-size: 30px;box-shadow: 2px 2px 3px #999;z-index: 100;}
+.whatsapp-icon {margin-top: 0.5rem;font-size: 2.7rem;}
+a.whatsapp_float i {
+    margin-top: 15px;
+}
+</style>
+<a href="https://api.whatsapp.com/send?phone=+917722080791&text=Hello,%20Curves%20and%20Carvings"  class="whatsapp_float" target="_blank" rel="noopener noreferrer""><i class="fa fa-whatsapp whatsapp-icon"></i></a>
+
+<div class="contact-bottom"><p>NO OF VISITORS</p> <h2> 2195430</h2></div>
+
+<div class="section011"><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/fotimstagram.jpg" /></a></div>
+
+<div class="footer01">
+	<div class="container1">
+	<div class="footer01img"><img src="https://www.curvesandcarvings.com/pub/media/images/fotlogo.png" /></div>
+    <div class="fotcontct01">
+    	<div class="container2">
+        	<div class="foot01">
+            	<h3>Contact us</h3>
+                <ul>
+                    <li><i class="fa fa-map-marker"></i> <p><a href="https://goo.gl/maps/CY5TL9XoiLo4s7ek8" target="_blank" rel="noopener"><strong>Mumbai Showroom&nbsp;(closed for&nbsp;relocation)&nbsp;</strong></a>VAV Retail, 23G, Laxmi Industrial Estate, Near Lokhandwala Circle, Andheri (West), Mumbai 400053,&nbsp;Mobile /&nbsp;Whatsapp&nbsp;7722080791&nbsp;</p>
+<p><strong>Saharanpur (U.P) Showroom &amp;&nbsp;Workshop</strong>Plot 395 397, Siddharth Nagar, Chilkana Road, Saharanpur&nbsp;247001</p>
+<p><strong>For Import&nbsp;to UK &amp; Europe</strong>Varun Maini, Mobile / Whatsapp&nbsp;00447472508671</p>
+<p><strong>For Import to Dubai &amp; Middle-East</strong>AL Jannat, Mobile / Whatsapp 00971 501275224, Landline 00971 44272110, Email- admin@aljannat.ae</p>
+<p>&nbsp;</p></li>
+                    <li><i class="fa fa-phone"></i> <p>India:<a href="tel:+917722080791">+91 7722080791</a></p></li>
+                    <li><i class="fa fa-envelope"></i><p><a href="mailto:contact@curvesandcarvings.com" />contact@curvesandcarvings.com</p></li>
+                </ul>
+                <div class="fotsocail">
+                	<ul>
+                        <li><a href="https://facebook.com/curvesandcarvings" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/facebook.png" alt="facebook"></a></li>
+                        <li><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/instagram.png" alt="instagram"></a></li>
+                        <li><a href="https://twitter.com/curvesncarvings" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/twitter.png" alt="twitter"></a></li>
+                        <li><a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/linkedin.png" alt="linkedin"></a></li>
+                        <li><a href="https://www.youtube.com/watch?v=fD3N-7bLnd8&ab_channel=Curves%26Carvings" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/youtube.png" alt="youtube"></a></li>
+                        <li><a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank"><img src="https://www.curvesandcarvings.com/pub/media/images/pinterest.png" alt="pinterest"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot01 foot02">
+            	<h3>About us</h3>
+                <p>Based out of India, Curves & Carvings is the finest online store of Designer & Luxury furniture, specializing in Antique, Classic & Vintage furniture designs. We are glad to offer widest collection of 1000+ exquisite designs to our customers.</p>
+            </div>
+            <div class="foot01 foot03">
+            	<h3>Follow us</h3>
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/curvesandcarvings/&amp;tabs=timeline&amp;width=300&amp;height=200&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId" width="100%" height="200px" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="fotcontct02">
+    	<div class="container2">
+        	<div class="lastfot01">
+            	<h3>INFORMATION</h3>
+                <ul>
+                	<li><a href="https://www.curvesandcarvings.com/about-us">About us</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/terms-sale">Terms of Sale</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/privacy-policy">Privacy Policy</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/terms-and-conditions">Terms and Conditions</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/disclaimer">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>CUSTOMER SERVICE</h3>
+                <ul>
+                	<li><a href="https://www.curvesandcarvings.com/contact">Contact Us</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/returns-cancellations">Returns & Cancellations</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/shipping-policy">Shipping Policy</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/custom-order-furniture">Custom Order Furniture</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/testimonials">Customer Speak</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>EXTRAS</h3>
+                <ul>
+                	<li><a href="https://www.curvesandcarvings.com/terms-of-use">Terms of Use</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/payment-policy">Payment Policy</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/become-our-partner">Become our Partner</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/press-coverage">Press Coverage</a></li>
+                    <!--<li><a href="https://www.slideshare.net/slideshow/embed_code/key/JL1MmvfiRYDwOK">View e-Catalogue</a></li>-->
+                    <li><a href="https://www.curvesandcarvings.com/pub/media/ecatalog/e-catalogue.pdf" target="_blank">View e-Catalogue</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/certificates">ISO certified</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>QUICK LINK</h3>
+                <ul>
+                	<li><a href="https://www.curvesandcarvings.com/beds-bedsides/bedroom-sets">Bedroom Sets</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/beds-bedsides/beds">Beds</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/dining-sets">Dining Sets</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/living/chairs">Chairs</a></li>
+                    <!--<li><a href="https://www.curvesandcarvings.com/living/chairs/high-back-chairs">High Back </a></li>-->
+                    <li><a href="https://www.curvesandcarvings.com/living/sofas">Sofas</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/tables/study-table">Study Table</a></li>
+                    <li><a href="https://www.curvesandcarvings.com/tables">Tables</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>DELIVERY LOCATIONS</h3>
+<ul>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-mumbai">Mumbai</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/designer-furniture-pune">Pune</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-hyderabad">Hyderabad</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-bangalore">Bangalore</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-chennai">Chennai</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-kochi">Kochi</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-chandigarh">Chandigarh</a></li>
+	<li><a href="https://www.curvesandcarvings.com/locations/luxury-furniture-gurgaon">Gurgaon</a></li>
+</ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<!--<div class="xmasimg">
+    <img src="pub/media/images/2017.jpg">
+</div>-->
+
+<style>
+#fadeandscale {
+    -webkit-transform: scale(0.8);
+       -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+            transform: scale(0.8);
+}
+.popup_visible #fadeandscale {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+</style>
+<!-- 
+<script>(function(w, d) { w.CollectId = "651cf165df70161214ca952f"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+Web Fonts ---->
+<link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script>
+require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min', 'js/owl.carousel', 'js/simple-lightbox'], function($,myPopup,readMore,mTab,Carousel,Lightbox){
+    $(".hedserch01icon").click(function(){
+        $(".hedserch01serch").toggle();
+    });
+    $('#isocertipop').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,	
+        closebutton: false
+    });
+    $('#fadeandscale').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,
+        closebutton: false
+    }); 
+    $('#AdvancePayment').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,
+        closebutton: false
+    });
+    $('#tCard').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,
+        closebutton: false
+    }); 
+    $(".read-more").readmore({
+        buttonClasses: "btn btn-primary",
+    });
+    $('.tabbing').mTab({
+        navigation: ".tabNav",
+        container: ".tabContainer",
+        activeTab: 1,
+        activeClass: "active",
+        scrollOffset: true,
+        accordScreen: 768,
+        toggleClose: true,
+        animation: false,
+        openWithUrl: true,
+        callbackonclick: function() {},
+        callback: function() {}
+    });
+    $('.testimonial').owlCarousel({
+		loop: true,
+		autoplay:true,
+		autoplayTimeout:3000,
+		margin: 10,
+		responsiveClass: true,
+		responsive: {
+		  0: {
+			items: 1,
+			nav: true
+		  },
+		  600: {
+			items: 1,
+			nav: false
+		  },
+		  1000: {
+			items: 2,
+			nav: true,
+			loop: false,
+			margin: 20
+		  }
+		}
+    });
+	$('.homcaro').owlCarousel({
+		loop: true,
+		margin: 10,
+		autoplay:true,
+		autoplayTimeout:3000,
+		items: 3,
+		responsiveClass: true,
+		responsive: {
+		  0: {
+			items: 1,
+			nav: false
+		  },
+		  600: {
+			items: 2,
+			nav: false
+		  },
+		  1000: {
+			items: 3,
+			nav: false,
+			loop: true,
+			margin: 20
+		  }
+		}
+    });
+    $('.hmblog').owlCarousel({
+        loop: true,
+		autoplay:true,
+		autoplaySpeed:3000,
+        margin: 10,
+        responsiveClass: true,
+        responsive: {
+            0: {
+            items: 1,
+            nav: true
+            },
+            600: {
+            items: 2,
+            nav: false
+            },
+            1000: {
+            items: 2,
+            nav: true,
+            loop: false,
+            margin: 20
+            }
+        }
+    });
+    $('.hbanner-slider').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplaySpeed:5000,
+        autoplayHoverPause:true,
+        dots:false,
+        nav: true,
+        responsiveClass: true,
+        responsive: {
+            0: {
+            items: 1
+            },            
+            1000: {
+            items: 1
+            }
+        }
+    });  
+    $(function(){
+        var gallery = $('.gallery a').simpleLightbox();
+        var gallery1 = $('.gallery-1 a').simpleLightbox();
+        var gallery2 = $('.gallery-2 a').simpleLightbox();
+        var gallery3 = $('.gallery-3 a').simpleLightbox();
+        var gallery4 = $('.gallery-4 a').simpleLightbox();		
+    });
+    
+})
+</script>
+<style>
+.certibtnnew {
+    width: 142px;
+    height: 33px;
+    margin: 23px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    background-color: #caa648;
+    cursor: pointer;
+    line-height: 34px;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+</style>
+
+    
+</div></footer><script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "storage-manager": {
+                            "component": "Magento_Catalog/js/storage-manager",
+                            "appendTo": "",
+                            "storagesConfiguration" :
+                                         {"recently_viewed_product":{"requestConfig":{"syncUrl":"https:\/\/www.curvesandcarvings.com\/catalog\/product\/frontend_action_synchronize\/?SID=ru8kd2pleip84b5bmo46onrhhd"},"lifetime":"1000","allowToSendRequest":null},"recently_compared_product":{"requestConfig":{"syncUrl":"https:\/\/www.curvesandcarvings.com\/catalog\/product\/frontend_action_synchronize\/?SID=ru8kd2pleip84b5bmo46onrhhd"},"lifetime":"1000","allowToSendRequest":null},"product_data_storage":{"updateRequestConfig":{"url":"https:\/\/www.curvesandcarvings.com\/rest\/default\/V1\/?SID=ru8kd2pleip84b5bmo46onrhhdproducts-render-info"},"allowToSendRequest":null}}                        }
+                    }
+                }
+            }
+        }
+</script>
+
+<!-- add button  -->
+<div id="add_button_login_byclass" style="display: none;">
+    <div class="sociallogin-block sociallogin-login">
+        <div class="sociallogin-buttons">
+            <ul class="sociallogin-clearfix">
+                            <li class="sociallogin-button facebook"   title="Login with Facebook">
+                    <a class="sociallogin-button-link sociallogin-button-click" rel="nofollow" href="javascript:void(0);" data-href="https://www.facebook.com/dialog/oauth?client_id=7203901053347899&redirect_uri=https://www.curvesandcarvings.com/sociallogin/account/login/type/facebook/&response_type=code&display=popup" data-width="650" data-height="350" >
+                        <span class="sociallogin-button-auto">
+                            <span class="sociallogin-button-icon">
+                                <img class="sociallogin-button-icon-image" src="https://www.curvesandcarvings.com/media/sociallogin/default/fb_1.jpg" />                            </span>
+                                                            <span class="sociallogin-button-text">Login with Facebook</span>
+                                                    </span>
+                    </a>
+                </li>
+                                        <li class="sociallogin-button googleplus"   title="Login with Google">
+                    <a class="sociallogin-button-link sociallogin-button-click" rel="nofollow" href="javascript:void(0);" data-href="https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=https%3A%2F%2Fwww.curvesandcarvings.com%2Fsociallogin%2Faccount%2Flogin%2Ftype%2Fgoogleplus%2F&client_id=298962358239-rt4b6s1ulc9f94imk57tml2kse8livp5.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=&access_type=offline&approval_prompt=auto" data-width="630" data-height="650" >
+                        <span class="sociallogin-button-auto">
+                            <span class="sociallogin-button-icon">
+                                <img class="sociallogin-button-icon-image" src="https://www.curvesandcarvings.com/media/sociallogin/default/gp.jpg" />                            </span>
+                                                            <span class="sociallogin-button-text">Login with Google</span>
+                                                    </span>
+                    </a>
+                </li>
+                                    </ul>
+
+                    </div>
+
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<div id="add_button_register_byclass" style="display: none;">
+    <div class="sociallogin-block sociallogin-login">
+        <div class="sociallogin-buttons">
+            <ul class="sociallogin-clearfix">
+                            <li class="sociallogin-button facebook"   title="Register with Facebook">
+                    <a class="sociallogin-button-link sociallogin-button-click" rel="nofollow" href="javascript:void(0);" data-href="https://www.facebook.com/dialog/oauth?client_id=7203901053347899&redirect_uri=https://www.curvesandcarvings.com/sociallogin/account/login/type/facebook/&response_type=code&display=popup" data-width="650" data-height="350" >
+                        <span class="sociallogin-button-auto">
+                            <span class="sociallogin-button-icon">
+                                <img class="sociallogin-button-icon-image" src="https://www.curvesandcarvings.com/media/sociallogin/default/fb_1.jpg" />                            </span>
+                                                            <span class="sociallogin-button-text">Register with Facebook</span>
+                                                    </span>
+                    </a>
+                </li>
+                                        <li class="sociallogin-button googleplus"   title="Register with Google">
+                    <a class="sociallogin-button-link sociallogin-button-click" rel="nofollow" href="javascript:void(0);" data-href="https://accounts.google.com/o/oauth2/auth?response_type=code&redirect_uri=https%3A%2F%2Fwww.curvesandcarvings.com%2Fsociallogin%2Faccount%2Flogin%2Ftype%2Fgoogleplus%2F&client_id=298962358239-rt4b6s1ulc9f94imk57tml2kse8livp5.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&state=&access_type=offline&approval_prompt=auto" data-width="630" data-height="650" >
+                        <span class="sociallogin-button-auto">
+                            <span class="sociallogin-button-icon">
+                                <img class="sociallogin-button-icon-image" src="https://www.curvesandcarvings.com/media/sociallogin/default/gp.jpg" />                            </span>
+                                                            <span class="sociallogin-button-text">Register with Google</span>
+                                                    </span>
+                    </a>
+                </li>
+                                    </ul>
+
+                    </div>
+
+    </div>
+    <div style="clear: both;"></div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Bss_SocialLogin/js/social-popup": {
+                "isPopup": "",
+                "class_login": [".snvdlogin"],
+                "class_register":["sbtnnvd"],
+                "formLoginUrl": "https://www.curvesandcarvings.com/sociallogin/popup/login/?SID=ru8kd2pleip84b5bmo46onrhhd",
+                "forgotFormUrl": "https://www.curvesandcarvings.com/sociallogin/popup/forgot/?SID=ru8kd2pleip84b5bmo46onrhhd",
+                "createFormUrl": "https://www.curvesandcarvings.com/sociallogin/popup/create/?SID=ru8kd2pleip84b5bmo46onrhhd",
+                "recaptchaLogin": "1",
+                "recaptchaForgot": "1",
+                "recaptchaCreate": "1",
+                "recaptchaSitekey": "",
+                "recaptchaTheme": "light",
+                "recaptchaType": "image",
+                "recaptchaSize": "normal"
+            }
+        }
+    }
+</script>
+
+<div class="copyright">
+    <div class="container1">
+    	<div class="copyleft">
+        	<span>Copyright © 2013-present Magento, Inc. All rights reserved.</span>
+        </div>
+        <div class="copyrigt">
+        	<ul>
+            	<li><a href="https://facebook.com/curvesandcarvings" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://twitter.com/curvesncarvings" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.youtube.com/watch?v=lLgK-wb8yCc&feature=youtu.be" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                <li><a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>    </body>
+</html>

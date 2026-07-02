@@ -1,0 +1,23 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+			<?php
+			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+			$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+			$connection = $resource->getConnection();
+			$sql = 'SELECT * FROM `yereone_testimonials` ORDER BY `id` DESC LIMIT 50';
+			$data = $connection->fetchAll($sql);
+			//echo '<pre>';print_r($data);?>
+			<div class="testimonials-dyn">
+			<?php foreach($data as $testimonials){ ?>
+				<div class="testimonial_l">
+					<div class="testimonial_image"><img src="<?php echo $mediaUrl; ?>yereone/testimonials/images/<?php echo $testimonials['image']; ?>" /></div>
+					<div class="testimonial_text">
+						<h2><?php echo $testimonials['title']; ?></h2>
+						<p><?php echo $testimonials['testimonial_content']; ?></p>
+					</div>
+				</div>
+			<?php } ?>
+			</div>

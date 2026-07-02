@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <css src="mage/calendar.css"/>
+        <css src="css/owl.carousel.min.css"/>
+        <css src="css/owl.theme.default.min.css"/>
+        <css src="css/styles-m.css"/>
+        <css src="css/styles-l.css" media="screen and (min-width: 768px)"/>
+        <css src="css/catalog-fixes.css"/>
+        <link src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+              src_type="url"/>
+        <script src="requirejs/require.js"/>
+        <script src="mage/polyfill.js"/>
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Js\Components"
+                   name="head.components"
+                   as="components"
+                   template="Magento_Theme::js/components.phtml"
+                   before="-"/>
+        </referenceContainer>
+    </body>
+</page>

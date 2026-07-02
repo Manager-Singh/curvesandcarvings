@@ -1,0 +1,17 @@
+{
+    "name": "curvesandcarvings/theme-luma",
+    "description": "Curves and Carvings storefront theme (child of Magento Luma)",
+    "type": "magento2-theme",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "require": {
+        "php": "^8.2",
+        "magento/framework": "*",
+        "magento/theme-frontend-luma": "*"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ]
+    }
+}

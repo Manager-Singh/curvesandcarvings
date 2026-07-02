@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright 2015 Adobe
+ * All Rights Reserved.
+ */
+
+namespace Magento\Backend\Block\Page;
+
+use Magento\Framework\App\CacheInterface;
+use Magento\Framework\App\ProductMetadata;
+use Magento\TestFramework\Helper\Bootstrap;
+
+/**
+ * Test \Magento\Backend\Block\Page\Footer
+ *
+ * @magentoAppArea adminhtml
+ */
+class FooterTest extends \PHPUnit\Framework\TestCase
+{
+    /**
+     * Test Product Version Value
+     */
+    private const TEST_PRODUCT_VERSION = '222.333.444';
+
+    /**
+     * @var \Magento\Backend\Block\Page\Footer
+     */
+    protected $block;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $productMetadataMock = $this->getMockBuilder(ProductMetadata::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $productMetadataMock->expects($this->once())
+            ->method('getDistributionVersion')
+            ->willReturn($this::TEST_PRODUCT_VERSION);
+
+        $this->block = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
+            \Magento\Framework\View\LayoutInterface::class
+        )->createBlock(
+            \Magento\Backend\Block\Page\Footer::class,
+            '',
+            ['productMetadata' => $productMetadataMock]
+        );
+    }
+
+    public function testToHtml()
+    {
+        /** @var \Magento\Framework\App\CacheInterface $cacheManager */
+        Bootstrap::getObjectManager()->create(CacheInterface::class);
+        $footerContent = $this->block->toHtml();
+        $this->assertStringContainsString(
+            'ver. ' . $this::TEST_PRODUCT_VERSION,
+            $footerContent,
+            'No or wrong product version.'
+        );
+    }
+}

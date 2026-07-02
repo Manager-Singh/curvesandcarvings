@@ -1,0 +1,392 @@
+#social-login-popup .block-container {
+    padding: 0 5% 10px;
+    max-width: 100%;
+    display: none;
+}
+
+#social-login-popup .block-container.active {
+    display: block !important;
+}
+
+#social-login-popup .social-login-title {
+    padding: 10px;
+    background-color: #39c
+}
+
+#social-login-popup .block-container .block {
+    padding: 20px 25px;
+    margin: 0
+}
+
+.ajax-loading-sc {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: .6;
+    background: url(../images/ajax-loader.gif) center center no-repeat #fbfaf6
+}
+
+#social-login-popup .fieldset {
+    margin: 0 0 10px;
+    min-width: -webkit-min-content;
+}
+
+.popup-mess-social {
+    width: 90%;
+    padding: 10px 5%
+}
+
+.popup-mess-social .mesg-success {
+    color: #3c763d;
+    background: #dff0d8;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 4px;
+    display: none
+}
+
+.popup-mess-social .mesg-error {
+    color: #a94442;
+    background: #f2dede;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 4px;
+    display: none
+}
+
+.social-btn button {
+    height: 33px;
+    border: none
+}
+
+.tab-social .nav-tabs {
+    border-bottom: 1px solid #ddd
+}
+
+.tab-social .nav-tabs>li {
+    float: left;
+    margin-bottom: -1px
+}
+
+.tab-social .nav>li {
+    position: relative;
+    display: block
+}
+
+.tab-social .nav {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none
+}
+
+.tab-social .nav-tabs>li.active>a,
+.tab-social .nav-tabs>li.active>a:focus,
+.tab-social .nav-tabs>li.active>a:hover {
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    cursor: default
+}
+
+.tab-social .nav-tabs>li>a {
+    margin-right: 2px;
+    line-height: 1.428571429;
+    border: 1px solid transparent;
+    border-radius: 4px 4px 0 0
+}
+
+.tab-social .nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 15px
+}
+
+.tab-social .nav:after {
+    content: '';
+    display: block;
+    clear: both
+}
+
+a.social-login.fogot-pw {
+    line-height: 32px
+}
+
+.social-login-popup .sociallogin-login {
+    margin: auto
+}
+
+form#social-form-login {
+    padding-bottom: 20px
+}
+
+.social-login-popup .sociallogin-border {
+    height: 1px;
+    width: 100%;
+    background: #e5e2e2;
+    padding: 0;
+    position: relative;
+    margin: 0 0 10px 0;
+}
+
+.sociallogin-welcome-msg {
+    height: 22px;
+    line-height: 22px;
+    float: none;
+    display: inline-block;
+    margin: 0 0 5px
+}
+
+.sociallogin-welcome-msg:after {
+    clear: both;
+    content: ""
+}
+
+.sociallogin-welcome-msg img {
+    height: 25px;
+    display: inline-block;
+    padding: 0 5px 0 0;
+    float: left
+}
+
+.page-header .sociallogin-block {
+    padding: 30px 20px;
+    max-width: 1280px;
+    margin: auto;
+    width: auto;
+    box-sizing: border-box;
+    clear: both
+}
+
+.sociallogin-block .sociallogin-buttons ul li .sociallogin-button-icon {
+    background-size: 236px 340px;
+    -webkit-background-size: 236px 340px;
+    -moz-background-size: 236px 340px
+}
+
+.sociallogin-block {
+    width: 100%;
+    margin: 0 0 20px
+}
+
+.sociallogin-block .sociallogin-button-image {
+    display: block
+}
+
+.sociallogin-block .sociallogin-clearfix {
+    padding: 0;
+    margin-bottom: 15px;
+    max-width: 620px
+}
+
+.sociallogin-block .sociallogin-clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0
+}
+
+.showmore-button {
+    color: #868383;
+    text-align: center;
+    font-size: 14px;
+    height: 25px;
+    line-height: 27px;
+    padding: 0 0 0 25px;
+    max-width: 100px;
+    cursor: pointer;
+    background-image: url(../images/plus-more-icon.png);
+    background-size: 25px;
+    background-repeat: no-repeat;
+}
+.sociallogin-block .sociallogin-buttons ul li {
+    display: block;
+    line-height: normal;
+    list-style: none!important;
+    padding: 0!important;
+    background: 0 0!important;
+    height: 35px;
+    margin: 0 3px 7px 0;
+    position: relative;
+}
+
+.sociallogin-block .sociallogin-buttons ul li a {
+    width: 100%!important
+}
+
+.sociallogin-block .sociallogin-buttons ul li:hover {
+    opacity: .9;
+    filter: alpha(opacity=90)
+}
+
+.sociallogin-block .sociallogin-buttons ul li span.sociallogin-button-auto {
+    background-color: #39c;
+    display: inline-block
+}
+
+.sociallogin-block .sociallogin-buttons ul li .sociallogin-button-icon {
+    background: url(../images/social.png);
+    display: block;
+    float: left;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+.sociallogin-block .sociallogin-buttons ul li .sociallogin-button-icon img {
+    width: 100%
+}
+
+ul li .sociallogin-button-text {
+    height: 35px;
+    line-height: 35px;
+    vertical-align: top;
+    text-align: left;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, .2);
+    min-width: 165px;
+    display: inline-block;
+    padding: 0 10px 0px 10px;
+    text-transform: capitalize;
+}
+
+.social-login-popup #social-form-create ul li .sociallogin-button-text {
+    text-transform: capitalize;
+}
+ul li .sociallogin-button-full-text,#social-form-create ul li .sociallogin-button-text {
+    display: inline-block
+}
+
+.sociallogin-block .sociallogin-buttons .sociallogin-button-auto .sociallogin-button-icon-image {
+    display: inline-block;
+    width: 35px;
+    height: 35px
+}
+
+.sociallogin-block .sociallogin-buttons ul li.facebook span.sociallogin-button-auto {
+    background-color: #1e4389
+}
+
+.sociallogin-block .sociallogin-buttons ul li.facebook .sociallogin-button-icon {
+    background-position: 0 0
+}
+
+.sociallogin-block .sociallogin-buttons ul li.twitter span.sociallogin-button-auto {
+    background-color: #28a9e2
+}
+
+.sociallogin-block .sociallogin-buttons ul li.twitter .sociallogin-button-icon {
+    background-position: -34px 0
+}
+
+.sociallogin-block .sociallogin-buttons ul li.linkedin span.sociallogin-button-auto {
+    background-color: #11669c
+}
+
+.sociallogin-block .sociallogin-buttons ul li.linkedin .sociallogin-button-icon {
+    background-position: -168px 0
+}
+
+.sociallogin-block .sociallogin-buttons ul li.yahoo span.sociallogin-button-auto {
+    background-color: #85228f
+}
+
+.sociallogin-block .sociallogin-buttons ul li.yahoo .sociallogin-button-icon {
+    background-position: -204px 0
+}
+
+.sociallogin-block .sociallogin-buttons ul li.vkontakte span.sociallogin-button-auto {
+    background-color: #3f658c
+}
+
+.sociallogin-block .sociallogin-buttons ul li.vkontakte .sociallogin-button-icon {
+    background-position: -68px 0
+}
+
+.sociallogin-block .sociallogin-buttons ul li.googleplus span.sociallogin-button-auto {
+    background-color: #df4b38
+}
+
+.sociallogin-block .sociallogin-buttons ul li.googleplus .sociallogin-button-icon {
+    background-position: -135px 0
+}
+
+.sociallogin-block .sociallogin-buttons ul li.hotmail span.sociallogin-button-auto {
+    background-color: #f67d20
+}
+
+.sociallogin-block .sociallogin-buttons ul li.hotmail .sociallogin-button-icon {
+    background-position: 0 -34px
+}
+
+.sociallogin-block .sociallogin-buttons ul li.live span.sociallogin-button-auto {
+    background-color: #0cb3ee
+}
+
+.sociallogin-block .sociallogin-buttons ul li.live .sociallogin-button-icon {
+    background-position: -35px -205px
+}
+
+.sociallogin-block .sociallogin-buttons ul li.pinterest span.sociallogin-button-auto {
+    background-color: #cb2028
+}
+
+.sociallogin-block .sociallogin-buttons ul li.pinterest .sociallogin-button-icon {
+    background-position: -34px -34px
+}
+
+.sociallogin-block .sociallogin-buttons ul li.instagram span.sociallogin-button-auto {
+    background-color: #9a6e51
+}
+
+.sociallogin-block .sociallogin-buttons ul li.instagram .sociallogin-button-icon {
+    background-position: -168px -34px
+}
+body.page-products .columns{
+    z-index: initial;
+}
+.sociallogin-block.sociallogin-login{
+    margin: 15px 0;
+}
+
+div#social-login-popup {
+    min-width: 350px;
+}
+
+@media only screen and (max-width:767px) {
+    div#social-login-popup {
+        min-width: 250px !important;
+    }
+
+    #tab-login-recaptcha div,#tab-create-recaptcha div, #tab-fogot-recaptcha div{
+        width: 215px !important;
+    }
+}
+
+@media only screen and (max-width:360px) {
+    #tab-create-recaptcha,
+    #tab-fogot-recaptcha,
+    #tab-login-recaptcha {
+        transform: scale(.9);
+        -webkit-transform: scale(.9);
+        transform-origin: 0 0;
+        -webkit-transform-origin: 0 0
+    }
+}
+
+.rc-imageselect-payload{
+    overflow: scroll !important;
+    max-height: 200px !important;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        div#social-login-popup .fieldset,div.social-login-popup .actions-toolbar{
+            width: 103%;
+        }
+}

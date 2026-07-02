@@ -1,0 +1,52 @@
+<?php 
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_AjaxSocialLogin
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+$email = $objectManager->create('Magento\Customer\Model\Customer')->load($customerSession->getCustomerId())->getEmail();
+$types = array('@facebook-user.com','@googleplus-user.com','@instagram-user.com','@linkedin-user.com','@live-user.com','@twitter-user.com','@vkontakte-user.com','@yahoo-user.com','@pinterest-user.com');
+$connection = $objectManager->get('Magento\Framework\App\ResourceConnection')->getConnection('\Magento\Framework\App\ResourceConnection::DEFAULT_CONNECTION'); 
+$social_login_user = $connection->fetchAll("SELECT * FROM bss_sociallogin WHERE customer_id={$customerSession->getCustomerId()}" );
+$password_fake_email = '';
+if (isset($social_login_user[0]['password_fake_email'])) {
+	$password_fake_email = $social_login_user[0]['password_fake_email'];
+}
+$fake_email = false;
+foreach ($types as $type) {
+	$fakemail = strpos($email, $type);
+	if ( $fakemail ) {
+		$fake_email = true;
+		break;
+	}
+}
+?>
+<?php if($fake_email) : ?>
+<script type="text/javascript">
+//<![CDATA[
+	require([
+	    'jquery'
+	], function($) {
+	    $(document).ready(function() {
+				$("#form-validate #email").after('<div for="email" class="mage-error" id="email-error" generated="true">Please enter valid email address.</div>');
+				$("#form-validate #current-password").val('<?php echo $password_fake_email ?>').attr('readonly','true');
+	    });
+	});
+//]]>
+</script>
+<?php endif ?>

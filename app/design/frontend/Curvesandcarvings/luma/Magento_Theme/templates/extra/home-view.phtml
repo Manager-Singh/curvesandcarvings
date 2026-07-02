@@ -1,0 +1,334 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+</div></div></div>
+
+<div class="hbanner-slider owl-carousel owl-theme">
+    <div>
+        <div class="banner-inner">
+            <img src="<?php echo $mediaUrl; ?>images/Banner-1.jpg" alt="Designer Sofa Mumbai">
+        </div>
+    </div>
+    <div>
+        <div class="banner-inner">
+            <img src="<?php echo $mediaUrl; ?>images/Banner-2.jpg" alt="Designer Dining Table Online">
+        </div>        
+    </div>
+    <div>
+        <div class="banner-inner">
+            <img src="<?php echo $mediaUrl; ?>images/Banner-3.jpg" alt="Luxury Beds Mumbai">
+        </div>        
+    </div>
+    <div>
+        <div class="banner-inner">
+            <img src="<?php echo $mediaUrl; ?>images/Banner-4.jpg" alt="Luxury Dining Table Online">
+        </div>        
+    </div>
+	<div>
+        <div class="banner-inner">
+            <img src="<?php echo $mediaUrl; ?>images/Banner-5.jpg" alt="Designer sofa set online">
+        </div>        
+    </div>
+	<div>
+        <div class="banner-inner">
+            <img src="<?php echo $mediaUrl; ?>images/Banner-6.jpg" alt="Buy Modern Dining Sets">
+        </div>        
+    </div>
+</div>
+
+
+<div class="section02">
+	<div class="container1">
+    	<div class="section02left">
+        	<h3>FINEST COLLECTION OF LUXURY DESIGNER FURNITURE</h3>
+            <p>We are India’s finest store where you can turn your idea of a dream home into reality! With an extensive range of 1000+ furniture designs, we present to you mesmerising furniture options to exude elegance in your lovely abode. So, if you wish to choose from the available furniture designs or get customised furniture as per your requirements, we have it all.</p>
+			<p>Our product range is inclusive of Antique and Colonial Furniture designs, all made of authentic teak wood. The richness of style and the exquisiteness of our range of classic furniture bring forth the beauty of the elegant lifestyle enjoyed by generations bygone. Our wooden artistry, which has evolved over centuries, will infuse a timeless charm to your home interiors. Discover a collection of the best-quality Antique furniture and French furniture at Curves and Carvings!</p>
+            <p class="colle-btn"><a href="<?php echo $block->getBaseUrl(); ?>beds-bedsides/beds/antique">Buy Collection</a> <!-- <a href="#fadeandscale" class="fadeandscale_open">play video <i class="fa fa-play"></i></a> --></p>
+        </div>
+        <div class="section02rigt"><img src="<?php echo $mediaUrl; ?>images/dream-home.jpg"/></div>
+    </div>
+</div>
+
+<div class="section03">
+	<div class="container1">
+    	<div class="section03rigt">
+        	<h3>IT’S All ABOUT ELEGANCE AND SOPHISTICATION</h3>
+            <p>Add a touch of luxury and liveliness to your home with premium-quality luxury furniture. Each unit boasts an exquisite design that takes its inspiration from the ever-evolving home interiors, making up for timeless additions to your décor. Meticulously crafted from solid teak wood, our furniture pieces are lifelong companions, ensuring both beauty and durability. Click below to view a collection of premium antique furniture online.</p>
+            <p><a href="<?php echo $block->getBaseUrl(); ?>beds-bedsides">Buy Collection</a></p>	
+        </div>
+    </div>
+</div>
+
+<div class="section04">
+	<div class="containe1 galleryhed01">
+	<h3>Our Google Reviews</h3>
+    	<div data-romw-token="PnugRLE5Ysf70ncuLZfgnY9x67CZQAAcAjrsnIO6aarSpzHTvG"></div>
+<script src="https://reviewsonmywebsite.com/js/v2/embed.js?id=c338ae55b38e487f19ae" type="text/javascript"></script>
+    </div>
+</div>
+
+<div class="section05 section04">
+	<div class="container1">
+    	<div class="galleryhed01">
+        	<!--<h3>Your Dream Furniture</h3>-->
+			
+			<div class="hmcrosel">
+				<h3>Product customisation</h3>
+				<p>From wood to polish and paint to fabric-customise anything and everything for your furniture.</p>
+				<div class="owl-carousel owl-theme homcaro">
+				<?php
+					$objectManager =  \Magento\Framework\App\ObjectManager::getInstance(); 
+					$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+					$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+					$categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository');
+					$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+					$categoryId = 62;
+					$category = $categoryFactory->create()->load($categoryId);
+					$categoryProducts = $category->getProductCollection()->addAttributeToSelect('*')->setPageSize(6);
+					foreach ($categoryProducts as $product) 
+					{
+					$imagewidth=350;
+					$imageheight=350;
+					$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+					$imageUrl = $imageHelper->init($product, 'product_page_image_small')->setImageFile($product->getFile())->resize($imagewidth, $imageheight)->getUrl();
+					 //echo $imageUrl;
+					?>
+                        <div class="item">
+                        <div class="productbox1">
+						<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+							  $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+							  $addToCartUrl =  $listBlock->getAddToCartUrl($product); ?>
+                        	<div class="productboximg">
+                            	<img src="<?= $imageUrl;?>" alt="<?= $product->getName(); ?>" />
+                                <h4> <a href="<?= $product->getProductUrl(); ?>"><?= $product->getName(); ?></a></h4>
+                            </div>
+                            <div class="productboxtxt">
+                            	<div class="proprice01">
+                                	<p><del>Rs. <?= number_format($product->getPrice()); ?></del>Rs. <?= number_format($product->getFinalPrice(),2); ?></p>
+                                </div>
+                                <div class="proadtocrt">
+                                	<div class="prowish"><a href="#"><i class="fa fa-heart"></i></a></div>
+									<div class="proadto"><a href="<?= $product->getProductUrl(); ?>">Add to cart</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+						<?php } ?> 
+				</div>
+			</div>
+			
+			<div class="hmcrosel">
+				<h3>Center Tables</h3>
+				<div class="owl-carousel owl-theme homcaro">
+					<?php
+					$objectManager =  \Magento\Framework\App\ObjectManager::getInstance(); 
+					$categoryFactory = $objectManager->get('\Magento\Catalog\Model\CategoryFactory');
+					$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+					$categoryRepository = $objectManager->get('\Magento\Catalog\Model\CategoryRepository');
+					$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+					$categoryId = 66;
+					$category = $categoryFactory->create()->load($categoryId);
+					$categoryProducts = $category->getProductCollection()->addAttributeToSelect('*')->setPageSize(6);
+					foreach ($categoryProducts as $product) 
+					{
+					$imagewidth=350;
+					$imageheight=350;
+					$imageHelper  = $objectManager->get('\Magento\Catalog\Helper\Image');
+					$imageUrl = $imageHelper->init($product, 'product_page_image_small')->setImageFile($product->getFile())->resize($imagewidth, $imageheight)->getUrl();
+					 //echo $imageUrl;
+					?>
+                        <div class="item">
+						<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+							  $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+							  $addToCartUrl =  $listBlock->getAddToCartUrl($product); ?>
+                        	<div class="productboximg">
+                            	<img src="<?= $imageUrl;?>" alt="<?= $product->getName(); ?>" />
+                                <h4> <a href="<?= $product->getProductUrl(); ?>"><?= $product->getName(); ?></a></h4>
+                            </div>
+                            <div class="productboxtxt">
+                            	<div class="proprice01">
+                                	<p><del>Rs. <?= number_format($product->getPrice()); ?></del>Rs. <?= number_format($product->getFinalPrice(),2); ?></p>
+                                </div>
+                                <div class="proadtocrt">
+								<div class="prowish">
+								<a href="#" data-post='<?php  echo $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($product) ?>' class="action towishlist" data-action="add-to-wishlist"><i class="fa fa-heart"></i>
+								</a>
+                                	</div>
+									<div class="proadto"><a href="<?= $product->getProductUrl(); ?>">Add to cart</a></div>
+                                </div>
+                            </div>
+                        </div>
+						<?php } ?>
+				</div>
+			</div>		
+           
+        </div>
+    </div>
+</div>
+
+<div class="section05">
+	<div class="container1">
+    	<div class="galleryhed01">
+        	<h3>Gallery</h3>
+            <h5 class="heding-desc">Explore our gallery to view a selection of some of our completed &amp; delivered projects and work-in-progress images from our factory.</h5>
+			<!--<h6>Finished</h6>-->
+				<div class="gallery galerybox">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('gallery_completed')->toHtml(); ?>
+				</div>
+			<div class="galrytxt01"><a href="<?php echo $block->getBaseUrl(); ?>gallery">View All</a></div>
+        </div>
+    </div>
+</div> 
+
+<div class="section06">
+	<div class="container1">
+    	<div class="section06lft">
+        	<h3>ABOUT US</h3>
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('about-us-home')->toHtml();?>
+            <p><a href="<?php echo $block->getBaseUrl(); ?>about-us">Know More</a></p>
+        </div>
+        <div class="section06rigt">
+        <a href="https://youtu.be/_yTtYa-Phcs" target="_blank"><img src="<?php echo $mediaUrl; ?>images/youtubevideo01.jpg"></a>
+        <!--<iframe width="100%" height="315" src="https://www.youtube.com/embed/fD3N-7bLnd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+        </div>
+    </div>
+</div>
+
+<div class="section07">
+	<div class="container1">
+    	<div class="botcall01">
+        	<ul>
+            	<li>
+                	<img src="<?php echo $mediaUrl; ?>images/boticon01.png" />
+                    <h3>QUESTIONS</h3>
+                    <p>For any questions or clarifications, you can contact us at <br /><a href="mailto:contact@curvesandcarvings.com">contact@curvesandcarvings.com</a> or <br />call at <a href="tel:00917722080791">0091 7722080791</a></p>
+                </li>
+                <li>
+                	<img src="<?php echo $mediaUrl; ?>images/boticon02.png" />
+                    <h3>STRESS FREE DELIVERY</h3>
+                    <p>"If its broken, it's ours". We deliver your furniture with utmost care.</p>
+                </li>
+                <li>
+                	<img src="<?php echo $mediaUrl; ?>images/boticon03.png" />
+                    <h3>PRODUCT CUSTOMISATION</h3>
+                    <p>We offer customization of almost everything you want, be it Wood, Polish, Paint or Fabric. You decide
+and let us make it for you.</p>
+                </li>
+                <li>
+                	<img src="<?php echo $mediaUrl; ?>images/boticon04.png" />
+                    <h3>PRODUCT RANGE</h3>
+                    <p>We offer best online collection of Exquisite Designer & Luxury Solid Wood Furniture across categories. We can almost make any design in wood.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section08">
+	<div class="container1">
+    	<div class="hometesti01">
+        	<h3>What client says</h3>
+            <div class="cst-row">
+                <div class="cst-col">
+                    <div class="owl-carousel owl-theme testimonial">
+					<?php
+					$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+					$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+					$connection = $resource->getConnection();
+					$sql = 'select * from `yereone_testimonials` ORDER BY `id` DESC LIMIT 8';
+					$data = $connection->fetchAll($sql);
+					//echo '<pre>';print_r($data);?>
+					<?php foreach($data as $clientdata){ ?>
+                        <div class="item">
+                            <div class="hometesti01box">
+                                <img src="<?php echo $mediaUrl; ?>yereone/testimonials/images<?php echo $clientdata['image']; ?>" />
+                                <h5><?php echo $clientdata['title']; ?></h5>
+                                <p><?php echo $clientdata['testimonial_content']; ?></p>
+                            </div>
+                        </div>
+					<?php } ?>
+                    </div>
+					<p><a href="https://www.curvesandcarvings.com/testimonials">View All</a></p>
+                </div>
+               <!-- <div class="cst-col">
+                    <div class="owl-carousel owl-theme testimonial">
+                        <div class="item">
+                            <div class="ifr-video">
+                                <a href="https://www.youtube.com/watch?v=f1tZ08n-t5s" target="_blank"><img src="<?php echo $mediaUrl; ?>images/videotesti01.jpg"></a>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="ifr-video">
+                                <a href="https://www.youtube.com/watch?v=v0C1qpjQZnY" target="_blank"><img src="<?php echo $mediaUrl; ?>images/videotesti02.jpg"></a>
+                            </div>
+                        </div>                                                                          
+                    </div>
+                </div>-->
+            </div>            
+        </div>
+    </div>
+</div>
+
+<div class="section09">
+	<div class="container1">
+    	<div class="homeblog">
+        	<h3>Blogs</h3>
+			<div class="owl-carousel owl-theme hmblog">
+			<?php
+			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+			$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+			$connection = $resource->getConnection();
+			$sql = 'select * from `mageplaza_blog_post` ORDER BY `post_id` DESC LIMIT 5';
+			$data = $connection->fetchAll($sql);
+			//echo '<pre>';print_r($data);?>
+			<?php foreach($data as $blogdata){ ?>
+			<div class="item">
+				<div class="homeblogbox">
+					<div class="homeblogboximg">
+					<img src="<?php echo $mediaUrl; ?>mageplaza/blog/post/<?php echo $blogdata['image']; ?>" /></div>
+					<div class="homeblogboxtxt">
+						<h4><?php echo $blogdata['name']; ?></h4>
+						<p><?php echo $blogdata['short_description']; ?></p>
+						<p class="blg-more"><a href="<?php echo $block->getBaseUrl(); ?>blog/post/<?php echo $blogdata['url_key']; ?>">Read More</a></p>
+					</div>
+				</div>
+            </div>
+			<?php } ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section010 desk-view">
+	<div class="container1">
+    	<div class="homseco01">
+        	<img src="<?php echo $mediaUrl; ?>images/wood-luxury.jpg" />
+        	<h3>Buy Colonial Furniture in Mumbai at Curves and Carvings</h3>
+            <p>We at Curves and Carvings are known for making some of the finest pieces of luxury furniture in India. As a leading online store for customised furniture in Mumbai, we specialise in creating hand-crafted luxury and designer furniture. Since our inception, we’ve meticulously selected the most exceptional pieces from a vast selection of antique, classic, & vintage designs and introduced them to our ever-expanding, impressive collection of carved furniture online in India. We use seasoned teak wood to make our furniture.</p>
+			<p>At Curves and Carvings, we believe that customer satisfaction is a top priority. We closely work with our customers to ensure that their ideas and thoughts are incorporated into the furniture they require for their abodes. Bring us any references or photographs, or just communicate your ideas with dimensions and specifications, and we will customise that piece for you. So, whether you wish to buy a luxury sofa in India online or a designer antique bedroom set, we are your one-stop destination. Let’s connect for your requirements regarding luxury designer and antique furniture in Mumbai today!</p>
+        </div>
+    </div>
+</div>
+<div class="section010 phone-view">
+    <div class="container1">
+        <div class="homseco01">            
+            <h3>Buy Colonial Furniture in Mumbai at Curves and Carvings</h3>
+           <p>We at Curves and Carvings are known for making some of the finest pieces of luxury furniture in India. As a leading online store for customised furniture in Mumbai, we specialise in creating hand-crafted luxury and designer furniture. Since our inception, we’ve meticulously selected the most exceptional pieces from a vast selection of antique, classic, & vintage designs and introduced them to our ever-expanding, impressive collection of carved furniture online in India. We use seasoned teak wood to make our furniture.</p>
+            <p>At Curves and Carvings, we believe that customer satisfaction is a top priority. We closely work with our customers to ensure that their ideas and thoughts are incorporated into the furniture they require for their abodes. Bring us any references or photographs, or just communicate your ideas with dimensions and specifications, and we will customise that piece for you. So, whether you wish to buy a luxury sofa in India online or a designer antique bedroom set, we are your one-stop destination. Let’s connect for your requirements regarding luxury designer and antique furniture in Mumbai today!</p>
+            <img src="<?php echo $mediaUrl; ?>images/wood-luxury.jpg" />
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,315 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+
+
+<!--
+<div class="isocertipop_open certibtnnew">ISO certified</div>
+<div id="isocertipop" class="isobtomain">
+    <div class="icobox">
+        <h3>ISO Certificate<div class="isobtomainclose isocertipop_close">X</div></h3>
+        <img src="<?php echo $mediaUrl; ?>images/ISO-Certificate.jpg" />
+    </div>
+</div>-->
+<style>
+.whatsapp_float {position: fixed;width: 60px;height: 60px;bottom: 4rem;right: 15px;background-color: #2ca01c;color: #fff !important;border-radius: 10px;text-align: center;font-size: 30px;box-shadow: 2px 2px 3px #999;z-index: 100;}
+.whatsapp-icon {margin-top: 0.5rem;font-size: 2.7rem;}
+a.whatsapp_float i {
+    margin-top: 15px;
+}
+</style>
+<a href="https://api.whatsapp.com/send?phone=+917722080791&text=Hello,%20Curves%20and%20Carvings"  class="whatsapp_float" target="_blank" rel="noopener noreferrer""><i class="fa fa-whatsapp whatsapp-icon"></i></a>
+
+<div class="contact-bottom"><p>NO OF VISITORS</p> <h2> 2195430</h2></div>
+
+<div class="section011"><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><img src="<?php echo $mediaUrl; ?>images/fotimstagram.jpg" /></a></div>
+
+<div class="footer01">
+	<div class="container1">
+	<div class="footer01img"><img src="<?php echo $mediaUrl; ?>images/fotlogo.png" /></div>
+    <div class="fotcontct01">
+    	<div class="container2">
+        	<div class="foot01">
+            	<h3>Contact us</h3>
+                <ul>
+                    <li><i class="fa fa-map-marker"></i> <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('address')->toHtml(); ?></li>
+                    <li><i class="fa fa-phone"></i> <p>India:<a href="tel:+917722080791">+91 7722080791</a></p></li>
+                    <li><i class="fa fa-envelope"></i><p><a href="mailto:contact@curvesandcarvings.com" />contact@curvesandcarvings.com</p></li>
+                </ul>
+                <div class="fotsocail">
+                	<ul>
+                        <li><a href="https://facebook.com/curvesandcarvings" target="_blank"><img src="<?php echo $mediaUrl; ?>images/facebook.png" alt="facebook"></a></li>
+                        <li><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><img src="<?php echo $mediaUrl; ?>images/instagram.png" alt="instagram"></a></li>
+                        <li><a href="https://twitter.com/curvesncarvings" target="_blank"><img src="<?php echo $mediaUrl; ?>images/twitter.png" alt="twitter"></a></li>
+                        <li><a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank"><img src="<?php echo $mediaUrl; ?>images/linkedin.png" alt="linkedin"></a></li>
+                        <li><a href="https://www.youtube.com/watch?v=fD3N-7bLnd8&ab_channel=Curves%26Carvings" target="_blank"><img src="<?php echo $mediaUrl; ?>images/youtube.png" alt="youtube"></a></li>
+                        <li><a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank"><img src="<?php echo $mediaUrl; ?>images/pinterest.png" alt="pinterest"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="foot01 foot02">
+            	<h3>About us</h3>
+                <p>Based out of India, Curves & Carvings is the finest online store of Designer & Luxury furniture, specializing in Antique, Classic & Vintage furniture designs. We are glad to offer widest collection of 1000+ exquisite designs to our customers.</p>
+            </div>
+            <div class="foot01 foot03">
+            	<h3>Follow us</h3>
+				<iframe src="https://www.facebook.com/plugins/page.php?href=https://www.facebook.com/curvesandcarvings/&amp;tabs=timeline&amp;width=300&amp;height=200&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId" width="100%" height="200px" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+            </div>
+        </div>
+    </div>
+    <div class="fotcontct02">
+    	<div class="container2">
+        	<div class="lastfot01">
+            	<h3>INFORMATION</h3>
+                <ul>
+                	<li><a href="<?php echo $block->getBaseUrl(); ?>about-us">About us</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>terms-sale">Terms of Sale</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>privacy-policy">Privacy Policy</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>terms-and-conditions">Terms and Conditions</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>disclaimer">Disclaimer</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>CUSTOMER SERVICE</h3>
+                <ul>
+                	<li><a href="<?php echo $block->getBaseUrl(); ?>contact">Contact Us</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>returns-cancellations">Returns & Cancellations</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>shipping-policy">Shipping Policy</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>custom-order-furniture">Custom Order Furniture</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>testimonials">Customer Speak</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>EXTRAS</h3>
+                <ul>
+                	<li><a href="<?php echo $block->getBaseUrl(); ?>terms-of-use">Terms of Use</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>payment-policy">Payment Policy</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>become-our-partner">Become our Partner</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>press-coverage">Press Coverage</a></li>
+                    <!--<li><a href="https://www.slideshare.net/slideshow/embed_code/key/JL1MmvfiRYDwOK">View e-Catalogue</a></li>-->
+                    <li><a href="<?php echo $mediaUrl; ?>ecatalog/e-catalogue.pdf" target="_blank">View e-Catalogue</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>certificates">ISO certified</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>QUICK LINK</h3>
+                <ul>
+                	<li><a href="<?php echo $block->getBaseUrl(); ?>beds-bedsides/bedroom-sets">Bedroom Sets</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>beds-bedsides/beds">Beds</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>dining-sets">Dining Sets</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>living/chairs">Chairs</a></li>
+                    <!--<li><a href="<?php echo $block->getBaseUrl(); ?>living/chairs/high-back-chairs">High Back </a></li>-->
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>living/sofas">Sofas</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>tables/study-table">Study Table</a></li>
+                    <li><a href="<?php echo $block->getBaseUrl(); ?>tables">Tables</a></li>
+                </ul>
+            </div>
+            <div class="lastfot01">
+            	<h3>DELIVERY LOCATIONS</h3>
+<ul>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-mumbai">Mumbai</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/designer-furniture-pune">Pune</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-hyderabad">Hyderabad</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-bangalore">Bangalore</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-chennai">Chennai</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-kochi">Kochi</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-chandigarh">Chandigarh</a></li>
+	<li><a href="<?php echo $block->getBaseUrl(); ?>locations/luxury-furniture-gurgaon">Gurgaon</a></li>
+</ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<!--<div class="xmasimg">
+    <img src="<?php echo $mediaUrl; ?>images/2017.jpg">
+</div>-->
+
+<style>
+#fadeandscale {
+    -webkit-transform: scale(0.8);
+       -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+            transform: scale(0.8);
+}
+.popup_visible #fadeandscale {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+</style>
+<!-- 
+<script>(function(w, d) { w.CollectId = "651cf165df70161214ca952f"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
+Web Fonts ---->
+<link href="https://fonts.googleapis.com/css?family=Handlee&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Cinzel:400,700,900&display=swap" rel="stylesheet">
+
+<script>
+require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min', 'js/owl.carousel', 'js/simple-lightbox'], function($,myPopup,readMore,mTab,Carousel,Lightbox){
+    $(".hedserch01icon").click(function(){
+        $(".hedserch01serch").toggle();
+    });
+    $('#isocertipop').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,	
+        closebutton: false
+    });
+    $('#fadeandscale').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,
+        closebutton: false
+    }); 
+    $('#AdvancePayment').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,
+        closebutton: false
+    });
+    $('#tCard').popup({
+        transition: 'all 0.3s',
+        blur: true,
+        escape: true,
+        scrolllock: true,
+        closebutton: false
+    }); 
+    $(".read-more").readmore({
+        buttonClasses: "btn btn-primary",
+    });
+    $('.tabbing').mTab({
+        navigation: ".tabNav",
+        container: ".tabContainer",
+        activeTab: 1,
+        activeClass: "active",
+        scrollOffset: true,
+        accordScreen: 768,
+        toggleClose: true,
+        animation: false,
+        openWithUrl: true,
+        callbackonclick: function() {},
+        callback: function() {}
+    });
+    $('.testimonial').owlCarousel({
+		loop: true,
+		autoplay:true,
+		autoplayTimeout:3000,
+		margin: 10,
+		responsiveClass: true,
+		responsive: {
+		  0: {
+			items: 1,
+			nav: true
+		  },
+		  600: {
+			items: 1,
+			nav: false
+		  },
+		  1000: {
+			items: 2,
+			nav: true,
+			loop: false,
+			margin: 20
+		  }
+		}
+    });
+	$('.homcaro').owlCarousel({
+		loop: true,
+		margin: 10,
+		autoplay:true,
+		autoplayTimeout:3000,
+		items: 3,
+		responsiveClass: true,
+		responsive: {
+		  0: {
+			items: 1,
+			nav: false
+		  },
+		  600: {
+			items: 2,
+			nav: false
+		  },
+		  1000: {
+			items: 3,
+			nav: false,
+			loop: true,
+			margin: 20
+		  }
+		}
+    });
+    $('.hmblog').owlCarousel({
+        loop: true,
+		autoplay:true,
+		autoplaySpeed:3000,
+        margin: 10,
+        responsiveClass: true,
+        responsive: {
+            0: {
+            items: 1,
+            nav: true
+            },
+            600: {
+            items: 2,
+            nav: false
+            },
+            1000: {
+            items: 2,
+            nav: true,
+            loop: false,
+            margin: 20
+            }
+        }
+    });
+    $('.hbanner-slider').owlCarousel({
+        loop: true,
+        autoplay: true,
+        autoplaySpeed:5000,
+        autoplayHoverPause:true,
+        dots:false,
+        nav: true,
+        responsiveClass: true,
+        responsive: {
+            0: {
+            items: 1
+            },            
+            1000: {
+            items: 1
+            }
+        }
+    });  
+    $(function(){
+        var gallery = $('.gallery a').simpleLightbox();
+        var gallery1 = $('.gallery-1 a').simpleLightbox();
+        var gallery2 = $('.gallery-2 a').simpleLightbox();
+        var gallery3 = $('.gallery-3 a').simpleLightbox();
+        var gallery4 = $('.gallery-4 a').simpleLightbox();		
+    });
+    
+})
+</script>
+<style>
+.certibtnnew {
+    width: 142px;
+    height: 33px;
+    margin: 23px 0px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    background-color: #caa648;
+    cursor: pointer;
+    line-height: 34px;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+</style>
+
+    

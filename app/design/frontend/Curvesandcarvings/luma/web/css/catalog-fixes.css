@@ -1,0 +1,33 @@
+/* Category/product listing image fixes for Magento 2.4.9 + live theme CSS */
+.page-products .product-item-info {
+    overflow: visible;
+}
+
+.page-products .product-image-container {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    aspect-ratio: auto !important;
+}
+
+.page-products .product-image-wrapper {
+    height: auto !important;
+    padding-bottom: 0 !important;
+    overflow: visible;
+    position: static !important;
+}
+
+.page-products .product-image-photo {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.page-products .product-item-photo {
+    display: block;
+    width: 100%;
+}

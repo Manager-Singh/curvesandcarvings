@@ -1,0 +1,372 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
+    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+<div class="cndtabing01">
+    <div class="container">
+        <div class="tabbing cndnewtab001">
+            <div class="tab_wrapper first_tab">
+                <ul class="tabNav">
+                    <h3>Our Stores</h3>
+                    <li><a href="#tab10">Mumbai</a></li>
+                    <li><a href="#tab11">Chandigarh</a></li>
+                    <li><a href="#tab1">Bengaluru</a></li>
+                    <li><a href="#tab2">Pune</a></li>
+                    <li><a href="#tab3">Hyderabad</a></li>
+                    <li><a href="#tab4">Chennai</a></li>
+                    <li><a href="#tab5">Cochin</a></li>
+                    <li><a href="#tab6">Ahmedabad</a></li>
+                    <li><a href="#tab7">Indore</a></li>
+                    <li><a href="#tab8">Jaipur</a></li>
+                    <li><a href="#tab9">Gurgaon</a></li>                    
+                </ul>
+                <div class="tabContainer">
+                    <div class="tabContent" id="tab10">
+                        <div class="cndtabing01lft">
+                                <h3>Mumbai</h3>
+                                <h4>Luxury Furniture Mumbai</h4>
+									<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('store-mumbai')->toHtml();?>
+                               <!--  <p>For quite some time now, we had our customers requesting us to open an experiential studio at Mumbai for them to visit and experience quality and finish of our products. We are glad to let you know that our Mumbai showroom will be operational in May 21. Please visit us at Curves and Carvings, 23G, Laxmi Industrial Estate, Andheri(West), Mumbai, 400053. We are grateful to our international customers who take out time to visit us at our Studio from all across world. Mumbai is financial capital of India, and is well connected by Air, Rail and Road network.</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div> -->
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab11">
+                        <div class="cndtabing01lft">
+                                <h3>Chandigarh</h3>
+                                <h4>Luxury Furniture Chandigarh</h4>
+                                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('store-chandigarh')->toHtml();?>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab1">
+                        <div class="cndtabing01lft">
+                                <h3>Bengaluru</h3>
+                                <h4>Luxury Furniture Bengaluru</h4>
+                                <p>We do have plan to open company owned showroom in near future. Our Bengaluru showroom will be a display setup, showcasing our entire range of furniture and artefact product range. Customer will be able to get Visual, touch and feel of product quality and finish, for which C&C is widely known and appreciated for. </p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab2">
+                        <div class="cndtabing01lft">
+                                <h3>Pune</h3>
+                                <h4>Luxury Furniture Pune</h4>
+                                <p>We do have plan to open company owned showroom in near future. Our Pune showroom will be a display setup, showcasing our entire range of furniture and artefact product range. Customer will be able to get Visual, touch and feel of product quality and finish, for which C&C is widely known and appreciated for.</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab3">
+                        <div class="cndtabing01lft">
+                                <h3>Hyderabad</h3>
+                                <h4>Luxury Furniture Hyderabad</h4>
+                                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('store_hyderabad')->toHtml();?>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab4">
+                        <div class="cndtabing01lft">
+                                <h3>Chennai</h3>
+                                <h4>Luxury Furniture Chennai</h4>
+                                <p>Chennai is widely appreciated for its fine taste and living lifestyle. C&C can’t wait to introduce itself to such a lively metro. </p>
+                                <p>We are looking for a partner in Chennai who can Represent C&C for what it stands for. We are looking for partner who can provide us 1200-1500 sq feet retail space in prime retail area. In case you are interested, please get in touch with us on contact@curvesandcarvings.com Or call us on 7722080791</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab5">
+                        <div class="cndtabing01lft">
+                                <h3>Cochin</h3>
+                                <h4>Luxury Furniture Cochin</h4>
+                                <p>Cochin is widely appreciated for its fine taste and living lifestyle. C&C can’t wait to introduce itself to such a lively metro. </p>
+                                <p>We are looking for a partner in Cochin who can represent C&C for what it stands for. We are looking for partner who can provide us 1200-1500 sq feet retail space in prime retail area. In case you are interested, please get in touch with us on contact@curvesandcarvings.com Or call us on 7722080791</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab6">
+                        <div class="cndtabing01lft">
+                                <h3>Ahmedabad</h3>
+                                <h4>Luxury Furniture Ahmedabad</h4>
+                                <p>Ahmedabad is widely appreciated for its fine taste and living lifestyle. C&C can’t wait to introduce itself to such a lively metro. </p>
+                                <p>We are looking for a partner in Ahmedabad who can represent C&C for what it stands for. We are looking for partner who can provide us 1200-1500 sq feet retail space in prime retail area. In case you are interested, please get in touch with us on contact@curvesandcarvings.com Or call us on 7722080791</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab7">
+                        <div class="cndtabing01lft">
+                                <h3>Indore</h3>
+                                <h4>Luxury Furniture Indore</h4>
+                                <p>Indore is widely appreciated for its fine taste and living lifestyle. C&C can’t wait to introduce itself to such a lively metro. </p>
+                                <p>We are looking for a partner in Indore who can represent C&C for what it stands for. We are looking for partner who can provide us 1200-1500 sq feet retail space in prime retail area. In case you are interested, please get in touch with us on contact@curvesandcarvings.com Or call us on 7722080791</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab8">
+                        <div class="cndtabing01lft">
+                                <h3>Jaipur</h3>
+                                <h4>Luxury Furniture Jaipur</h4>
+                                <p>Jaipur is widely appreciated for its fine taste and living lifestyle. C&C can’t wait to introduce itself to such a lively metro. </p>
+                                <p>We are looking for a partner in Jaipur who can represent C&C for what it stands for. We are looking for partner who can provide us 1200-1500 sq feet retail space in prime retail area. In case you are interested, please get in touch with us on contact@curvesandcarvings.com Or call us on 7722080791</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="tabContent" id="tab9">
+                        <div class="cndtabing01lft">
+                                <h3>Gurgaon</h3>
+                                <h4>Luxury Furniture Gurgaon</h4>
+                                <p>Gurgaon is widely appreciated for its fine taste and living lifestyle. C&C can’t wait to introduce itself to such a lively metro. </p>
+                                <p>We are looking for a partner in Gurgaon who can represent C&C for what it stands for. We are looking for partner who can provide us 1200-1500 sq feet retail space in prime retail area. In case you are interested, please get in touch with us on contact@curvesandcarvings.com Or call us on 7722080791</p>
+                                <div class="chindbox01">
+                                    <div class="chindbox01lft">
+                                        <img src="<?php echo $mediaUrl; ?>images/havesofaimg01.jpg" />
+                                    </div>
+                                    <div class="chindbox01rgt">
+                                        <h5>Please Get In Touch With Us</h5>
+                                        <div class="havqstion">
+                                            <img src="<?php echo $mediaUrl; ?>images/callicon001.png" /> <p>Have Any Question?<br />Call us Now!</p>
+                                        </div>
+                                        <div class="havecall">
+                                            <a href="tel:7722080791">772-208-0791</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>                  
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div> 
+<!-- <div class="chind01">
+	<div class="container">
+    	<div class="row">
+        	<div class="span12">
+            	<div class="chindileft">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('our-store-c1')->toHtml();?>
+					<a href="https://www.google.com/maps/place/Curves+%26+Carvings/@30.707335,76.723978,14z/data=!4m5!3m4!1s0x0:0x731123fedd2b8d64!8m2!3d30.7073353!4d76.7239781?hl=en-US" target="_blank"><i class="fa fa-map-marker"></i> View us on Google</a>
+                </div>
+            </div>
+            <div class="span12">
+            	<iframe width="100%" height="330" src="https://www.youtube.com/embed/fD3N-7bLnd8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>  -->
+
+<div class="chind01call">
+	<div class="container">
+    	<div class="row">
+        	<div class="span24">
+                <h3>24/7 Services</h3>
+                <p>Online brand of Designer Furniture specializing in Custom made Teak wood Antique / Vintage Furniture Designs.</p>
+                <a href="<?php echo $block->getBaseUrl(); ?>contact">Contact us</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chanidwhat01">
+	<div class="container">
+    	<div class="row">
+        	<div class="span24">
+            	<div class="chanidwhat01hed">
+                	<h3>What we Offer in our store</h3>
+                    <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquam, ex et blandit viverra, ante dolor malesuada enim, fermentum finibus nibh odio non lectus.</p>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="span6">
+            	<div class="chadigrchairleft01">
+                	<ul>
+                    	<li>
+                        	<span>01</span>
+                            <h3>Furniture Designing</h3>
+                            <p>We offer our customers Classic / Victorian Furniture Design consulting as per their Residential layout.</p>
+                        </li>
+                        <li>
+                        	<span>02</span>
+                            <h3>Delightful Experience</h3>
+                            <p>Experience our World-class Designs and Quality finish! Experience touch and feel yourself!</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span12">
+            	<div class="chadigrchair01"><img src="<?php echo $mediaUrl; ?>images/chidnchair2.png" /></div>
+            </div>
+            <div class="span6">
+            	<div class="chadigrchairright01">
+                	<ul>
+                    	<li>
+                        	<span>03</span>
+                            <h3>Interior Design Services</h3>
+                            <p>Share your residential layout with us. And see your dream house come alive! We are now offering end-to-end Interior design services.</p>
+                        </li>
+                        <li>
+                        	<span>04</span>
+                            <h3>Home Décor Solution</h3>
+                            <p>On Display are amazing eclectic collection of Artefacts in Ceramic, Brass, Glass and Wood. </p>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--<div class="row">
+        	<div class="span24">
+            	<div class="lstpont001">
+                	<span>05</span>
+                    <h3>Delightful Experience</h3>
+                    <p>Experience our World-class Designs and Quality finish! Experience touch and feel yourself!</p>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+
+<div class="chandiprodutimg">
+	<div class="container">
+    	<div class="row">
+        	<div class="chanidwhat01hed chidiprodstro01">
+                	<h3>Our Store Collection</h3>
+                    <p style="margin-bottom: 0px;">Browse through following images to get a virtual feel of our showroom!</p>
+            </div>        	
+        </div>
+		
+    	<div class="row">
+        	<div class="chindiphoto01">
+            	<div class="gallery">	
+                    <?php
+						$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+						$resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+						$connection = $resource->getConnection();
+						$sql = "SELECT * FROM `dr_gallery_image` WHERE `NAME` = 'our-store' ORDER BY `image_id` DESC LIMIT 200";
+						$data = $connection->fetchAll($sql);?>
+						<?php foreach($data as $gallery1){ ?>
+                                <a href="<?php echo $mediaUrl; ?><?php echo $gallery1['path']; ?>">
+                                    <img src="<?php echo $mediaUrl; ?><?php echo $gallery1['path']; ?>" alt="">
+                                </a>
+						<?php } ?>
+
+                </div>
+            </div>
+			
+        </div>
+		<div class="row">
+        	<div class="chindiphoto01">
+            	<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('our-store-c2')->toHtml();?>
+            </div>
+			
+        </div>
+    </div>
+</div> 
+
+
+
+
+
+
+
+

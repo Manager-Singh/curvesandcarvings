@@ -1,0 +1,50 @@
+<?php
+/**
+ * @var \Curvesandcarvings\Homepage\Block\Home $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$products = $block->getData('carousel_products') ?: [];
+$title = (string)$block->getData('carousel_title');
+$description = (string)$block->getData('carousel_description');
+if (!$products) {
+    return;
+}
+?>
+<div class="hmcrosel">
+    <h3><?= $escaper->escapeHtml($title) ?></h3>
+    <?php if ($description): ?>
+        <p><?= $escaper->escapeHtml($description) ?></p>
+    <?php endif; ?>
+    <div class="owl-carousel owl-theme homcaro">
+        <?php foreach ($products as $product): ?>
+            <?php
+            $price = $product->getFinalPrice();
+            $regular = $product->getPrice();
+            ?>
+            <div class="item">
+                <div class="productbox1">
+                    <div class="productboximg">
+                        <img src="<?= $escaper->escapeUrl($block->getProductImageUrl($product)) ?>"
+                             alt="<?= $escaper->escapeHtmlAttr($product->getName()) ?>">
+                        <h4><a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>"><?= $escaper->escapeHtml($product->getName()) ?></a></h4>
+                    </div>
+                    <div class="productboxtxt">
+                        <div class="proprice01">
+                            <p>
+                                <?php if ($regular > $price): ?>
+                                    <del><?= /* @noEscape */ $block->getFormattedPrice($regular) ?></del>
+                                <?php endif; ?>
+                                <?= /* @noEscape */ $block->getFormattedPrice($price) ?>
+                            </p>
+                        </div>
+                        <div class="proadtocrt">
+                            <div class="proadto">
+                                <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>">Add to cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

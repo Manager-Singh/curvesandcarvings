@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="yereone_testimonials" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Testimonials</label>
+            <tab>yereone</tab>
+            <resource>Yereone_Core::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="is_active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Select yes to enable testimonial extention on frontend</comment>
+                </field>
+                <field id="customers_groups" translate="label" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Customer Group</label>
+                    <source_model>Magento\Customer\Model\ResourceModel\Group\Collection</source_model>
+                    <comment>Select customer group from which customers can add testimonial</comment>
+                </field>
+                <field id="is_enabled_recaptcha" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable google reCAPTCHA</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="app_id" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>reCAPTCHA Site key</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="is_enabled_recaptcha">1</field>
+                    </depends>
+                </field>
+                <field id="app_secret" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>reCAPTCHA Secret key</label>
+                    <depends>
+                        <field id="is_enabled_recaptcha">1</field>
+                    </depends>
+                </field>
+                <field id="enabled" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Font Awesome</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="use_cdn" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Use CDN</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Recommended to use Font Awesome CDN</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

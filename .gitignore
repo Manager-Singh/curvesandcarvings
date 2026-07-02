@@ -1,0 +1,41 @@
+# Magento generated / runtime (recreated on server)
+/vendor/
+/generated/
+/var/
+/pub/static/
+!/pub/static/.htaccess
+
+# Media files (~4GB) — sync separately to pub/media/
+/pub/media/*
+!/pub/media/.htaccess
+!/pub/media/customer/
+!/pub/media/customer/.htaccess
+!/pub/media/downloadable/
+!/pub/media/downloadable/.htaccess
+!/pub/media/import/
+!/pub/media/import/.htaccess
+!/pub/media/theme/
+!/pub/media/theme/.htaccess
+!/pub/media/theme_customization/
+!/pub/media/theme_customization/.htaccess
+
+# Secrets — copy env.php.sample to env.php on each server
+/app/etc/env.php
+/auth.json
+
+# IDE / OS
+/.idea/
+/.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+/sitemap.xml
+/pub/sitemap.xml
+/pub/errors/local.xml
+
+# Local-only helpers (optional sync from live)
+/live-pull/
