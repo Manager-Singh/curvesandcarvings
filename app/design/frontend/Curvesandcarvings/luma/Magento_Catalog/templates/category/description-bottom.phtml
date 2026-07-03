@@ -1,0 +1,31 @@
+<?php
+/**
+ * Category SEO description at bottom of listing (matches production layout).
+ *
+ * @var \Magento\Catalog\Block\Category\View $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$description = $block->getCurrentCategory()->getDescription();
+if (!$description) {
+    return;
+}
+
+$mediaUrlViewModel = $block->getData('media_url');
+$mediaUrl = $mediaUrlViewModel ? $mediaUrlViewModel->getUrl() : $block->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+?>
+
+<div class="section010">
+    <div class="container1">
+        <div class="homseco01">
+            <img src="<?= $escaper->escapeUrl($mediaUrl . 'images/hmeseco.jpg') ?>" alt=""/>
+            <div class="cat-description">
+                <?= /* @noEscape */ $this->helper(\Magento\Catalog\Helper\Output::class)->categoryAttribute(
+                    $block->getCurrentCategory(),
+                    $description,
+                    'description'
+                ) ?>
+            </div>
+        </div>
+    </div>
+</div>

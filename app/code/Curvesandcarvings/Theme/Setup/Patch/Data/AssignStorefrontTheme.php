@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Curvesandcarvings\Theme\Setup\Patch\Data;
 
 use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Framework\App\ScopeInterface as AppScopeInterface;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -36,7 +37,7 @@ class AssignStorefrontTheme implements DataPatchInterface
 
         $themeId = (string) $theme->getId();
 
-        $this->configWriter->save('design/theme/theme_id', $themeId, ScopeInterface::SCOPE_DEFAULT, 0);
+        $this->configWriter->save('design/theme/theme_id', $themeId, AppScopeInterface::SCOPE_DEFAULT, 0);
 
         foreach ($this->storeManager->getStores() as $store) {
             $this->configWriter->save(

@@ -1,0 +1,43 @@
+<?php
+/**
+ * Category page banner and quick category icons (matches production layout).
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Curvesandcarvings\Theme\ViewModel\MediaUrl|null $mediaUrlViewModel
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$mediaUrlViewModel = $block->getData('media_url');
+$mediaUrl = $mediaUrlViewModel ? $mediaUrlViewModel->getUrl() : '';
+
+$categories = [
+    ['url' => 'beds-bedsides', 'icon' => 'cateryicon01.png', 'label' => 'Beds And Bedsides'],
+    ['url' => 'dining-sets', 'icon' => 'cateryicon02.png', 'label' => 'Dining'],
+    ['url' => 'living', 'icon' => 'cateryicon03.png', 'label' => 'Living'],
+    ['url' => 'storage', 'icon' => 'cateryicon04.png', 'label' => 'Storage'],
+    ['url' => 'tables', 'icon' => 'cateryicon05.png', 'label' => 'Tables'],
+    ['url' => 'more', 'icon' => 'cateryicon06.png', 'label' => 'More'],
+    ['url' => 'our-store', 'icon' => 'cateryicon07.png', 'label' => 'Our Stores'],
+];
+?>
+
+<div class="caterybanner01">
+    <img src="<?= $escaper->escapeUrl($mediaUrl . 'images/bredcumbg.jpg') ?>" alt=""/>
+</div>
+<div class="catgryicon01">
+    <div class="container1">
+        <div class="catgrybox">
+            <ul>
+                <?php foreach ($categories as $category): ?>
+                    <li>
+                        <a href="<?= $escaper->escapeUrl($block->getUrl($category['url'])) ?>">
+                            <img src="<?= $escaper->escapeUrl($mediaUrl . 'images/' . $category['icon']) ?>"
+                                 alt="<?= $escaper->escapeHtmlAttr($category['label']) ?>"/>
+                            <h3><?= $escaper->escapeHtml($category['label']) ?></h3>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+</div>

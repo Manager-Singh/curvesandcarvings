@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="category.top.section"
+                   template="Magento_Catalog::category/top.phtml"
+                   before="-">
+                <arguments>
+                    <argument name="media_url" xsi:type="object">Curvesandcarvings\Theme\ViewModel\MediaUrl</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Category\View"
+                   name="category.description.bottom"
+                   template="Magento_Catalog::category/description-bottom.phtml"
+                   after="category.products">
+                <arguments>
+                    <argument name="media_url" xsi:type="object">Curvesandcarvings\Theme\ViewModel\MediaUrl</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <move element="catalog.leftnav" destination="content" after="category.top.section"/>
+        <referenceBlock name="category.description" remove="true"/>
+    </body>
+</page>

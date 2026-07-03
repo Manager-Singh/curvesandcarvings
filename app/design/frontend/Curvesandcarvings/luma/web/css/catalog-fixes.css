@@ -31,3 +31,33 @@
     display: block;
     width: 100%;
 }
+
+/* Font Awesome icons in site header (top bar + main header) */
+.page-header .fa {
+    font-family: FontAwesome !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.page-header .panel.header::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.page-header .topleftcal01 ul li i.fa {
+    color: #8b867c;
+}
+
+.page-header .hedserch01icon a i.fa {
+    color: #6d6a64;
+}
+
+.page-header .hedleftcal01 ul li a:before {
+    font-family: FontAwesome !important;
+}

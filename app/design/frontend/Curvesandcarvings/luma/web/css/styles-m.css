@@ -17374,9 +17374,13 @@ h1 {
 }
 
 .topleftcal01 ul li i {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
     font-size: 16px;
     margin-right: 2px;
     vertical-align: baseline;
+    color: #8b867c;
 }
 
 .topleftcal01 ul li a {
@@ -17488,6 +17492,10 @@ h1 {
 }
 
 .hedserch01icon a i {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
     font-size: 17px;
     margin-right: 1px;
 }
@@ -21312,6 +21320,20 @@ body, div, li {
     margin-top: -50px;
 }
 
+.customer-account-create .sbtnnvd {
+    margin-top: -50px;
+}
+
+.customer-account-create .sbtnnvd .sociallogin-block.sociallogin-login {
+}
+
+.customer-account-create .sbtnnvd .sociallogin-block .sociallogin-clearfix {
+}
+
+.customer-account-create .sbtnnvd .sociallogin-block .sociallogin-buttons ul li {
+    display: inline-block;
+}
+
 .customer-account-create .snvdlogin .sociallogin-block.sociallogin-login {
 }
 
@@ -22648,6 +22670,10 @@ body, div, li {
         margin-top: 0px;
     }
 
+    .customer-account-create .sbtnnvd {
+        margin-top: 0px;
+    }
+
     .form-create-account .actions-toolbar .primary button {
         padding: 10px 39px;
         width: auto;
@@ -22658,6 +22684,10 @@ body, div, li {
     }
 
     .customer-account-create .snvdlogin .sociallogin-block .sociallogin-buttons ul li {
+        margin-bottom: 13px;
+    }
+
+    .customer-account-create .sbtnnvd .sociallogin-block .sociallogin-buttons ul li {
         margin-bottom: 13px;
     }
 

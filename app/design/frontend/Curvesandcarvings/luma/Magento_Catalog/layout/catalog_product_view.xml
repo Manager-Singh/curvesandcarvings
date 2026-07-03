@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Curves & Carvings custom product view layout (production parity).
+ * - Delivery time block under the price
+ * - Image disclaimer under the gallery
+ * - Tabs: Description (attributes), Payment Terms, FAQ, Warranty / Terms
+ * - Removes default "Details" and "Reviews" tabs
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove default Details tab and Reviews tab (match production) -->
+        <referenceBlock name="product.info.description" remove="true"/>
+        <referenceBlock name="reviews.tab" remove="true"/>
+
+        <!-- Delivery time block under the price -->
+        <referenceContainer name="product.info.main">
+            <container name="product.delivery.day" htmlTag="div" htmlClass="product-info-delivery" after="product.info.price">
+                <block class="Magento\Catalog\Block\Product\View"
+                       name="product.info.delivery"
+                       template="Magento_Catalog::product/view/delivery.phtml"/>
+            </container>
+        </referenceContainer>
+
+        <!-- Image disclaimer under the gallery -->
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="product.info.img.disclaimer"
+                   template="Magento_Catalog::product/view/img-disclaimer.phtml"/>
+        </referenceContainer>
+
+        <!-- Tabs: rename attributes to Description; add Payment Terms / FAQ / Warranty -->
+        <referenceBlock name="product.attributes">
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">Description</argument>
+                <argument name="sort_order" xsi:type="string">10</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View\Attributes"
+                   name="payment.tab"
+                   template="Magento_Catalog::product/view/paymentterms.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Payment Terms</argument>
+                    <argument name="sort_order" xsi:type="string">20</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Attributes"
+                   name="faq.tab"
+                   template="Magento_Catalog::product/view/faqtab.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">FAQ</argument>
+                    <argument name="sort_order" xsi:type="string">30</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Catalog\Block\Product\View\Attributes"
+                   name="warranty.tab"
+                   template="Magento_Catalog::product/view/warrantytab.phtml"
+                   group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Warranty / Terms</argument>
+                    <argument name="sort_order" xsi:type="string">40</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

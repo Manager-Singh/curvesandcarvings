@@ -143,6 +143,7 @@
 
     # Live site redirects /our-gallery to CMS gallery page (not category 157)
     RewriteRule ^our-gallery/?$ /gallery [R=302,L]
+    RewriteRule ^catalog/category/view/s/our-gallery/id/157/?$ /gallery [R=302,L]
 
     # Live site used pub/media paths; local docroot is pub/ so map to /media/
     RewriteRule ^pub/media/(.*)$ media/$1 [L]

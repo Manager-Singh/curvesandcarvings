@@ -1,0 +1,175 @@
+<?php
+/**
+ * Copyright 2014 Adobe
+ * All Rights Reserved.
+ *
+ * Curves & Carvings: adds tax note-line and EMI (#tCard) popup with dynamic EMI calculation.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php $_product = $block->getProduct(); ?>
+
+<div class="note-line">
+    <h2>(Amount inclusive of all applicable taxes &amp; delivery charges)</h2>
+</div>
+
+<div class="product-add-form">
+    <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
+          action="<?= $block->escapeUrl($block->getSubmitUrl($_product)) ?>" method="post"
+          id="product_addtocart_form"<?php if ($_product->getOptions()) :?> enctype="multipart/form-data"<?php endif; ?>>
+        <input type="hidden" name="product" value="<?= (int)$_product->getId() ?>" />
+        <input type="hidden" name="selected_configurable_option" value="" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <input type="hidden" name="item"  value="<?= (int)$block->getRequest()->getParam('id') ?>" />
+        <?= $block->getBlockHtml('formkey') ?>
+        <?= $block->getChildHtml('form_top') ?>
+        <?php if (!$block->hasOptions()) :?>
+            <?= $block->getChildHtml('product_info_form_content') ?>
+        <?php else :?>
+            <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1') :?>
+                <?= $block->getChildChildHtml('options_container') ?>
+            <?php endif;?>
+        <?php endif; ?>
+
+        <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') :?>
+            <?= $block->getChildChildHtml('options_container') ?>
+        <?php endif;?>
+        <?= $block->getChildHtml('form_bottom') ?>
+    </form>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
+            "priceBox": {
+                "priceConfig":  <?= /* @noEscape */ $block->getJsonConfig() ?>
+            }
+        }
+    }
+</script>
+
+<?php
+if ($_product->getSpecialPrice() <= $_product->getPrice() && $_product->getSpecialPrice() != 0):
+    $price = $_product->getSpecialPrice();
+else:
+    $price = $_product->getPrice();
+endif;
+$prod_price = floatval($price);
+
+$arr2 = array();
+$i = 0; $j = 0;
+if ($_product->getDownPayment()) {
+    $down_payment = $_product->getDownPayment();
+    foreach (explode(',', $down_payment) as $down_pay) {
+        foreach (explode('_', $down_pay) as $down) {
+            $downArr[$i] = $down;
+            $i++;
+        }
+        $arr2[$j] = $downArr;
+        $j++;
+        $i = 0;
+    }
+}
+
+$arr = array();
+$i=0;$j=0;$k=0;$l=0;$m=0;$n=0;$p=0;$q=0;$r=0;$s=0;$t=0;
+$emiBankText = $_product->getAttributeText('emi_bank');
+if ($emiBankText):
+    foreach ($emiBankText as $emi_bank) {
+        foreach (explode('_', $emi_bank) as $emi) {
+            $emiArr[$i] = $emi;
+            $i++;
+        }
+        if ($emiArr[0] == 'sbi') { $arr['sbi'][$k] = $emiArr; $k++; }
+        if ($emiArr[0] == 'hdfc') { $arr['hdfc'][$j] = $emiArr; $j++; }
+        if ($emiArr[0] == 'citibank') { $arr['citibank'][$l] = $emiArr; $l++; }
+        if ($emiArr[0] == 'icici') { $arr['icici'][$m] = $emiArr; $m++; }
+        if ($emiArr[0] == 'kotak') { $arr['kotak'][$n] = $emiArr; $n++; }
+        if ($emiArr[0] == 'axis') { $arr['axis'][$p] = $emiArr; $p++; }
+        if ($emiArr[0] == 'hsbc') { $arr['hsbc'][$q] = $emiArr; $q++; }
+        if ($emiArr[0] == 'indusind') { $arr['indusind'][$r] = $emiArr; $r++; }
+        if ($emiArr[0] == 'stnd chartered') { $arr['stnd chartered'][$s] = $emiArr; $s++; }
+        if ($emiArr[0] == 'ratnakar') { $arr['ratnakar'][$t] = $emiArr; $t++; }
+        $i = 0;
+    }
+endif;
+?>
+
+<?php if (!empty($arr)): ?>
+<?php $LowestemiArr = array(); ?>
+<div id="tCard" class="protabox">
+<div class="protaboxtab">
+<div class="tabbing protab01">
+    <div class="protabtxt">
+        <h3>EMI OPTIONS <div class="protabclose1 tCard_close">X</div></h3>
+        <h4>Credit Cards</h4>
+        <p>You can purchase this product(s) with EMIs using a credit card issued by any of the following banks.</p>
+    </div>
+    <ul class="tabNav">
+        <?php $i = 0; ?>
+        <?php foreach ($arr as $ar): ?>
+            <li class="<?php if ($i == 0) echo 'active'; ?>">
+                <a href="<?php echo '#emi0' . $i; ?>"><?php echo $ar[0][0]; ?></a>
+            </li>
+        <?php $i++; ?>
+        <?php endforeach; ?>
+    </ul>
+    <div class="tabContainer">
+    <?php $i = 0; ?>
+        <?php foreach ($arr as $ar): ?>
+        <div id="<?php echo 'emi0' . $i; ?>" class="tabContent">
+            <div class="emibox">
+                <ul class="emiboxhed">
+                    <li>EMI Tenure</li>
+                    <li>Interest</li>
+                    <li>EMI Amount</li>
+                    <li>Total Payment</li>
+                </ul>
+            <?php foreach ($ar as $subArr): ?>
+                <?php
+                    $Roi = (($subArr[2] / 12) / 100);
+                    $month = pow((1 + $Roi), $subArr[1]);
+                    $month_1 = (pow((1 + $Roi), $subArr[1])) - 1;
+                    $emi_amount = round($prod_price * $Roi * ($month / $month_1));
+                ?>
+                <?php $total_amount = round($emi_amount * $subArr[1]); ?>
+                <?php $LowestemiArr[] = $emi_amount; ?>
+                    <ul>
+                        <li><?php echo $subArr[1] . ' Months'; ?></li>
+                        <li><?php echo $subArr[2] . ' %'; ?></li>
+                        <li><?php echo number_format($emi_amount); ?></li>
+                        <li><?php echo number_format($total_amount); ?></li>
+                    </ul>
+            <?php endforeach; ?>
+            </div>
+            <p class="emi_content">Estimated Calculations EMIs are approved at the discretion of card issuing bank <a target="_blank" class="emi_term" href="<?php echo $block->getBaseUrl(); ?>emi-transaction">View T&amp;C</a></p>
+        </div>
+        <?php $i++; ?>
+        <?php endforeach; ?>
+    </div>
+</div>
+</div>
+</div>
+<?php
+if (!empty($LowestemiArr)):
+    sort($LowestemiArr);
+    $lowemifull = 'EMI on credit card starting at <strong>Rs. ' . number_format($LowestemiArr[0]) . '</strong>';
+?>
+<script>
+require(['jquery'], function ($) {
+    var el = document.getElementsByClassName('lowemishowin')[0];
+    if (el) {
+        el.innerHTML = '<?php echo $lowemifull; ?>';
+    }
+});
+</script>
+<?php endif; ?>
+<?php endif; ?>

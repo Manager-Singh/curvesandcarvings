@@ -39,3 +39,15 @@ Thumbs.db
 
 # Local-only helpers (optional sync from live)
 /live-pull/
+
+# One-off CLI/debug workaround scripts (broken-CLI recovery, not part of the app)
+/compile-loop.php
+/compile-only.php
+/compile-operations.php
+/ensure-search-index.php
+/generate-admin-interceptors.php
+/generate-console-interceptors.php
+/generate-interceptors-direct.php
+/reindex.php
+/run-di-compile.php
+/test-category.php

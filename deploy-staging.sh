@@ -14,11 +14,15 @@ composer install --no-dev --optimize-autoloader
 echo "2. Magento setup upgrade (modules + theme registration)"
 php bin/magento setup:upgrade --keep-generated || php bin/magento setup:upgrade
 
-echo "3. Deploy static content for Curvesandcarvings/luma theme"
+echo "3. Deploy static content (frontend + admin)"
 php bin/magento setup:static-content:deploy -f en_US \
   --theme Curvesandcarvings/luma \
   --theme Magento/luma \
   --theme Magento/blank
+php bin/magento setup:static-content:deploy -f en_US \
+  --area adminhtml \
+  --theme MageOS/m137-admin-theme \
+  --theme Magento/backend
 
 echo "4. Reindex catalog search (requires OpenSearch running)"
 php bin/magento indexer:reindex catalogsearch_fulltext || true

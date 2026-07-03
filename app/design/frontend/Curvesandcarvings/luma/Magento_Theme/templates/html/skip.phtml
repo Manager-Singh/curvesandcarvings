@@ -1,71 +1,52 @@
 <?php
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class)
-    ->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
-?>
-<?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * Top header bar: phone, email, social links
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Curvesandcarvings\Theme\ViewModel\MediaUrl|null $mediaUrlViewModel
  */
-
-// @codingStandardsIgnoreFile
-$target = $block->getTarget();
-$label = $block->getLabel();
+$mediaUrlViewModel = $block->getData('media_url');
+$mediaUrl = $mediaUrlViewModel ? $mediaUrlViewModel->getUrl() : '';
 ?>
-
-
-<link rel="stylesheet" type="text/css" href="<?= $block->escapeUrl($block->getViewFileUrl('css/catalog-fixes.css')) ?>" />
 
 <div class="topleftcal01">
-	<ul>
-    	<li><i class="fa fa-phone"></i> <a href="tel:7722080791">7722080791</a></li>
+    <ul>
+        <li><i class="fa fa-phone"></i> <a href="tel:7722080791">7722080791</a></li>
         <li><i class="fa fa-envelope"></i> <a href="mailto:contact@curvesandcarvings.com">contact@curvesandcarvings.com</a></li>
     </ul>
 </div>
 
 <div class="toprigtsocl">
-	<!-- <ul>
-        <li><a href="https://facebook.com/curvesandcarvings" target="_blank"><i class="fa fa-facebook"></i></a></li>
-        <li><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-        <li><a href="https://twitter.com/curvesncarvings" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a href="https://www.youtube.com/watch?v=lLgK-wb8yCc&amp;feature=youtu.be" target="_blank"><i class="fa fa-youtube"></i></a></li>
-        <li><a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank"><i class="fa fa-pinterest"></i></a></li>
-    </ul> -->
     <ul>
         <li>
-            <a href="https://facebook.com/curvesandcarvings" target="_blank">
-                <img src="<?php echo $mediaUrl; ?>images/facebook.png" alt="facebook">
+            <a href="https://facebook.com/curvesandcarvings" target="_blank" rel="noopener noreferrer">
+                <img src="<?= $block->escapeUrl($mediaUrl . 'images/facebook.png') ?>" alt="facebook">
             </a>
         </li>
         <li>
-            <a href="https://www.instagram.com/curvesandcarvings/" target="_blank">
-                <img src="<?php echo $mediaUrl; ?>images/instagram.png" alt="instagram">
+            <a href="https://www.instagram.com/curvesandcarvings/" target="_blank" rel="noopener noreferrer">
+                <img src="<?= $block->escapeUrl($mediaUrl . 'images/instagram.png') ?>" alt="instagram">
             </a>
         </li>
         <li>
-            <a href="https://twitter.com/curvesncarvings" target="_blank">
-                <img src="<?php echo $mediaUrl; ?>images/twitter.png" alt="twitter">
+            <a href="https://twitter.com/curvesncarvings" target="_blank" rel="noopener noreferrer">
+                <img src="<?= $block->escapeUrl($mediaUrl . 'images/twitter.png') ?>" alt="twitter">
             </a>
         </li>
         <li>
-            <a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank">
-                <img src="<?php echo $mediaUrl; ?>images/linkedin.png" alt="linkedin">
+            <a href="https://www.linkedin.com/company/curves-and-carvings" target="_blank" rel="noopener noreferrer">
+                <img src="<?= $block->escapeUrl($mediaUrl . 'images/linkedin.png') ?>" alt="linkedin">
             </a>
         </li>
         <li>
-            <a href="https://www.youtube.com/watch?v=lLgK-wb8yCc&amp;feature=youtu.be" target="_blank">
-                <img src="<?php echo $mediaUrl; ?>images/youtube.png" alt="youtube">
+            <a href="https://www.youtube.com/watch?v=lLgK-wb8yCc&amp;feature=youtu.be" target="_blank" rel="noopener noreferrer">
+                <img src="<?= $block->escapeUrl($mediaUrl . 'images/youtube.png') ?>" alt="youtube">
             </a>
         </li>
         <li>
-            <a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank">
-                <img src="<?php echo $mediaUrl; ?>images/pinterest.png" alt="pinterest"> 
+            <a href="https://www.pinterest.com/CurvesnCarvings/" target="_blank" rel="noopener noreferrer">
+                <img src="<?= $block->escapeUrl($mediaUrl . 'images/pinterest.png') ?>" alt="pinterest">
             </a>
         </li>
     </ul>
 </div>
-
-
-
