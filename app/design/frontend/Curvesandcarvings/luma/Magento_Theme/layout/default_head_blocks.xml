@@ -9,6 +9,7 @@
         <css src="css/styles-m.css"/>
         <css src="css/styles-l.css" media="screen and (min-width: 768px)"/>
         <css src="css/catalog-fixes.css"/>
+        <css src="css/grid-mageplaza.css"/>
         <css src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
               src_type="url"/>
         <script src="requirejs/require.js"/>

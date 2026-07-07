@@ -61,3 +61,20 @@
 .page-header .hedleftcal01 ul li a:before {
     font-family: FontAwesome !important;
 }
+
+/* Blog grid — match live 2-column layout with full-width images */
+.mpblog-post-index .post-list-body {
+    margin: 0 -10px;
+}
+
+.mpblog-post-index .post-list-body::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.mpblog-post-index .post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}

@@ -1,0 +1,41 @@
+/**
+ * Mageplaza grid system (from module-core) — required for 2-column blog layout.
+ */
+.row-mp {
+    min-height: 1px;
+    margin: 0 -10px;
+}
+
+.col-mp {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-background-clip: padding-box !important;
+    -webkit-background-clip: padding-box !important;
+    background-clip: padding-box !important;
+    float: left;
+    padding: 0 10px;
+}
+
+.mp-1 { width: 8.33333333333%; }
+.mp-2 { width: 16.6666666667%; }
+.mp-3 { width: 25.0%; }
+.mp-4 { width: 33.3333333333%; }
+.mp-5 { width: 41.6666666667%; }
+.mp-6 { width: 50.0%; }
+.mp-7 { width: 58.3333333333%; }
+.mp-8 { width: 66.6666666667%; }
+.mp-9 { width: 75.0%; }
+.mp-10 { width: 83.3333333333%; }
+.mp-11 { width: 91.6666666667%; }
+.mp-12 { margin-left: 0; width: 100%; }
+
+.mp-clear { clear: both; }
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .mp-xs-12 { margin-left: 0; width: 100%; }
+}
+
+@media (max-width: 480px) {
+    .col-mp { width: 100%; }
+}
