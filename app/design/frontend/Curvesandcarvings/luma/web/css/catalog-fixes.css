@@ -78,3 +78,28 @@
     height: auto;
     display: block;
 }
+
+/* Blog page — match live heading and colors */
+.mpblog-post-index .page-title-wrapper .page-title {
+    font-weight: 300;
+    text-transform: none;
+}
+
+.mpblog-post-index .post-list-content .post-item-wraper .post-info-wraper h2 a,
+.mpblog-post-index .post-info-wraper h2.mp-post-title a.post-link-title {
+    color: #333 !important;
+}
+
+.mpblog-post-index .mp-post-info a.mp-info {
+    color: #333 !important;
+}
+
+.mpblog-post-index .mp-post-meta-info .actions a.mp-read-more {
+    color: #fff !important;
+    background-color: #977245 !important;
+}
+
+.mpblog-post-index .mp-post-meta-info .actions a.mp-read-more:hover {
+    background-color: #333 !important;
+    color: #fff !important;
+}
