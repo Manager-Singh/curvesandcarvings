@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f2e6a7abc6c771e56e92d1285223a16",
+    "content-hash": "ca109f9b20629449c45c3b0a055a97c5",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -19424,6 +19424,156 @@
                 "zend",
                 "zf1"
             ]
+        },
+        {
+            "name": "mageplaza/facebook-graph-sdk",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/facebook-graph-sdk.git",
+                "reference": "aaeebf1fb5db308606b21f6412999079d9090fda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/facebook-graph-sdk/zipball/aaeebf1fb5db308606b21f6412999079d9090fda",
+                "reference": "aaeebf1fb5db308606b21f6412999079d9090fda",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ],
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/mageplaza/facebook-graph-sdk/issues",
+                "source": "https://github.com/mageplaza/facebook-graph-sdk/tree/v1.0.2"
+            },
+            "time": "2025-04-15T07:28:51+00:00"
+        },
+        {
+            "name": "mageplaza/magento-2-blog-extension",
+            "version": "4.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-blog.git",
+                "reference": "d3b0cdfbe6635bd0a15cb2acde165d00660ccb0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-blog/zipball/d3b0cdfbe6635bd0a15cb2acde165d00660ccb0b",
+                "reference": "d3b0cdfbe6635bd0a15cb2acde165d00660ccb0b",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/facebook-graph-sdk": "^1.0.2",
+                "mageplaza/module-core": "^1.5.13"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Blog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magento 2 Blog extension",
+            "keywords": [
+                "blog",
+                "magento 2",
+                "magento 2 blog",
+                "magento2",
+                "mageplaza"
+            ],
+            "support": {
+                "source": "https://github.com/mageplaza/magento-2-blog/tree/v4.3.2"
+            },
+            "time": "2026-07-02T09:13:41+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.5.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "0f69c32878d95282fa7f18866b8ea6bbd49580f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/0f69c32878d95282fa7f18866b8ea6bbd49580f8",
+                "reference": "0f69c32878d95282fa7f18866b8ea6bbd49580f8",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "support": {
+                "source": "https://github.com/mageplaza/module-core/tree/v1.5.17"
+            },
+            "time": "2026-06-10T10:08:55+00:00"
         },
         {
             "name": "marc-mabe/php-enum",

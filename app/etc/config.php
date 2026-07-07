@@ -324,7 +324,7 @@ return [
         'Aligent_Pci4Compatibility' => 1,
         'Bss_SocialLogin' => 1,
         'Creatuity_Interception' => 1,
-        'Curvesandcarvings_Homepage' => 1,
+        'Yereone_Testimonials' => 1,
         'Curvesandcarvings_Theme' => 1,
         'DR_Gallery' => 1,
         'Element119_CustomAdminLogo' => 1,
@@ -340,10 +340,12 @@ return [
         'MageOS_RMA' => 1,
         'MageOS_ThemeAdminhtmlSwitcher' => 1,
         'MageOS_ThemeOptimization' => 1,
+        'Mageplaza_Core' => 1,
+        'Mageplaza_Blog' => 1,
         'Swissup_Ignition' => 1,
         'WeltPixel_Backend' => 1,
         'WeltPixel_Quickview' => 1,
         'Yereone_Core' => 1,
-        'Yereone_Testimonials' => 1
+        'Curvesandcarvings_Homepage' => 1
     ]
 ];

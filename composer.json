@@ -19,7 +19,8 @@
   "require": {
     "mage-os/composer-dependency-version-audit-plugin": "3.1.0",
     "mage-os/composer-root-update-plugin": "3.1.0",
-    "mage-os/product-community-edition": "3.1.0"
+    "mage-os/product-community-edition": "3.1.0",
+    "mageplaza/magento-2-blog-extension": "^4.3"
   },
   "require-dev": {
     "allure-framework/allure-phpunit": "^3.2",
