@@ -68,7 +68,7 @@ $.fn.simpleLightbox = function( options )
 		},
 		opened = false,
 		
-		selector = this.selector,
+		$items = this,
 		transPrefix = transPrefix(),
 		canTransisions = (transPrefix !== false) ? true : false,
 		prefix = 'simplelb',
@@ -83,15 +83,19 @@ $.fn.simpleLightbox = function( options )
 		caption = $('<div>').addClass('sl-caption'),
 		wrapper = $('<div>').addClass('sl-wrapper').addClass(options.className).html('<div class="sl-image"></div>'),
 		isValidLink = function( element ){
-			return $( element ).prop( 'tagName' ).toLowerCase() == 'a' && ( new RegExp( '\.(' + options.fileExt + ')$', 'i' ) ).test( $( element ).attr( 'href' ) );
+			var tagName = $( element ).prop( 'tagName' ),
+				href = $( element ).attr( 'href' );
+
+			return tagName && tagName.toLowerCase() === 'a' && href &&
+				( new RegExp( '\.(' + options.fileExt + ')$', 'i' ) ).test( href );
 		},
 		setup = function(){
 			image = $('.sl-image');
 	        if(options.close) closeBtn.appendTo(wrapper);
 	        if(options.showCounter){
-	        	if($(selector).length > 1){
+	        	if($items.length > 1){
 	        		counter.appendTo(wrapper);
-	        		counter.find('.sl-total').text($(selector).length);
+	        		counter.find('.sl-total').text($items.length);
 	        	}
 	        	
 	        }
@@ -103,7 +107,7 @@ $.fn.simpleLightbox = function( options )
 			wrapper.appendTo('body');
 			if(options.overlay) overlay.appendTo($('body'));
 			animating = true;
-			index = $(selector).index(elem);
+			index = $items.index(elem);
 	        curImg = $( '<img/>' )
 	        .hide()
 	        .attr('src', elem.attr('href'));
@@ -150,7 +154,7 @@ $.fn.simpleLightbox = function( options )
 				})
 				.fadeIn('fast');
 				opened = true;
-				var cSel = (options.captionSelector == 'self') ? $(selector).eq(index) : $(selector).eq(index).find(options.captionSelector);
+				var cSel = (options.captionSelector == 'self') ? $items.eq(index) : $items.eq(index).find(options.captionSelector);
 				if(options.captionType == 'data'){
 					var captionText = cSel.data(options.captionsData);
 				} else if(options.captionType == 'text'){
@@ -191,18 +195,18 @@ $.fn.simpleLightbox = function( options )
 			$('.sl-image').css(styles);
 		},
 		preload = function(){
-			var next = (index+1 < 0) ? $(selector).length -1: (index+1 >= $(selector).length -1) ? 0 : index+1,
-				prev = (index-1 < 0) ? $(selector).length -1: (index-1 >= $(selector).length -1) ? 0 : index-1;
-			$( '<img />' ).attr( 'src', $(selector).eq(next).attr( 'href' ) ).load();
-			$( '<img />' ).attr( 'src', $(selector).eq(prev).attr( 'href' ) ).load();
+			var next = (index+1 < 0) ? $items.length -1: (index+1 >= $items.length -1) ? 0 : index+1,
+				prev = (index-1 < 0) ? $items.length -1: (index-1 >= $items.length -1) ? 0 : index-1;
+			$( '<img />' ).attr( 'src', $items.eq(next).attr( 'href' ) ).load();
+			$( '<img />' ).attr( 'src', $items.eq(prev).attr( 'href' ) ).load();
 				
 		},
 		loadImage = function(dir){
 		    spinner.show();
 		var newIndex = index + dir;
-			if(animating || (newIndex < 0 || newIndex >= $(selector).length) && options.loop == false ) return;
+			if(animating || (newIndex < 0 || newIndex >= $items.length) && options.loop == false ) return;
 			animating = true;
-			index = (newIndex < 0) ? $(selector).length -1: (newIndex > $(selector).length -1) ? 0 : newIndex;
+			index = (newIndex < 0) ? $items.length -1: (newIndex > $items.length -1) ? 0 : newIndex;
 			$('.sl-wrapper .sl-counter .sl-current').text(index +1);
       	var css = { 'opacity': 0 };
 			if( canTransisions ) slide(options.animationSpeed / 1000, ( -100 * dir ) - swipeDiff + 'px');
@@ -210,7 +214,7 @@ $.fn.simpleLightbox = function( options )
 			$('.sl-image').animate( css, options.animationSpeed, function(){
 				setTimeout( function(){
 					// fadeout old image
-					var elem = $(selector).eq(index);
+					var elem = $items.eq(index);
 					curImg
 					.attr('src', elem.attr('href'));
 					$('.sl-caption').remove();
@@ -221,7 +225,7 @@ $.fn.simpleLightbox = function( options )
 		},
 		close = function(){
 			if(animating) return;
-			var elem = $(selector).eq(index), 
+			var elem = $items.eq(index),
 				triggered = false;
 			elem.trigger($.Event('close.simplelightbox'));
 		    $('.sl-image img, .sl-overlay, .sl-close, .sl-navigation, .sl-image .sl-caption, .sl-counter').fadeOut('fast', function(){
@@ -239,8 +243,8 @@ $.fn.simpleLightbox = function( options )
 	// resize/responsive
 	$( window ).on( 'resize', adjustImage );	
 	
-	// open lightbox
-	$( document ).on( 'click.'+prefix, this.selector, function( e ){
+	// open lightbox (bind directly; jQuery 3+ removed .selector so document delegation breaks)
+	this.on( 'click.'+prefix, function( e ){
 	  if(isValidLink(this)){
 	    e.preventDefault();
 	    if(animating) return false;
@@ -346,7 +350,7 @@ $.fn.simpleLightbox = function( options )
 	}
 	
 	this.destroy = function(){
-		$(document).unbind('click.'+prefix).unbind('keyup.'+prefix);
+		this.off('click.'+prefix).unbind('keyup.'+prefix);
 		close();
 		$('.sl-overlay, .sl-wrapper').remove();
 	}

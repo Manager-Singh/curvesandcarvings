@@ -24,9 +24,6 @@ class ReturnUrl extends \Magento\Ccavenuepay\Controller\Ccavenuepay {
         $ccavenuepay = $this->_objectManager->get('Magento\Ccavenuepay\Model\Ccavenuepay');
         $response = $this->getRequest()->getPostValue();
 
-        $this->logger->info(print_r($_POST, true));
-        $this->logger->info("response");
-        $this->logger->info(print_r($response, true));
         $status = true;
         $encrypted_data = '';
         $order = $this->_getCheckout()->getLastRealOrder();
@@ -50,10 +47,6 @@ class ReturnUrl extends \Magento\Ccavenuepay\Controller\Ccavenuepay {
         $rcvdString = $ccavenuepay->decrypt($encResponse, $encryption_key);
         $decryptValues = explode('&', $rcvdString);
 
-        $this->logger->info("<pre>decryptValues");
-        $this->logger->info(print_r($decryptValues, true));
-
-
         $dataSize = sizeof($decryptValues);
         $Order_Id = '';
         $tracking_id = '';
@@ -61,17 +54,11 @@ class ReturnUrl extends \Magento\Ccavenuepay\Controller\Ccavenuepay {
         $response_array = array();
         for ($i = 0; $i < count($decryptValues); $i++) {
             $information = explode('=', $decryptValues[$i]);
-            $this->logger->info("information");
-            $this->logger->info(print_r($information, true));
-
 
             if (count($information) == 2) {
                 $response_array[$information[0]] = $information[1];
             }
         }
-        $this->logger->info("Response Array");
-        $this->logger->info($response_array);
-        $this->logger->info("Array End===");
         if (isset($response_array['order_id']))
             $Order_Id = $response_array['order_id'];
         if (isset($response_array['tracking_id']))
@@ -95,8 +82,6 @@ class ReturnUrl extends \Magento\Ccavenuepay\Controller\Ccavenuepay {
 
         $order_history_comments_array = array();
         $order_history_comments_array[] = $order_history_comments;
-        $this->logger->info("order_history_comments Array");
-        $this->logger->info($order_history_comments);
 
         if ($order_status == "Success") {
             $order = $this->_orderFactory->create()->loadByIncrementId($this->_checkoutSession->getLastRealOrderId());
@@ -118,7 +103,6 @@ class ReturnUrl extends \Magento\Ccavenuepay\Controller\Ccavenuepay {
             $order->setStatus($passed_status);
             $order->save();
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $this->logger->info("Your Order Success");
             $this->messageManager->addSuccess($message);
             return $resultRedirect->setPath('checkout/onepage/success');
         } else if ($order_status === "Aborted") {
@@ -129,14 +113,8 @@ class ReturnUrl extends \Magento\Ccavenuepay\Controller\Ccavenuepay {
             $message = __('Security Error. Illegal access detected');
         }
 
-        $this->logger->info("message");
-        $this->logger->info($message);
         $gotoSection = $this->_cancelPayment($message);
         $this->_getCcavenuepayPostSession()->unsetData('quote_id');
-        $this->logger->info("gotoSection");
-        $this->logger->info($gotoSection);
-        $this->logger->info("====message");
-        $this->logger->info($message);
         $this->messageManager->addError($message);
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('checkout/cart');

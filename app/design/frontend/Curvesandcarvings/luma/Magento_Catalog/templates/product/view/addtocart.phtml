@@ -31,7 +31,15 @@ $buttonTitle = __('Add to Cart');
                     id="product-addtocart-button">
                 <span><?= $block->escapeHtml($buttonTitle) ?></span>
             </button>
-            <?= $block->getChildHtml('', true) ?>
+            <button type="button"
+                    title="<?= $block->escapeHtmlAttr(__('Buy Now')) ?>"
+                    class="action primary buy-now"
+                    id="product-buy-now-button">
+                <span><?= $block->escapeHtml(__('Buy Now')) ?></span>
+            </button>
+            <div class="cc-pdp-wishlist">
+                <?= $block->getChildHtml('view.addto.wishlist.cart') ?>
+            </div>
         </div>
     </div>
 </div>
@@ -40,6 +48,9 @@ $buttonTitle = __('Add to Cart');
     {
         "#product_addtocart_form": {
             "Magento_Catalog/js/validate-product": {}
+        },
+        "body.catalog-product-view": {
+            "js/pdp-figma": {}
         }
     }
 </script>

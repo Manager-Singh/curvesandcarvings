@@ -63,15 +63,10 @@ abstract class Ccavenuepay extends \Magento\Framework\App\Action\Action {
     \Magento\Framework\App\Action\Context $context, \Magento\Checkout\Model\Session $checkoutSession, \Magento\Sales\Model\OrderFactory $orderFactory, \Magento\Ccavenuepay\Model\Ccavenuepay $ccavenuepay, \Magento\Ccavenuepay\Helper\Checkout $checkoutHelper, \Psr\Log\LoggerInterface $logger, \Magento\Framework\View\Result\PageFactory $resultPageFactory
     ) {
 
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("__construct=====Ccavenuepay extends \Magento\Framework\App\Action\Action");
-
-
         $this->_checkoutSession = $checkoutSession;
         $this->_orderFactory = $orderFactory;
         $this->_logger = $logger;
+        $this->logger = $logger;
         $this->_ccavenuepay = $ccavenuepay;
         $this->_checkoutHelper = $checkoutHelper;
         parent::__construct($context);

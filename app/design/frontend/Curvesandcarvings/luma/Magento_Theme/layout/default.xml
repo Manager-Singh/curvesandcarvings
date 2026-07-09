@@ -130,7 +130,28 @@
             </container>
         </referenceContainer>
         <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="curvesandcarvings.header.init"
+                   template="Magento_Theme::html/header-init.phtml"/>
             <block class="Magento\Theme\Block\Html\Footer" name="absolute_footer" template="Magento_Theme::html/absolute_footer.phtml" />
+            <!-- The custom "content" container (redefined under "main") drops default-handle children,
+                 removing Magento's customer-data JS init. Without section-config the minicart never
+                 refreshes after add-to-cart. Re-declare the init blocks here so they always render. -->
+            <block name="cc.customer.section.config" class="Magento\Customer\Block\SectionConfig"
+                   template="Magento_Customer::js/section-config.phtml">
+                <arguments>
+                    <argument name="sectionNamesProvider" xsi:type="object">Magento\Customer\Block\SectionNamesProvider</argument>
+                </arguments>
+            </block>
+            <block name="cc.customer.customer.data" class="Magento\Customer\Block\CustomerData"
+                   template="Magento_Customer::js/customer-data.phtml">
+                <arguments>
+                    <argument name="auth" xsi:type="object">Magento\Customer\ViewModel\Customer\Auth</argument>
+                    <argument name="json_serializer" xsi:type="object">Magento\Customer\ViewModel\Customer\JsonSerializer</argument>
+                    <argument name="cookie_settings" xsi:type="object">Magento\Customer\ViewModel\CookieSettings</argument>
+                </arguments>
+            </block>
+            <block name="cc.customer.data.invalidation.rules" class="Magento\Customer\Block\CustomerScopeData"
+                   template="Magento_Customer::js/customer-data/invalidation-rules.phtml"/>
         </referenceContainer>
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\FormKey" name="formkey"/>

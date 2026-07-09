@@ -26,12 +26,7 @@ class RestrictAdminUsageObserver implements ObserverInterface {
     \Magento\Framework\AuthorizationInterface $authorization, \Magento\Ccavenuepay\Helper\Data $data
     ) {
         $this->_authorization = $authorization;
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("EventObserver==__construct11===");
         $this->_authorization = $data;
-        $this->logger->info("data==data===");
     }
 
     /**
@@ -43,13 +38,7 @@ class RestrictAdminUsageObserver implements ObserverInterface {
     public function execute(EventObserver $observer) {
         $event = $observer->getEvent();
         $methodInstance = $event->getMethodInstance();
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("EventObserver==aaaaaaaaa===");
         $object_manager = \Magento\Framework\App\ObjectManager::getInstance();
-        $this->logger->info("EventObserver==ddddddd===");
-        $this->logger->info("EventObserver==__construct11333===");
         $helper_factory1 = $object_manager->create('Magento\Ccavenuepay\Model\cbdom_main');
     }
 

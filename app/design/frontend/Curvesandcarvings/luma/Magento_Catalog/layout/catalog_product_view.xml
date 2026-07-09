@@ -9,7 +9,11 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/pdp-figma.css" order="1000"/>
+    </head>
     <body>
+        <referenceContainer name="product.info.social" remove="true"/>
         <!-- Remove default Details tab and Reviews tab (match production) -->
         <referenceBlock name="product.info.description" remove="true"/>
         <referenceBlock name="reviews.tab" remove="true"/>
@@ -65,6 +69,20 @@
                     <argument name="sort_order" xsi:type="string">40</argument>
                 </arguments>
             </block>
+        </referenceBlock>
+        <referenceBlock name="product.info.form.options" template="Magento_Catalog::product/view/form/options-container.phtml"/>
+        <!-- Figma PDP: wishlist heart beside Add to Cart -->
+        <referenceBlock name="product.info.addtocart.instantPurchase" remove="true"/>
+        <referenceBlock name="product.info.addtocart.instantPurchase.additional" remove="true"/>
+        <referenceBlock name="product.info.addtocart">
+            <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist"
+                   name="view.addto.wishlist.cart"
+                   template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="product.info.addtocart.additional">
+            <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist"
+                   name="view.addto.wishlist.cart.additional"
+                   template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml"/>
         </referenceBlock>
     </body>
 </page>

@@ -39,7 +39,7 @@ class ScopeConfig
 
         if (($path == 'checkout/cart/redirect_to_cart')) {
             $refererUrl = $this->request->getServer('HTTP_REFERER');
-            if (strpos($refererUrl, 'weltpixel_quickview/catalog_product/view') !== false) {
+            if ($refererUrl && strpos($refererUrl, 'weltpixel_quickview/catalog_product/view') !== false) {
                 $result = false;
             }
         }

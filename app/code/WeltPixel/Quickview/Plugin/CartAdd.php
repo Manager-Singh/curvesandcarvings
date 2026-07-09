@@ -41,7 +41,7 @@ class CartAdd
     {
         /** Fix for product redirects, ex. when quantity is out of stock */
         $refererUrl = $this->request->getServer('HTTP_REFERER');
-        if (strpos($refererUrl, 'weltpixel_quickview/catalog_product/view') !== false) {
+        if ($refererUrl && strpos($refererUrl, 'weltpixel_quickview/catalog_product/view') !== false) {
             return $subject->getResponse()->representJson($this->jsonEncoder->encode([]));
         }
 

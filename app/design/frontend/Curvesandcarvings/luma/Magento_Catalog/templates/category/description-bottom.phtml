@@ -6,7 +6,12 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 
-$description = $block->getCurrentCategory()->getDescription();
+$category = $block->getCurrentCategory();
+if ($category && $category->getUrlKey() === 'export-zone') {
+    return;
+}
+
+$description = $category->getDescription();
 if (!$description) {
     return;
 }

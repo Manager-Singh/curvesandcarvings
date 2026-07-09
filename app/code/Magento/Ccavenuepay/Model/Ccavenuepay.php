@@ -161,12 +161,7 @@ class Ccavenuepay extends \Magento\Payment\Model\Method\Cc
         $this->httpClientFactory = $httpClientFactory;
 		$this->orderSender = $orderSender;
 		$this->registry = $registry;
-		
-		$writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-		$this->logger = new \Zend\Log\Logger();
-		$this->logger->addWriter($writer);
-		$this->logger->info("__construct model");
-		
+
         parent::__construct(
             $context,
             $registry,
@@ -273,9 +268,6 @@ class Ccavenuepay extends \Magento\Payment\Model\Method\Cc
 	 public function getEncryptedData(\Magento\Sales\Model\Order $order)
     {
 		/** @var \Magento\Sales\Model\Order $order */
-     $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test1.log');
-					$logger = new \Zend\Log\Logger();
-					$logger->addWriter($writer);
 	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $request = $this->requestFactory->create()
             ->setConstantData($this);
@@ -346,10 +338,6 @@ class Ccavenuepay extends \Magento\Payment\Model\Method\Cc
 			$get_data['merchant_param1']	=	$order->getIncrementId();
 			$get_data['merchant_param2']	=	$order->getId();
 		}
-		
-					$logger->info("====get_data====");
-					$logger->info($get_data);
-	 
 	 
 	$merchant_data='';
 	foreach ($get_data as $key => $value){

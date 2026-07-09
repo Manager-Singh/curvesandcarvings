@@ -30,7 +30,7 @@ class AbstractProduct
     )
     {
         $requestUri = $this->request->getRequestUri();
-        if (strpos($requestUri, 'weltpixel_quickview/catalog_product/view') !== false) {
+        if ($requestUri && strpos($requestUri, 'weltpixel_quickview/catalog_product/view') !== false) {
             $result = false;
         }
 

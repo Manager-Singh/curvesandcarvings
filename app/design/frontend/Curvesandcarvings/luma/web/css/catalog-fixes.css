@@ -103,3 +103,8 @@
     background-color: #333 !important;
     color: #fff !important;
 }
+
+/* Export Zone: hide default category listing column below custom content */
+.categorypath-export-zone .columns {
+    display: none;
+}

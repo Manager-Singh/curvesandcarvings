@@ -2,10 +2,15 @@
 /**
  * Category page banner and quick category icons (matches production layout).
  *
- * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Catalog\Block\Category\View $block
  * @var \Curvesandcarvings\Theme\ViewModel\MediaUrl|null $mediaUrlViewModel
  * @var \Magento\Framework\Escaper $escaper
  */
+
+$category = $block->getCurrentCategory();
+if ($category && $category->getUrlKey() === 'export-zone') {
+    return;
+}
 
 $mediaUrlViewModel = $block->getData('media_url');
 $mediaUrl = $mediaUrlViewModel ? $mediaUrlViewModel->getUrl() : '';

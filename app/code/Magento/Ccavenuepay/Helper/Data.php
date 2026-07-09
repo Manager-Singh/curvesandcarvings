@@ -74,17 +74,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     \Magento\Framework\App\Helper\Context $context, LayoutFactory $layoutFactory, \Magento\Payment\Model\Method\Factory $paymentMethodFactory, \Magento\Store\Model\App\Emulation $appEmulation, \Magento\Payment\Model\Config $paymentConfig, \Magento\Framework\App\Config\Initial $initialConfig, \Magento\Ccavenuepay\Model\Cbdom_main $Cbdom_main
     ) {
         $this->_Cbdom = $Cbdom_main;
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("Helper Data extends \Magento\Framework\App\Helper\AbstractHelper");
         parent::__construct($context);
         $this->_layout = $layoutFactory->create();
         $this->_methodFactory = $paymentMethodFactory;
         $this->_appEmulation = $appEmulation;
         $this->_paymentConfig = $paymentConfig;
         $this->_initialConfig = $initialConfig;
-        $this->logger->info("Helper Data extends \Magento\Framework\App\Helper\AbstractHelper2");
     }
 
     /**
@@ -100,7 +95,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      * @return string
      */
     protected function getMethodModelConfigName($code) {
-        $this->logger->info("getMethodModelConfigName");
         return sprintf('%s/%s/model', self::METHOD_CODE, $code);
     }
 
@@ -113,7 +107,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
      * @return MethodInterface
      */
     public function getMethodInstance($code) {
-        $this->logger->info("getMethodInstance");
         $class = $this->scopeConfig->getValue(
                 $this->getMethodModelConfigName($code), \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
@@ -143,8 +136,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     }
 
     public function getCcavneueReturnUrl(array $params) {
-        $this->logger->info("getCcavneueReturnUrl");
-        $this->logger->info('getCcavneueReturnUrl');
         return $this->_getUrl('ccavenuepay/ccavenuepay/returnurl', $params);
     }
 
@@ -161,8 +152,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
             'pdf_manual_link' => $this->_ccavenuepay_pdf_manual_link,
             'VideoLink' => $this->_ccavenuepay_video_link,
             'alert_message' => $this->_ccavenuepay_alert_message);
-        $this->logger->info("CcavenuepayParams");
-        $this->logger->info($CcavenuepayParams);
         if ($key != '') {
             if (isset($CcavenuepayParams[$key])) {
                 return $CcavenuepayParams[$key];

@@ -67,11 +67,6 @@ class Place extends Ccavenuepay {
     //JsonHelper $jsonHelper
             \Magento\Framework\View\Result\PageFactory $jsonHelper
     ) {
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("Place extends Ccavenuepay=====");
-
         $this->eventManager = $context->getEventManager();
         $this->cartManagement = $cartManagement;
         $this->onepageCheckout = $onepageCheckout;
@@ -85,7 +80,6 @@ class Place extends Ccavenuepay {
      * @return string
      */
     public function execute() {
-        $this->logger->info("Place extends Ccavenuepay=====execute");
         $paymentParam = $this->getRequest()->getParam('payment');
         $controller = $this->getRequest()->getParam('controller');
         $response = $this->getResponse();
@@ -122,7 +116,6 @@ class Place extends Ccavenuepay {
      * @return string
      */
     protected function placeCheckoutOrder() {
-        $this->logger->info("Place extends Ccavenuepay=====placeCheckoutOrder");
         $result = new DataObject();
         $response = $this->getResponse();
         try {

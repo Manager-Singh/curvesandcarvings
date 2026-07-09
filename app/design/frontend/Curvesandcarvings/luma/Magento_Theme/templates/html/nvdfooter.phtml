@@ -286,11 +286,13 @@ require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min'
         }
     });  
     $(function(){
-        var gallery = $('.gallery a').simpleLightbox();
-        var gallery1 = $('.gallery-1 a').simpleLightbox();
-        var gallery2 = $('.gallery-2 a').simpleLightbox();
-        var gallery3 = $('.gallery-3 a').simpleLightbox();
-        var gallery4 = $('.gallery-4 a').simpleLightbox();		
+        // Init once per gallery container (gallery-1 also has class "gallery" — avoid double-binding)
+        $('.gallery-1, .gallery-2, .gallery-3, .gallery-4').each(function () {
+            $('a', this).simpleLightbox();
+        });
+        $('.gallery').not('.gallery-1, .gallery-2, .gallery-3, .gallery-4').each(function () {
+            $('a', this).simpleLightbox();
+        });
     });
     
 })

@@ -47,16 +47,9 @@ class IframeConfigProvider implements ConfigProviderInterface {
     ) {
         $this->paymentHelper = $paymentHelper;
         $this->urlBuilder = $urlBuilder;
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("__construct methodCodes===11111111");
 
         foreach ($this->methodCodes as $code) {
             $this->methods[$code] = $this->paymentHelper->getMethodInstance($code);
-            $this->logger->info("=======Methodcode=======");
-            $this->logger->info([$code, 'll']);
-            $this->logger->info("merchant_id===" . $this->getConfigData('merchant_id'));
             $paymentMethod = $this->methods[$code];
         }
     }
@@ -120,15 +113,6 @@ class IframeConfigProvider implements ConfigProviderInterface {
      */
     protected function getCgiUrl() {
         return (bool) $this->getMethodConfigData('sandbox_flag') ? $this->getMethodConfigData('cgi_url_test_mode') : $this->getMethodConfigData('cgi_url');
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info("getCgiUrl=====");
-        $logger->info($this->getMethodConfigData('cgi_url'));
-        $logger->info("merchant_id-----");
-        $logger->info($this->getMethodConfigData('merchant_id'));
-        $logger->info("getCgiUrl----");
-        return $this->getMethodConfigData('cgi_url');
     }
 
 }

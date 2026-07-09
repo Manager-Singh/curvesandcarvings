@@ -1,0 +1,371 @@
+/**
+ * Product detail page — Figma layout (stacked sections + inline actions).
+ */
+
+/* === Vertical stack: variations → payment → qty/buttons === */
+.catalog-product-view .product-info-main .product-add-form,
+.catalog-product-view .product-info-main .product-add-form form,
+.catalog-product-view .product-info-main .cc-pdp-form-sections {
+    width: 100%;
+    clear: both;
+}
+
+.catalog-product-view .product-info-main .cc-pdp-form-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper {
+    float: none !important;
+    width: 100% !important;
+    clear: both !important;
+    order: 1;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .fieldset {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    float: none !important;
+    margin: 0;
+    padding: 0;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom {
+    float: none !important;
+    width: 100% !important;
+    clear: both !important;
+    order: 2;
+    margin-top: 16px !important;
+}
+
+/* Hide buy-back / extra non-payment custom options on PDP */
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .fieldset > .field:not(.required) {
+    display: none !important;
+}
+
+/* ---- Variation pills ---- */
+.catalog-product-view .product-info-main .product-add-form .swatch-opt,
+.catalog-product-view .product-info-main .swatch-attribute {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    margin: 0 0 20px !important;
+}
+
+.catalog-product-view .product-info-main .swatch-attribute-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+    float: none !important;
+}
+
+.catalog-product-view .product-info-main .swatch-attribute-options {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0 !important;
+    padding: 0;
+    float: none !important;
+}
+
+.catalog-product-view .product-info-main .swatch-option.text {
+    min-width: 110px !important;
+    height: auto !important;
+    min-height: 42px !important;
+    padding: 10px 18px !important;
+    margin: 0 !important;
+    border: 1.5px solid #d5d5d5 !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    color: #333 !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.3 !important;
+    text-align: center;
+    float: none !important;
+    box-sizing: border-box;
+    outline: none !important;
+}
+
+.catalog-product-view .product-info-main .swatch-option.text:hover {
+    border-color: #ca9148 !important;
+    color: #333 !important;
+    outline: none !important;
+}
+
+.catalog-product-view .product-info-main .swatch-option.text.selected {
+    border-color: #ca9148 !important;
+    background: #fff !important;
+    color: #333 !important;
+    box-shadow: 0 0 0 1px #ca9148;
+    outline: none !important;
+}
+
+.catalog-product-view .product-info-main .swatch-attribute-selected-option {
+    display: none;
+}
+
+/* ---- Payment section heading ---- */
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required {
+    float: none !important;
+    width: 100% !important;
+    display: block !important;
+    clear: both !important;
+    margin: 0 0 12px !important;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required > label.label {
+    float: none !important;
+    width: 100% !important;
+    display: block !important;
+    margin: 0 0 10px !important;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required > label.label span {
+    color: #ca9148 !important;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required > .control {
+    float: none !important;
+    width: 100% !important;
+    clear: both !important;
+}
+
+/* ---- Payment cards ---- */
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .options-list.cc-payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card {
+    position: relative;
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    background: #fff;
+    float: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    display: block !important;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card:hover,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card:hover {
+    border-color: #ca9148;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card.is-selected,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card.is-selected {
+    border-color: #ca9148;
+    box-shadow: 0 0 0 1px #ca9148;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card input[type="radio"],
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card input[type="radio"] {
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    margin: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    visibility: hidden !important;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card .cc-payment-card-body,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card .cc-payment-card-body {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100% !important;
+    margin: 0;
+    cursor: pointer;
+    float: none !important;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card .cc-payment-title,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card .cc-payment-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    flex: 1 1 auto;
+    line-height: 1.35;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card .cc-payment-card-right,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card .cc-payment-card-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    text-align: right;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card .cc-payment-price,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card .cc-payment-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    white-space: nowrap;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.choice.cc-payment-card .k-more,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required.cc-payment-card .k-more {
+    display: inline-block;
+    font-size: 11px;
+    border: 1px solid #d8d8d8;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required h2.Payment_open,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .field.required h2.Card_open,
+.catalog-product-view .product-info-main .product-add-form .product-options-wrapper .options-list.cc-payment-options > p {
+    display: none !important;
+}
+
+/* ---- Qty + Add to Cart + Buy Now + Wishlist (one row) ---- */
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .fieldset {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 12px;
+    width: 100%;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .field.qty {
+    margin: 0 !important;
+    flex: 0 0 auto;
+    float: none !important;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .field.qty label {
+    display: none;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .field.qty .control {
+    display: flex;
+    align-items: center;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .field.qty input.qty {
+    width: 56px !important;
+    height: 44px;
+    text-align: center;
+    border: 1px solid #d5d5d5;
+    border-radius: 8px;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 10px;
+    margin: 0;
+    flex: 1 1 auto;
+    width: auto;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.tocart,
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.buy-now {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: 48px !important;
+    padding: 12px 20px !important;
+    font-weight: 600 !important;
+    display: inline-block !important;
+    white-space: nowrap;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.tocart {
+    background: #fff !important;
+    border: 1px solid #ca9148 !important;
+    color: #ca9148 !important;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.buy-now {
+    background-color: #ca9148 !important;
+    border: 1px solid #ca9148 !important;
+    color: #fff !important;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.buy-now:hover {
+    background-color: #b07f3a !important;
+    border-color: #b07f3a !important;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart #instant-purchase {
+    display: none !important;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .cc-pdp-wishlist {
+    margin: 0;
+    display: inline-flex;
+    flex: 0 0 auto;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .cc-pdp-wishlist .action.towishlist {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid #ca9148;
+    border-radius: 50%;
+    color: #ca9148;
+    font-size: 0;
+    text-decoration: none;
+    background: #fff;
+    margin: 0;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .cc-pdp-wishlist .action.towishlist span {
+    display: none;
+}
+
+.catalog-product-view .product-info-main .product-options-bottom .box-tocart .cc-pdp-wishlist .action.towishlist:before {
+    font-family: 'FontAwesome';
+    content: '\f004';
+    font-size: 18px;
+}
+
+.catalog-product-view .product-info-main .product-social-links {
+    display: none !important;
+}
+
+.catalog-product-view .product-info-main .product-info-price .price-box {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 767px) {
+    .catalog-product-view .product-info-main .swatch-option.text {
+        min-width: calc(50% - 10px);
+        flex: 1 1 calc(50% - 10px);
+    }
+
+    .catalog-product-view .product-info-main .product-options-bottom .box-tocart .fieldset,
+    .catalog-product-view .product-info-main .product-options-bottom .box-tocart .actions {
+        flex-wrap: wrap !important;
+    }
+
+    .catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.tocart,
+    .catalog-product-view .product-info-main .product-options-bottom .box-tocart .action.buy-now {
+        flex: 1 1 calc(50% - 6px);
+    }
+}

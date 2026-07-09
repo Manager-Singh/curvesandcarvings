@@ -5,4 +5,8 @@
         <plugin name="curvesandcarvings_gallery_category_url"
                 type="Curvesandcarvings\Theme\Plugin\Catalog\Category\UrlPlugin"/>
     </type>
+    <type name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\Collection">
+        <plugin name="curvesandcarvings_broaden_sku_search"
+                type="Curvesandcarvings\Theme\Plugin\CatalogSearch\Model\ResourceModel\Fulltext\BroadenSkuSearchCollectionPlugin"/>
+    </type>
 </config>

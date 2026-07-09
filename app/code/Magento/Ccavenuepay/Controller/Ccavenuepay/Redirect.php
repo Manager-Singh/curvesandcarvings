@@ -15,10 +15,6 @@ class Redirect extends Ccavenuepay {
      * @return void
      */
     public function execute() {
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info('Informational message Redirect');
         $helper = $this->dataFactory->create('frontend');
 
         $redirectParams = $this->getRequest()->getParams();

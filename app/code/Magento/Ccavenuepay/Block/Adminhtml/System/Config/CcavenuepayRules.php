@@ -30,10 +30,6 @@ class CcavenuepayRules extends Template {
     public function __construct(
     Context $context, \Magento\Ccavenuepay\Helper\Data $helperCcavenuepayData, array $data = []
     ) {
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $this->logger = new \Zend\Log\Logger();
-        $this->logger->addWriter($writer);
-        $this->logger->info("getJson==111111111111===");
         $this->helperCcavenuepayData = $helperCcavenuepayData;
         parent::__construct($context, $data);
     }
@@ -44,12 +40,7 @@ class CcavenuepayRules extends Template {
      * @return string
      */
     public function getJson() {
-
-        $this->logger->info("getJson==111111111111===");
-
         $ccavenuepay_params = $this->helperCcavenuepayData->getCcavenuepayParams();
-        $this->logger->info(print_r($ccavenuepay_params, true));
-        $this->logger->info("getJson==ccavenuepay_params===");
         return json_encode($ccavenuepay_params);
     }
 
