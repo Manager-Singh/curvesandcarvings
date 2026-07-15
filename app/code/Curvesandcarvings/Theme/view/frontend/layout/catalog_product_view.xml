@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Prev / Next product in same category (directly under breadcrumbs) -->
+        <referenceContainer name="page.top">
+            <block class="Curvesandcarvings\Theme\Block\Product\Pager"
+                   name="cc.pdp.product.pager"
+                   template="Magento_Catalog::product/view/product-pager.phtml"
+                   after="breadcrumbs"
+                   cacheable="false"/>
+        </referenceContainer>
+
+        <!-- Recently Viewed Products (Figma) — after product tabs -->
+        <referenceContainer name="content">
+            <block class="Curvesandcarvings\Theme\Block\Product\RecentlyViewed"
+                   name="cc.pdp.recently.viewed"
+                   template="Magento_Catalog::product/view/recently-viewed.phtml"
+                   after="product.info.details"
+                   cacheable="false"/>
+        </referenceContainer>
+
+        <!-- Related/upsell after FAQ module section (cc.faq.product) when present -->
+        <move element="catalog.product.related" destination="content" after="cc.pdp.recently.viewed"/>
+        <move element="product.info.upsell" destination="content" after="catalog.product.related"/>
+    </body>
+</page>
