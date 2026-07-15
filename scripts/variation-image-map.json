@@ -1,0 +1,15 @@
+{
+  "_comment": "Up to 5 images per variation child SKU. Paths are relative to pub/media/catalog/product/. First image = main; 2-5 = slider.",
+  "C&C CAB0001-IND-STD": [
+    "/c/_/c_c_cab0001_3_1.jpg",
+    "/c/l/classic_colonial_chest_of_drawers_by_curvesandcarvings_cab0001_1.jpg"
+  ],
+  "C&C CAB0001-IND-LARGE": [
+    "/c/_/c_c_cab0001_3_1_1.jpg",
+    "/c/l/classic_colonial_chest_of_drawers_by_curvesandcarvings_cab0001_1_1.jpg"
+  ],
+  "C&C CAB0001-IND-MIRROR": [
+    "/c/_/c_c_cab0001_3_1_2.jpg",
+    "/c/l/classic_colonial_chest_of_drawers_by_curvesandcarvings_cab0001_1_2.jpg"
+  ]
+}

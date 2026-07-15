@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Curvesandcarvings_Faq::css/faq.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.bottom">
+            <block class="Curvesandcarvings\Faq\Block\FaqList"
+                   name="cc.faq.home"
+                   template="Curvesandcarvings_Faq::faq-accordion.phtml"
+                   before="-">
+                <arguments>
+                    <argument name="location" xsi:type="string">home</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

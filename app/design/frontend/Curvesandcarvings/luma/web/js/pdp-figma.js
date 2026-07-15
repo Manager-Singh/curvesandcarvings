@@ -1,36 +1,117 @@
 /**
- * PDP Figma interactions: payment card selection, advance price, buy-now.
+ * PDP Figma helpers — keep lean to avoid browser freezes.
+ * Layout order is handled mainly by CSS; JS only nudges payment once.
  */
 define([
     'jquery',
-    'Magento_Customer/js/customer-data'
-], function ($, customerData) {
+    'domReady!'
+], function ($) {
     'use strict';
 
-    function formatInr(amount) {
-        return '₹' + Math.round(amount).toLocaleString('en-IN');
-    }
+    var orderFixed = false;
+    var baseFinal = 0;
 
-    function getFinalPrice() {
-        var $priceBox = $('[data-role=priceBox]').first();
-        var $final = $priceBox.find('[data-price-type=finalPrice] .price').first();
-        if (!$final.length) {
-            $final = $priceBox.find('.price-wrapper .price').first();
-        }
-        var text = ($final.text() || '').replace(/[^\d.]/g, '');
-        var val = parseFloat(text);
+    function parsePrice(text) {
+        var val = parseFloat(String(text || '').replace(/[^\d.]/g, ''));
         return isNaN(val) ? 0 : val;
     }
 
+    function captureBasePrice() {
+        var $amount = $('.cc-pdp-price-header [data-price-type=finalPrice]').first();
+        var amt = parseFloat($amount.attr('data-price-amount') || 0);
+        if (!amt) {
+            amt = parsePrice($amount.find('.price').first().text());
+        }
+        if (amt > 0) {
+            baseFinal = amt;
+        }
+    }
+
     function updateAdvancePrice() {
-        var price = getFinalPrice();
-        if (price <= 0) {
+        if (baseFinal <= 0) {
             return;
         }
-        var advance = price * 0.5;
-        $('.cc-advance-price').each(function () {
-            $(this).text(formatInr(advance));
+        var advance = baseFinal * 0.5;
+        $('.cc-advance-price').text(
+            '₹' + advance.toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })
+        );
+    }
+
+    function updateEmiDisplay() {
+        var $emi = $('.cc-emi-monthly, .lowemishowin').filter(function () {
+            return !$(this).data('cc-emi-set');
+        }).first();
+
+        if (!$emi.length || baseFinal <= 0) {
+            return;
+        }
+
+        var roi = (13 / 12) / 100;
+        var months = 36;
+        var factor = Math.pow(1 + roi, months);
+        var emi = Math.round(baseFinal * roi * (factor / (factor - 1)));
+
+        $emi.text('EMI starting at Rs. ' + emi.toLocaleString('en-IN'));
+        $emi.data('cc-emi-set', true);
+    }
+
+    /**
+     * Move payment once between variations and ATC.
+     * Do not fight Magento priceOptions / reloadPrice loops.
+     */
+    function fixFormOrder() {
+        if (orderFixed) {
+            return;
+        }
+
+        var $form = $('#product_addtocart_form');
+        if (!$form.length) {
+            return;
+        }
+
+        var $bottom = $form.find('.cc-pdp-options-bottom').first();
+        if (!$bottom.length) {
+            $bottom = $form.find('.product-options-bottom').first();
+        }
+
+        var $paymentField = $form.find('.field').has('.cc-payment-options').first();
+        if (!$paymentField.length) {
+            return;
+        }
+
+        if (!$paymentField.parent().hasClass('cc-pdp-payment-section')) {
+            $paymentField.wrap('<div class="cc-pdp-payment-section"></div>');
+        }
+
+        var $paymentSection = $paymentField.parent();
+        if ($bottom.length && !$paymentSection.next().is($bottom) && !$bottom.prev().is($paymentSection)) {
+            $paymentSection.insertBefore($bottom);
+        }
+
+        $form.find('.product-options-wrapper .fieldset > .field').each(function () {
+            var $field = $(this);
+            if ($field.find('.cc-payment-options, .cc-pdp-variations, .swatch-attribute').length) {
+                return;
+            }
+            $field.addClass('cc-pdp-hidden-option');
         });
+
+        orderFixed = true;
+    }
+
+    function ensurePaymentSelected() {
+        var $cards = $('.cc-payment-card');
+        if (!$cards.length) {
+            return;
+        }
+        if (!$cards.find('input[type=radio]:checked').length) {
+            var $first = $cards.first();
+            $first.find('input[type=radio]').prop('checked', true);
+            $first.addClass('is-selected');
+        }
     }
 
     function initPaymentCards() {
@@ -39,68 +120,110 @@ define([
             return;
         }
 
-        function syncSelected($card) {
-            $cards.removeClass('is-selected');
-            $card.addClass('is-selected');
-            $card.find('input[type=radio]').prop('checked', true).trigger('click');
-            if (typeof window.opConfig !== 'undefined' && window.opConfig.reloadPrice) {
-                window.opConfig.reloadPrice();
-            }
-        }
-
         $cards.each(function () {
-            var $card = $(this);
-            if ($card.find('input[type=radio]').is(':checked')) {
-                $card.addClass('is-selected');
+            if ($(this).find('input[type=radio]').is(':checked')) {
+                $(this).addClass('is-selected');
             }
         });
 
-        $cards.on('click', function (e) {
-            if ($(e.target).hasClass('k-more') || $(e.target).closest('.k-more').length) {
+        $cards.off('click.ccPayment').on('click.ccPayment', function (e) {
+            if ($(e.target).closest('.k-more').length) {
                 return;
             }
-            syncSelected($(this));
+            e.preventDefault();
+
+            var $card = $(this);
+            var $radio = $card.find('input[type=radio]');
+
+            $cards.removeClass('is-selected');
+            $card.addClass('is-selected');
+            $radio.prop('checked', true);
+            // Do NOT call opConfig.reloadPrice() — it fights header price and can freeze Chrome.
+        });
+
+        ensurePaymentSelected();
+        updateAdvancePrice();
+        updateEmiDisplay();
+    }
+
+    function initQtyStepper() {
+        var $qty = $('#qty');
+        if (!$qty.length) {
+            return;
+        }
+
+        $('.cc-qty-minus').off('click.ccQty').on('click.ccQty', function () {
+            var val = parseInt($qty.val(), 10) || 1;
+            $qty.val(Math.max(1, val - 1)).trigger('change');
+        });
+
+        $('.cc-qty-plus').off('click.ccQty').on('click.ccQty', function () {
+            var val = parseInt($qty.val(), 10) || 1;
+            $qty.val(val + 1).trigger('change');
         });
     }
 
     function initBuyNow() {
-        $('#product-buy-now-button').on('click', function (e) {
+        $('#product-buy-now-button').off('click.ccBuyNow').on('click.ccBuyNow', function (e) {
             e.preventDefault();
             var $form = $('#product_addtocart_form');
-            $.ajax({
-                url: $form.attr('action'),
-                data: $form.serialize(),
-                type: 'post',
-                showLoader: true
-            }).done(function () {
-                customerData.reload(['cart'], true);
-                window.location.href = '/checkout/';
-            }).fail(function () {
-                $form.trigger('submit');
-            });
+            var formEl = $form.get(0);
+
+            ensurePaymentSelected();
+
+            if (typeof $form.valid === 'function' && !$form.valid()) {
+                return;
+            }
+
+            if (!$form.find('input[name="cc_buy_now"]').length) {
+                $('<input>', { type: 'hidden', name: 'cc_buy_now', value: '1' }).appendTo($form);
+            }
+
+            if (formEl) {
+                formEl.submit();
+            }
         });
     }
 
+    function clearStuckLoaders() {
+        $('body > .loading-mask').remove();
+        $('.gallery-placeholder').removeClass('_block-content-loading');
+        $('.gallery-placeholder > .loading-mask, .gallery-placeholder [data-role="loader"]').remove();
+        try {
+            $('body').trigger('processStop');
+        } catch (e) { /* ignore */ }
+    }
+
     function hideBrokenStock() {
+        $('.catalog-product-view .availability.only.configurable-variation-qty').hide();
         $('.catalog-product-view .stock').each(function () {
             if ($(this).text().indexOf('%1') !== -1) {
                 $(this).hide();
             }
         });
+        $('.catalog-product-view .product-info-stock-sku .stock.available').hide();
     }
 
     return function () {
+        captureBasePrice();
+        fixFormOrder();
         initPaymentCards();
+        initQtyStepper();
         initBuyNow();
         hideBrokenStock();
-        updateAdvancePrice();
+        clearStuckLoaders();
 
-        $('[data-role=priceBox]').on('updatePrice', function () {
-            updateAdvancePrice();
+        $('#product_addtocart_form').on('submit', function () {
+            ensurePaymentSelected();
         });
 
-        $(document).on('change', '.swatch-option', function () {
-            setTimeout(updateAdvancePrice, 400);
-        });
+        // One delayed pass only (widgets settle) — never loop on price events
+        setTimeout(function () {
+            fixFormOrder();
+            initPaymentCards();
+            clearStuckLoaders();
+        }, 600);
+
+        setTimeout(clearStuckLoaders, 2500);
     };
 });

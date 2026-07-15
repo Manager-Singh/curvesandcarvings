@@ -1,0 +1,36 @@
+<?php
+/** @var \Curvesandcarvings\Faq\Block\FaqList $block */
+/** @var \Magento\Framework\Escaper $escaper */
+
+$faqs = $block->getFaqs();
+$accordionId = $block->getAccordionId();
+?>
+<section class="cc-faq" aria-labelledby="<?= $escaper->escapeHtmlAttr($accordionId) ?>-title">
+    <div class="cc-faq-inner">
+        <h2 id="<?= $escaper->escapeHtmlAttr($accordionId) ?>-title" class="cc-faq-title">
+            <?= $escaper->escapeHtml(__('Frequently Asked Questions')) ?>
+        </h2>
+        <div id="<?= $escaper->escapeHtmlAttr($accordionId) ?>"
+             class="cc-faq-accordion"
+             data-mage-init='{
+                "accordion": {
+                    "active": [0],
+                    "collapsible": true,
+                    "openedState": "active",
+                    "multipleCollapsible": false
+                }
+             }'>
+            <?php foreach ($faqs as $faq): ?>
+                <div data-role="collapsible" class="cc-faq-item">
+                    <div data-role="trigger" class="cc-faq-question">
+                        <span class="cc-faq-question-text"><?= $escaper->escapeHtml($faq->getQuestion()) ?></span>
+                        <span class="cc-faq-toggle" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div data-role="content" class="cc-faq-answer">
+                    <?= /* @noEscape */ $faq->getAnswer() ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>

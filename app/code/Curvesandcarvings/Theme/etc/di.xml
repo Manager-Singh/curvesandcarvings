@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Review\Block\Form"
+                type="Curvesandcarvings\Theme\Block\Review\Form"/>
+    <type name="Magento\Review\Helper\Data">
+        <plugin name="curvesandcarvings_disallow_guest_review_write"
+                type="Curvesandcarvings\Theme\Plugin\Review\DisallowGuestWritePlugin"/>
+    </type>
     <type name="Magento\Catalog\Model\Category">
         <plugin name="curvesandcarvings_gallery_category_url"
                 type="Curvesandcarvings\Theme\Plugin\Catalog\Category\UrlPlugin"/>

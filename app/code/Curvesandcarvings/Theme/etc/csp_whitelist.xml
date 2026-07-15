@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!-- Allow Elfsight Instagram Feed embed above footer -->
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="elfsightcdn" type="host">elfsightcdn.com</value>
+                <value id="elfsight-static" type="host">static.elfsight.com</value>
+                <value id="elfsight-apps" type="host">apps.elfsight.com</value>
+                <value id="elfsight-core" type="host">core.service.elfsight.com</value>
+                <value id="elfsight-service" type="host">service.elfsight.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="elfsightcdn" type="host">elfsightcdn.com</value>
+                <value id="elfsight-static" type="host">static.elfsight.com</value>
+                <value id="elfsight-apps" type="host">apps.elfsight.com</value>
+                <value id="elfsight-core" type="host">core.service.elfsight.com</value>
+                <value id="elfsight-service" type="host">service.elfsight.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="elfsightcdn" type="host">elfsightcdn.com</value>
+                <value id="elfsight-static" type="host">static.elfsight.com</value>
+                <value id="elfsight-apps" type="host">apps.elfsight.com</value>
+                <value id="elfsight-core" type="host">core.service.elfsight.com</value>
+                <value id="elfsight-service" type="host">service.elfsight.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="elfsightcdn" type="host">elfsightcdn.com</value>
+                <value id="elfsight-static" type="host">static.elfsight.com</value>
+                <value id="elfsight-apps" type="host">apps.elfsight.com</value>
+                <value id="instagram-cdn" type="host">*.cdninstagram.com</value>
+                <value id="fbcdn" type="host">*.fbcdn.net</value>
+            </values>
+        </policy>
+        <policy id="style-src">
+            <values>
+                <value id="elfsightcdn" type="host">elfsightcdn.com</value>
+                <value id="elfsight-static" type="host">static.elfsight.com</value>
+                <value id="elfsight-apps" type="host">apps.elfsight.com</value>
+            </values>
+        </policy>
+        <policy id="font-src">
+            <values>
+                <value id="elfsightcdn" type="host">elfsightcdn.com</value>
+                <value id="elfsight-static" type="host">static.elfsight.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

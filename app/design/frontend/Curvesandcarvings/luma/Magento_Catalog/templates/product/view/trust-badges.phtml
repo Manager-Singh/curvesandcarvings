@@ -1,0 +1,43 @@
+<?php
+/**
+ * PDP trust badges — Figma icons
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$deliveryIcon = $block->getViewFileUrl('images/pdp/trust-delivery.png');
+$warrantyIcon = $block->getViewFileUrl('images/pdp/trust-warranty.png');
+$secureIcon = $block->getViewFileUrl('images/pdp/trust-secure.png');
+?>
+<div class="cc-pdp-trust-badges" role="list">
+    <div class="cc-pdp-trust-badge" role="listitem">
+        <span class="cc-pdp-trust-icon cc-pdp-trust-icon--delivery" aria-hidden="true">
+            <img src="<?= $escaper->escapeUrl($deliveryIcon) ?>"
+                 alt=""
+                 width="40"
+                 height="40"
+                 loading="lazy"/>
+        </span>
+        <span class="cc-pdp-trust-label"><?= $escaper->escapeHtml(__('Free delivery')) ?></span>
+    </div>
+    <div class="cc-pdp-trust-badge" role="listitem">
+        <span class="cc-pdp-trust-icon cc-pdp-trust-icon--warranty" aria-hidden="true">
+            <img src="<?= $escaper->escapeUrl($warrantyIcon) ?>"
+                 alt=""
+                 width="40"
+                 height="40"
+                 loading="lazy"/>
+        </span>
+        <span class="cc-pdp-trust-label"><?= $escaper->escapeHtml(__('1 Year Warranty*')) ?></span>
+    </div>
+    <div class="cc-pdp-trust-badge" role="listitem">
+        <span class="cc-pdp-trust-icon cc-pdp-trust-icon--secure" aria-hidden="true">
+            <img src="<?= $escaper->escapeUrl($secureIcon) ?>"
+                 alt=""
+                 width="40"
+                 height="40"
+                 loading="lazy"/>
+        </span>
+        <span class="cc-pdp-trust-label"><?= $escaper->escapeHtml(__('Safe & Secure Payment')) ?></span>
+    </div>
+</div>

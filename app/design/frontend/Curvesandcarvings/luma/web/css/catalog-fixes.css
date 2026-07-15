@@ -1,3 +1,49 @@
+/* Mega menu: keep dropdown visible above page content on category/PLP pages */
+.page-header,
+.sections.nav-sections,
+.nav-sections-item-content,
+.nav-sections-item-content .navigation,
+.menu,
+.menu > ul {
+    overflow: visible !important;
+}
+
+@media all and (min-width: 944px) {
+    #om.menu > ul > li:hover > ul {
+        display: block;
+    }
+
+    .menu > ul > li > ul {
+        z-index: 250;
+    }
+
+    /* Down arrow on parent nav items - match live luma-icons chevron */
+    #om.menu > ul > li.menu-dropdown-icon > a.level-top {
+        position: relative;
+        padding-right: 2.75em;
+    }
+
+    #om.menu > ul > li.menu-dropdown-icon > a.level-top::after {
+        content: '\e607';
+        font-family: 'luma-icons';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        margin-top: 0;
+        transform: translateY(-50%);
+        font-size: 12px;
+        line-height: 1;
+        color: #fff;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    #om.menu > ul > li.menu-dropdown-icon:hover > a.level-top::after,
+    #om.menu > ul > li.menu-dropdown-icon > a.level-top:hover::after {
+        color: #6b523f;
+    }
+}
+
 /* Category/product listing image fixes for Magento 2.4.9 + live theme CSS */
 .page-products .product-item-info {
     overflow: visible;
@@ -107,4 +153,42 @@
 /* Export Zone: hide default category listing column below custom content */
 .categorypath-export-zone .columns {
     display: none;
+}
+
+/* Gallery page — tab content must be visible before mTab JS runs */
+.galleryhed01 .tabContainer .tabContent {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.galleryhed01 .galerybox {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    height: auto !important;
+    min-height: 0;
+}
+
+.galleryhed01 .galerybox a {
+    display: block;
+    flex: 0 0 auto;
+}
+
+.galleryhed01 .galerybox img {
+    width: 260px;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+}
+
+/* PDP gallery — keep placeholder visible until fotorama renders */
+body.catalog-product-view .gallery-placeholder .gallery-placeholder__image {
+    display: block !important;
+    max-width: 100%;
+    height: auto;
+}
+
+body.catalog-product-view .gallery-placeholder:has(.fotorama__wrap) .gallery-placeholder__image {
+    display: none !important;
 }

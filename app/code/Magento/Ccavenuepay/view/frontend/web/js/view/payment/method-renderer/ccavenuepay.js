@@ -63,9 +63,19 @@ define(
                 afterPlaceOrder: function () {
                     window.location.replace(url.build('ccavenuepay/ccavenuepay/silentPost/'));
                 },
+
+                /**
+                 * Transparent iframe src (template binds getSource).
+                 * Core Checkmo helper is unavailable when checkmo is disabled.
+                 */
+                getSource: function () {
+                    return '';
+                },
+
                 /** Returns send check to info */
                 getMailingAddress: function () {
-                    return window.checkoutConfig.payment.checkmo.mailingAddress;
+                    return (window.checkoutConfig.payment.checkmo
+                        && window.checkoutConfig.payment.checkmo.mailingAddress) || '';
                 }
 
 

@@ -1,11 +1,20 @@
 <?php
 /**
- * Copy parent gallery images to configurable child variations so swatch
- * selection updates the product gallery. Run from Magento root:
+ * Assign up to 5 gallery images per configurable child variation.
  *
+ * Image 1 = main (base / small / thumbnail). Images 2-5 = PDP slider thumbnails.
+ *
+ * Usage:
  *   php scripts/assign-variation-images.php
+ *   php scripts/assign-variation-images.php --force
+ *   php scripts/assign-variation-images.php --sku="C&C CAB0001-IND"
+ *   php scripts/assign-variation-images.php --force --max-images=5
  *
- * Safe to re-run: skips children that already have gallery images.
+ * Optional map file (up to 5 paths per child SKU):
+ *   scripts/variation-image-map.json
+ *
+ * Paths in the map are relative to pub/media/catalog/product/, e.g.:
+ *   "/c/_/c_c_cab0001_3_1.jpg"
  */
 
 declare(strict_types=1);
@@ -20,7 +29,9 @@ use Magento\Framework\App\State;
 use Magento\Framework\Filesystem;
 use Magento\Store\Model\StoreManagerInterface;
 
-$parentSkus = [
+const MAX_VARIATION_IMAGES = 5;
+
+$defaultParentSkus = [
     'C&C BED0222-IND',
     'C&C BED0001-IND',
     'C&C DTC0005-IND',
@@ -28,6 +39,38 @@ $parentSkus = [
     'C&C WAR0003-IND',
     'C&C CAB0001-IND',
 ];
+
+$force = in_array('--force', $argv, true);
+$skuFilter = null;
+$maxImages = MAX_VARIATION_IMAGES;
+
+foreach ($argv as $arg) {
+    if (str_starts_with($arg, '--sku=')) {
+        $skuFilter = substr($arg, 6);
+    }
+    if (str_starts_with($arg, '--max-images=')) {
+        $maxImages = max(1, min(MAX_VARIATION_IMAGES, (int)substr($arg, 13)));
+    }
+}
+
+$parentSkus = $skuFilter ? [$skuFilter] : $defaultParentSkus;
+$mapFile = dirname(__DIR__) . '/scripts/variation-image-map.json';
+$imageMap = [];
+
+if (is_readable($mapFile)) {
+    $decoded = json_decode((string)file_get_contents($mapFile), true);
+    if (is_array($decoded)) {
+        foreach ($decoded as $sku => $paths) {
+            if (str_starts_with((string)$sku, '_')) {
+                continue;
+            }
+            if (!is_array($paths)) {
+                continue;
+            }
+            $imageMap[$sku] = array_slice(array_values($paths), 0, $maxImages);
+        }
+    }
+}
 
 require dirname(__DIR__) . '/app/bootstrap.php';
 
@@ -107,37 +150,84 @@ function getParentImageFiles(Product $product): array
     return array_values(array_unique($files));
 }
 
+/**
+ * @param Product $product
+ * @return string[]
+ */
+function getExistingImageFiles(Product $product): array
+{
+    $files = [];
+    foreach ($product->getMediaGallery('images') ?: [] as $image) {
+        if (empty($image['removed']) && !empty($image['file'])) {
+            $files[] = (string)$image['file'];
+        }
+    }
+    return $files;
+}
+
+/**
+ * @param GalleryProcessor $galleryProcessor
+ * @param Product $product
+ * @return void
+ */
+function clearGallery(GalleryProcessor $galleryProcessor, Product $product): void
+{
+    foreach ($product->getMediaGallery('images') ?: [] as $image) {
+        if (!empty($image['value_id']) && empty($image['removed'])) {
+            $galleryProcessor->removeImage($product, (string)$image['file']);
+        }
+    }
+}
+
+/**
+ * @param string[] $files
+ * @param int $maxImages
+ * @param int $mainOffset
+ * @return string[]
+ */
+function orderFilesForChild(array $files, int $maxImages, int $mainOffset): array
+{
+    if ($files === []) {
+        return [];
+    }
+
+    $mainOffset = $mainOffset % count($files);
+    $ordered = array_merge(
+        array_slice($files, $mainOffset),
+        array_slice($files, 0, $mainOffset)
+    );
+
+    return array_slice($ordered, 0, $maxImages);
+}
+
+echo 'Mode: ' . ($force ? 'FORCE' : 'safe') . PHP_EOL;
+echo 'Max images per variation: ' . $maxImages . PHP_EOL;
+echo 'Map file: ' . (is_readable($mapFile) ? basename($mapFile) . ' (' . count($imageMap) . ' SKUs)' : 'none') . PHP_EOL;
+
 foreach ($parentSkus as $parentSku) {
-    echo "=== {$parentSku} ===\n";
+    echo "=== {$parentSku} ===" . PHP_EOL;
 
     try {
         /** @var Product $parent */
         $parent = $productRepository->get($parentSku, false, $storeId, true);
     } catch (Throwable $e) {
-        echo "  SKIP: {$e->getMessage()}\n";
+        echo "  SKIP: {$e->getMessage()}" . PHP_EOL;
         continue;
     }
 
     if ($parent->getTypeId() !== Configurable::TYPE_CODE) {
-        echo "  SKIP: not configurable\n";
+        echo "  SKIP: not configurable" . PHP_EOL;
         continue;
     }
 
     $parentFiles = getParentImageFiles($parent);
-    if (!$parentFiles) {
-        echo "  ERROR: parent has no gallery images\n";
-        continue;
-    }
-
-    echo "  parent images: " . count($parentFiles) . "\n";
+    echo '  parent images: ' . count($parentFiles) . PHP_EOL;
 
     $children = $parent->getTypeInstance()->getUsedProducts($parent);
     if (count($children) < 1) {
-        echo "  ERROR: no child products\n";
+        echo "  ERROR: no child products" . PHP_EOL;
         continue;
     }
-
-    $galleryCount = count($parentFiles);
 
     foreach ($children as $childIndex => $childProduct) {
         $childSku = $childProduct->getSku();
@@ -146,57 +236,86 @@ foreach ($parentSkus as $parentSku) {
             /** @var Product $child */
             $child = $productRepository->get($childSku, false, $storeId, true);
         } catch (Throwable $e) {
-            echo "  ERROR loading {$childSku}: {$e->getMessage()}\n";
+            echo "  ERROR loading {$childSku}: {$e->getMessage()}" . PHP_EOL;
             continue;
         }
 
-        $existingImages = $child->getMediaGallery('images') ?: [];
-        $existingImages = array_filter($existingImages, static function ($image) {
-            return empty($image['removed']) && !empty($image['file']);
-        });
-
-        if ($existingImages) {
-            echo "  skip {$childSku}: already has " . count($existingImages) . " image(s)\n";
+        $existingFiles = getExistingImageFiles($child);
+        if ($existingFiles && !$force) {
+            $count = count($existingFiles);
+            $slots = $maxImages - $count;
+            echo "  skip {$childSku}: already has {$count}/{$maxImages} image(s)";
+            if ($slots > 0) {
+                echo " — add up to {$slots} more in admin or map file";
+            }
+            echo PHP_EOL;
             continue;
         }
 
-        $primaryIndex = $childIndex % $galleryCount;
+        if ($existingFiles && $force) {
+            clearGallery($galleryProcessor, $child);
+            $child = $productRepository->get($childSku, false, $storeId, true);
+            echo "  cleared gallery for {$childSku}" . PHP_EOL;
+        }
+
+        if (isset($imageMap[$childSku]) && $imageMap[$childSku]) {
+            $orderedFiles = array_slice($imageMap[$childSku], 0, $maxImages);
+            echo "  using map for {$childSku}: " . count($orderedFiles) . " image(s)" . PHP_EOL;
+        } elseif ($parentFiles) {
+            $orderedFiles = orderFilesForChild($parentFiles, $maxImages, $childIndex);
+        } else {
+            echo "  ERROR: no images for {$childSku}" . PHP_EOL;
+            continue;
+        }
+
         $added = 0;
-
         try {
-            foreach ($parentFiles as $imgIndex => $file) {
-                $absolutePath = resolveCatalogImagePath($mediaRead, $file);
-
+            foreach ($orderedFiles as $imgIndex => $file) {
+                $absolutePath = resolveCatalogImagePath($mediaRead, (string)$file);
                 if (!$absolutePath) {
-                    echo "  WARN: missing file for {$childSku}: {$file}\n";
+                    echo "  WARN: missing file for {$childSku}: {$file}" . PHP_EOL;
                     continue;
                 }
 
-                $roles = ($imgIndex === $primaryIndex) ? ['image', 'small_image', 'thumbnail'] : null;
+                $mime = mime_content_type($absolutePath) ?: '';
+                if (!str_starts_with($mime, 'image/')) {
+                    echo "  WARN: not an image for {$childSku}: {$file} ({$mime})" . PHP_EOL;
+                    continue;
+                }
+
+                $roles = ($imgIndex === 0) ? ['image', 'small_image', 'thumbnail'] : null;
                 $galleryProcessor->addImage($child, $absolutePath, $roles, false, false);
                 $added++;
             }
 
             if ($added === 0) {
-                echo "  ERROR: no images copied to {$childSku}\n";
+                echo "  ERROR: no images copied to {$childSku}" . PHP_EOL;
                 continue;
             }
 
             $productRepository->save($child);
-            echo "  assigned {$added} image(s) to {$childSku}\n";
+            $slider = max(0, $added - 1);
+            $remaining = max(0, $maxImages - $added);
+            echo "  assigned {$added}/{$maxImages} to {$childSku} (1 main + {$slider} slider)";
+            if ($remaining > 0) {
+                echo " — room for {$remaining} more in admin/map";
+            }
+            echo PHP_EOL;
         } catch (Throwable $e) {
-            echo "  ERROR on {$childSku}: {$e->getMessage()}\n";
+            echo "  ERROR on {$childSku}: {$e->getMessage()}" . PHP_EOL;
         }
     }
 }
 
-echo "\nReindexing catalog_product_attribute...\n";
+echo PHP_EOL . 'Reindexing...' . PHP_EOL;
 /** @var \Magento\Framework\Indexer\IndexerRegistry $indexerRegistry */
 $indexerRegistry = $objectManager->get(\Magento\Framework\Indexer\IndexerRegistry::class);
-$indexer = $indexerRegistry->get('catalog_product_attribute');
-if (!$indexer->isScheduled()) {
-    $indexer->reindexAll();
-    echo "  reindexed catalog_product_attribute\n";
+foreach (['catalog_product_attribute', 'catalog_product_price'] as $indexerId) {
+    $indexer = $indexerRegistry->get($indexerId);
+    if (!$indexer->isScheduled()) {
+        $indexer->reindexAll();
+        echo "  reindexed {$indexerId}" . PHP_EOL;
+    }
 }
 
 echo "Done.\n";

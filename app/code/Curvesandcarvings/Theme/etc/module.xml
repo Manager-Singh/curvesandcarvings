@@ -5,8 +5,13 @@
         <sequence>
             <module name="Magento_Theme"/>
             <module name="Magento_Store"/>
+            <module name="Magento_Csp"/>
             <module name="Magento_Search"/>
             <module name="Magento_CatalogSearch"/>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_Reports"/>
+            <module name="Magento_Wishlist"/>
+            <module name="Magento_Checkout"/>
         </sequence>
     </module>
 </config>

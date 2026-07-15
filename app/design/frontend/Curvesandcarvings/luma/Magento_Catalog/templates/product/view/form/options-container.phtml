@@ -1,11 +1,16 @@
 <?php
 /**
- * PDP form options container — Figma vertical stack wrapper.
+ * PDP form options container — Figma vertical stack.
+ * Child aliases match Magento core layout (product_options_wrapper*).
  *
  * @var \Magento\Framework\View\Element\Template $block
  */
 ?>
 <div class="cc-pdp-form-sections">
-    <?= $block->getChildHtml('product.info.options.wrapper') ?>
-    <?= $block->getChildHtml('product.info.options.wrapper.bottom') ?>
+    <div class="cc-pdp-options-top">
+        <?= $block->getChildHtml('product_options_wrapper') ?>
+    </div>
+    <div class="cc-pdp-options-bottom">
+        <?= $block->getChildHtml('product_options_wrapper_bottom') ?>
+    </div>
 </div>

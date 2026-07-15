@@ -1,0 +1,23 @@
+{
+    "cc_faq": {
+        "column": {
+            "faq_id": true,
+            "question": true,
+            "answer": true,
+            "sort_order": true,
+            "is_active": true,
+            "show_on_product": true,
+            "show_on_about": true,
+            "show_on_contact": true,
+            "show_on_home": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "CC_FAQ_IS_ACTIVE_SORT": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

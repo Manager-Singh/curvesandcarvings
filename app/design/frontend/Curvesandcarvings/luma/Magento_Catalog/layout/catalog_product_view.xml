@@ -1,46 +1,50 @@
 <?xml version="1.0"?>
-<!--
-/**
- * Curves & Carvings custom product view layout (production parity).
- * - Delivery time block under the price
- * - Image disclaimer under the gallery
- * - Tabs: Description (attributes), Payment Terms, FAQ, Warranty / Terms
- * - Removes default "Details" and "Reviews" tabs
- */
--->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="css/pdp-figma.css" order="1000"/>
+        <css src="css/pdp-figma-v4.css" order="2000"/>
     </head>
     <body>
+        <attribute name="class" value="cc-pdp-figma"/>
+
         <referenceContainer name="product.info.social" remove="true"/>
-        <!-- Remove default Details tab and Reviews tab (match production) -->
         <referenceBlock name="product.info.description" remove="true"/>
-        <referenceBlock name="reviews.tab" remove="true"/>
 
-        <!-- Delivery time block under the price -->
-        <referenceContainer name="product.info.main">
-            <container name="product.delivery.day" htmlTag="div" htmlClass="product-info-delivery" after="product.info.price">
-                <block class="Magento\Catalog\Block\Product\View"
-                       name="product.info.delivery"
-                       template="Magento_Catalog::product/view/delivery.phtml"/>
-            </container>
-        </referenceContainer>
+        <!-- Hide legacy delivery + duplicate disclaimer blocks -->
+        <referenceBlock name="product.info.delivery" remove="true"/>
+        <referenceContainer name="product.delivery.day" remove="true"/>
+        <referenceBlock name="product.info.img.disclaimer" remove="true"/>
 
-        <!-- Image disclaimer under the gallery -->
+        <!-- Match live DOM order: info column, gallery column, then tabs -->
+        <move element="product.info.main" destination="content" before="product.info.media"/>
+        <move element="product.info.details" destination="content" after="product.info.media"/>
         <referenceContainer name="product.info.media">
             <block class="Magento\Framework\View\Element\Template"
-                   name="product.info.img.disclaimer"
-                   template="Magento_Catalog::product/view/img-disclaimer.phtml"/>
+                   name="cc.pdp.media.extras"
+                   template="Magento_Catalog::product/view/pdp-media-extras.phtml"
+                   after="-"/>
         </referenceContainer>
 
-        <!-- Tabs: rename attributes to Description; add Payment Terms / FAQ / Warranty -->
+        <!-- Price + tax note; reviews (with SKU) under title (Figma) -->
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="cc.pdp.price.header"
+                   template="Magento_Catalog::product/view/pdp-price-header.phtml"
+                   before="product.info"/>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.price"/>
+        <move element="product.info.price" destination="cc.pdp.price.header" before="-"/>
+        <move element="product.info.review" destination="product.info.main" after="page.main.title"/>
+        <referenceBlock name="product.info.sku" remove="true"/>
+
         <referenceBlock name="product.attributes">
             <arguments>
                 <argument translate="true" name="title" xsi:type="string">Description</argument>
                 <argument name="sort_order" xsi:type="string">10</argument>
             </arguments>
         </referenceBlock>
+
         <referenceBlock name="product.info.details">
             <block class="Magento\Catalog\Block\Product\View\Attributes"
                    name="payment.tab"
@@ -49,15 +53,6 @@
                 <arguments>
                     <argument translate="true" name="title" xsi:type="string">Payment Terms</argument>
                     <argument name="sort_order" xsi:type="string">20</argument>
-                </arguments>
-            </block>
-            <block class="Magento\Catalog\Block\Product\View\Attributes"
-                   name="faq.tab"
-                   template="Magento_Catalog::product/view/faqtab.phtml"
-                   group="detailed_info">
-                <arguments>
-                    <argument translate="true" name="title" xsi:type="string">FAQ</argument>
-                    <argument name="sort_order" xsi:type="string">30</argument>
                 </arguments>
             </block>
             <block class="Magento\Catalog\Block\Product\View\Attributes"
@@ -70,8 +65,10 @@
                 </arguments>
             </block>
         </referenceBlock>
-        <referenceBlock name="product.info.form.options" template="Magento_Catalog::product/view/form/options-container.phtml"/>
-        <!-- Figma PDP: wishlist heart beside Add to Cart -->
+
+        <referenceBlock name="product.info.form.options"
+                        template="Magento_Catalog::product/view/form/options-container.phtml"/>
+
         <referenceBlock name="product.info.addtocart.instantPurchase" remove="true"/>
         <referenceBlock name="product.info.addtocart.instantPurchase.additional" remove="true"/>
         <referenceBlock name="product.info.addtocart">

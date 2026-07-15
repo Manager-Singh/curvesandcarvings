@@ -1,0 +1,278 @@
+/**
+ * Designer custom CSS — Curves and Carvings (local)
+ *
+ * Edit this file only. Changes appear on the storefront after save + hard refresh (Ctrl+Shift+R).
+ * Loaded last, so rules here override theme CSS when specificity is equal or higher.
+ *
+ * Path (SFTP): .../luma/web/css/designer-custom.css
+ * Preview:     http://192.168.1.31/
+ */
+
+/* Example — remove or replace with your styles */
+/*
+.header.content {
+    background-color: #fff;
+}
+*/
+
+
+.catalog-product-view.cc-pdp-figma .product-info-main .page-title-wrapper .page-title span {
+    font-size: 22px !important;
+}
+.catalog-product-view.cc-pdp-figma .product-info-main .page-title-wrapper.product .page-title {
+    line-height: 26px !important; 
+    margin-bottom: 7px !important;
+}
+.price-box.price-final_price {
+    border-top: 1px solid #D3D3D3;
+    padding-top: 8px;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-price-header {
+    padding-top: 0px !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-price-header .cc-pdp-tax-note {
+    padding-bottom: 10px !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-price-header .price-container .price-wrapper  .price {
+    font-size: 30px !important;
+} 
+.product-reviews-summary.cc-pdp-reviews.empty a.cc-pdp-reviews-count.action.add {
+    color: #000000 !important;
+}
+span.cc-discount-badge {
+    position: absolute;
+    left: 40%;
+    top: 18px;
+}
+.cc-pdp-price-row {
+    position: relative;
+}
+.price-wrapper span.price {
+    font-size: 20px !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-price-header .cc-pdp-tax-note {
+    margin-top: 0px !important;
+    border-bottom: 1px solid #D3D3D3;
+    padding-bottom: 12px;
+    color: #000 !important;
+}
+.catalog-product-view.cc-pdp-figma .product-info-main .product.attribute.sku.cc-pdp-sku {
+    color: #000 !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-variation-group.cc-variation-attribute .swatch-attribute-label {
+    margin: 0px 0px 12px !important;
+}
+.cc-variation-card-img {
+    height: 60px;
+}
+.catalog-product-view.cc-pdp-figma .cc-variation-card-img img {
+    height: 60px !important;
+}
+.fotorama__nav__frame.fotorama__nav__frame--thumb {
+    border: 1px solid #ccc !important;
+    margin: 0px 4px;
+    height: 100px !important;
+    padding: 0px !important;
+}
+.catalog-product-view.cc-pdp-figma .field.choice.cc-payment-card .AdvancePayment_open.k-more, .catalog-product-view.cc-pdp-figma .field.choice.cc-payment-card .tCard_open.k-more {
+    color: #CA9148 !important;
+    margin: 0px;
+}
+.cc-payment-card-right .cc-payment-price .cc-advance-price, .lowemishowin.cc-emi-monthly {
+    color: #CA9148 !important;
+}
+.catalog-product-view.cc-pdp-figma .field.choice.cc-payment-card input[type="radio"] {
+    accent-color: #c97300 !important;
+}
+.catalog-product-view.cc-pdp-figma .product-options-bottom .box-tocart .fieldset.cc-pdp-actions {
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    gap: 0px !important;
+    flex-direction: unset !important;
+}
+.catalog-product-view.cc-pdp-figma .product-options-bottom .box-tocart .fieldset.cc-pdp-actions .field.qty {
+    width: 25% !important;
+}
+.catalog-product-view.cc-pdp-figma .product-options-bottom .box-tocart .fieldset.cc-pdp-actions .actions.cc-pdp-primary-actions {
+    width: 74% !important;
+    margin-left: 5px;
+    margin-top: 13px;
+}
+.catalog-product-view.cc-pdp-figma .box-tocart .fieldset.cc-pdp-actions .field.qty .label {
+    margin: 0 0 8px !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-star-fill {
+    background: #FFAE00 !important;
+}
+.product-reviews-summary.cc-pdp-reviews .reviews-actions a.cc-pdp-reviews-count.action.view {
+    color: #000 !important;
+}
+.catalog-product-view.cc-pdp-figma .control.cc-qty-stepper .box-tocart input.qty {
+    height: 48px !important;
+}
+.catalog-product-view.cc-pdp-figma .control.cc-qty-stepper .cc-qty-btn {
+    height: 48px !important;
+}
+.cc-pdp-buy-now-row {
+    width: 100%;
+}
+button#product-buy-now-button, button#product-addtocart-button {
+    font-size: 18px !important;
+}
+.field.qty {
+    margin-bottom: 12px !important;
+}
+.data.switch {
+    border-radius: 0px !important;
+    background: #977245 !important;
+    color: #fff !important;
+}
+div#additional {
+    border: 0px !important;
+    padding: 0px;
+}
+.data.item.content {
+    margin-top: 60px !important;
+}
+.cc-pdp-trust-badges {
+    width: 100%;
+}
+.catalog-product-view.cc-pdp-figma .main section.cc-pdp-recently-viewed {
+    background: #fff !important;
+    margin: 0px !important;
+}
+.cc-faq-title:after {
+    content: "";
+    border: 1px solid #c5924d;
+    display: block;
+    width: 28%;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    margin: 6px auto;
+}
+.cc-faq-accordion {
+    border: 1px solid #0000002e;
+}
+.cc-faq-accordion .cc-faq-item {
+    padding: 4px 15px;
+}
+.cc-faq-answer {
+    padding: 10px 15px !important;
+    font-size: 14px !important;
+}
+.cc-faq-accordion .cc-faq-item .cc-faq-question span {
+    font-size: 14px !important;
+}
+.catalog-product-view.cc-pdp-figma section.cc-pdp-recently-viewed .cc-pdp-recently-viewed-grid {
+    margin: 0px !important;
+    width: 100% !important;
+    max-width: 1240px !important;
+}
+.catalog-product-view.cc-pdp-figma section.cc-pdp-recently-viewed {
+    padding: 22px 20px 40px !important;
+}
+.catalog-product-view.cc-pdp-figma .main section.cc-faq {
+    max-width: 1240px !important;
+    padding-top: 25px;
+    margin: 0px 0px 10px !important;
+}
+.cc-faq-title {
+    font-size: 28px !important;
+}
+.eapps-instagram-feed-header-user-picture-wrapper {
+    background: linear-gradient(40deg,#f99b4a 15%,#dd3071 50%,#c72e8d 85%);
+    width: 106px !important;
+    height: 47px !important;
+    border-radius: 50%;
+    padding: 4px;
+    box-sizing: border-box;
+    margin-right: 12px;
+}
+.page-main .columns .column.main .product.info.detailed {
+    padding: 40px 45px !important;
+    margin-top: 0px !important;
+}
+.widget.widget-static-block h2 {
+    margin-top: 0px;
+}
+div#review-form {
+    padding: 13px 46px !important;
+}
+.product-image-container {
+    aspect-ratio: 410 / 410 !important;
+}
+/* Button hover sweep */
+button.primary, .cc-pdp-social-proof-item, .cc-pdp-rv-btn-view {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+/* Animated background layer */
+button.primary::before, .cc-pdp-rv-btn-view::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #6b523f5e;
+  transform: translateX(-101%);
+  transition: transform 0.45s ease;
+  z-index: -1;
+}
+
+/* Hover: fill from left to right */
+button.primary:hover::before, .cc-pdp-social-proof-item:hover::before, .cc-pdp-rv-btn-view:hover::before {
+  transform: translateX(0);
+}
+
+/* Keep button text visible */
+button.primary:hover, .cc-pdp-rv-btn-view:hover {
+  color: #ffffff;
+}
+/* Animated background layer */
+.cc-pdp-social-proof-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #6b523f26;
+  transform: translateX(-101%);
+  transition: transform 0.45s ease;
+  z-index: -1;
+}
+.cc-pdp-social-proof-item:hover {
+  color: #ffffff;
+}
+
+div#cc-pdp-social-proof {
+    padding: 0px !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-social-proof .cc-pdp-social-proof-item {
+    padding: 10px 12px !important;
+}
+.catalog-product-view.cc-pdp-figma .field.choice.cc-payment-card.admin__field.admin__field-option.required {
+    padding: 10px 12px !important;
+}
+.catalog-product-view.cc-pdp-figma .label.admin__field-label.cc-payment-card-body .cc-payment-card-left {
+    gap: 0px !important;
+}
+.catalog-product-view.cc-pdp-figma .cc-pdp-form-sections .cc-pdp-options-bottom {
+    margin-top: 0px !important;
+}
+.catalog-product-view.cc-pdp-figma .product-info-main .product-add-form .product-options-wrapper .fieldset .field.required {
+    margin-bottom: 0px !important;
+}
+.item.review-item {
+    padding: 20px 0px;
+}
+.review-title {
+    margin-bottom: 10px;
+}
+.review-content {
+    margin-bottom: 10px;
+}
+/* Mobile responsive 480px */
+
+@media (max-width: 480px) {
+	
+}

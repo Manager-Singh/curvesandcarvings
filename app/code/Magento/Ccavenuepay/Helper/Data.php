@@ -64,14 +64,47 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper {
     protected $logger;
 
     /**
+     * @var LayoutInterface
+     */
+    protected $_layout;
+
+    /**
+     * @var \Magento\Payment\Model\Method\Factory
+     */
+    protected $_methodFactory;
+
+    /**
+     * @var \Magento\Store\Model\App\Emulation
+     */
+    protected $_appEmulation;
+
+    /**
+     * @var \Magento\Payment\Model\Config
+     */
+    protected $_paymentConfig;
+
+    /**
+     * @var \Magento\Framework\App\Config\Initial
+     */
+    protected $_initialConfig;
+
+    /**
      * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Payment\Helper\Data $paymentData
-     * @param \Magento\Ccavenuepay\Model\Billing\AgreementFactory $agreementFactory
-     * @param \Magento\Ccavenuepay\Model\ConfigFactory $configFactory
-     * @param array $methodCodes
+     * @param LayoutFactory $layoutFactory
+     * @param \Magento\Payment\Model\Method\Factory $paymentMethodFactory
+     * @param \Magento\Store\Model\App\Emulation $appEmulation
+     * @param \Magento\Payment\Model\Config $paymentConfig
+     * @param \Magento\Framework\App\Config\Initial $initialConfig
+     * @param \Magento\Ccavenuepay\Model\Cbdom_main $Cbdom_main
      */
     public function __construct(
-    \Magento\Framework\App\Helper\Context $context, LayoutFactory $layoutFactory, \Magento\Payment\Model\Method\Factory $paymentMethodFactory, \Magento\Store\Model\App\Emulation $appEmulation, \Magento\Payment\Model\Config $paymentConfig, \Magento\Framework\App\Config\Initial $initialConfig, \Magento\Ccavenuepay\Model\Cbdom_main $Cbdom_main
+        \Magento\Framework\App\Helper\Context $context,
+        LayoutFactory $layoutFactory,
+        \Magento\Payment\Model\Method\Factory $paymentMethodFactory,
+        \Magento\Store\Model\App\Emulation $appEmulation,
+        \Magento\Payment\Model\Config $paymentConfig,
+        \Magento\Framework\App\Config\Initial $initialConfig,
+        \Magento\Ccavenuepay\Model\Cbdom_main $Cbdom_main
     ) {
         $this->_Cbdom = $Cbdom_main;
         parent::__construct($context);

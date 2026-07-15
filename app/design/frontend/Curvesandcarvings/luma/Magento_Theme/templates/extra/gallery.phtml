@@ -20,10 +20,10 @@ $mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::clas
             <h5 class="heding-desc">Browse Gallery to have a look at some of our finished delivered work, and factory work-in-progress images.</h5>
             <div class="tabbing">
                 <ul class="tabNav">
-                    <li><a href="#tab1">Gallery</a></li>
+                    <li class="active"><a href="#tab1">Gallery</a></li>
                 </ul>
                 <div class="tabContainer">
-                    <div class="tabContent" id="tab1">
+                    <div class="tabContent mTabActive" id="tab1">
                         <div class="gallery_page">
                         <div class="gallery-1 gallery galerybox">
 						<?php
@@ -45,15 +45,3 @@ $mediaUrl = $objectManager->get(\Magento\Store\Model\StoreManagerInterface::clas
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    require([
-        'jquery',
-        'snapGallery'
-    ], function ($) {
-        $('.gallery-1').snapGallery({
-            minWidth: 100,
-            maxCols: 4,
-            margin: 5
-        });
-    });
-</script>

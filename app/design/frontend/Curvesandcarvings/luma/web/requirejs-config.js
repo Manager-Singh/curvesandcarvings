@@ -1,5 +1,11 @@
 var config = {
+    map: {
+        '*': {
+            ibnabmodernizr: 'Ibnab_MegaMenu/js/modernizr-2.8.3'
+        }
+    },
     paths: {
+        ibnabmodernizr: 'Ibnab_MegaMenu/js/modernizr-2.8.3',
         'js/owl.carousel': 'js/owl.carousel',
         'js/simple-lightbox': 'js/simple-lightbox',
         'js/jquery.popupoverlay': 'js/jquery.popupoverlay',
@@ -7,6 +13,12 @@ var config = {
         'js/jquery-mTab-min': 'js/jquery-mTab-min',
         'js/navigation-menu': 'js/navigation-menu',
         'js/grt-responsive-menu': 'js/grt-responsive-menu'
+    },
+    config: {
+        mixins: {
+            // Disabled: custom variation cards replace Magento swatch UI.
+            // Re-enabling caused re-render loops with our PDP markup.
+        }
     },
     shim: {
         'js/owl.carousel': {

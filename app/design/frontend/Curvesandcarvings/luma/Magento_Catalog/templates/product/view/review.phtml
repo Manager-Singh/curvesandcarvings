@@ -1,0 +1,17 @@
+<?php
+/**
+ * SKU + reviews under title (Figma)
+ *
+ * @var $block \Magento\Catalog\Block\Product\AbstractProduct
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$_product = $block->getProduct();
+$sku = $_product ? (string)$_product->getSku() : '';
+?>
+<?php if ($sku !== ''): ?>
+<div class="product attribute sku cc-pdp-sku">
+    <strong class="type"><?= $escaper->escapeHtml(__('SKU')) ?></strong>
+    <div class="value" itemprop="sku"><?= $escaper->escapeHtml($sku) ?></div>
+</div>
+<?php endif; ?>
+<?= $block->getReviewsSummaryHtml($_product, false, true) ?>

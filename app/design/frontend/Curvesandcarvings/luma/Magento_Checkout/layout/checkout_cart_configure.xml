@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <attribute name="class" value="cc-pdp-figma"/>
+        <!-- Keep using theme updatecart override (same path as module setTemplate) -->
+        <referenceBlock name="product.info.addtocart">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Checkout::cart/item/configure/updatecart.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="product.info.addtocart.additional">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Checkout::cart/item/configure/updatecart.phtml</argument>
+            </action>
+        </referenceBlock>
+        <!-- Hide Buy Now on configure (not applicable) -->
+        <referenceBlock name="cc.pdp.product.pager" remove="true"/>
+    </body>
+</page>

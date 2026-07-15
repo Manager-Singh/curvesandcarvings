@@ -14,7 +14,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
 
 <div class="hedleftcal01">
 	<ul>
-    	<li><a href="<?php echo $block->getBaseUrl(); ?>">Home</a></li>   
+    	<li><a href="<?php echo $block->getBaseUrl(); ?>">Home</a></li>
         <!--<li><a href="<?php echo $block->getBaseUrl(); ?>our-store">Our work</a></li>-->
         <li><a href="<?php echo $block->getBaseUrl(); ?>blog">Blogs</a></li>
         <!--<li><a href="<?php //echo $block->getBaseUrl(); ?>interior-designer/">Interior Design</a></li>-->
@@ -22,8 +22,8 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
 </div>
 
 <div class="hedserch01">
-	<div class="hedserch01icon"><a href="#"><i class="fa fa-search"></i> Search</a></div>
-    <div class="hedserch01serch">
+	<div class="hedserch01icon"><a href="javascript:void(0)" role="button" aria-expanded="false" aria-controls="cc-search-panel"><i class="fa fa-search"></i> Search</a></div>
+    <div class="hedserch01serch" id="cc-search-panel">
     	<div class="block block-search">
     <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
     <div class="block block-content">
@@ -68,4 +68,62 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
 
 <div class="topragister01"><a href="<?php echo $block->getBaseUrl(); ?>customer/account/login/">Login</a></div>
 
+<style>
+/* Keep original link look; ensure opened panel is actually usable */
+.hedserch01serch.is-open {
+    display: block !important;
+    z-index: 100;
+}
+.hedserch01serch.is-open .block-search .control {
+    border-top: 0;
+    clear: none;
+    margin: 0;
+    padding: 0;
+}
+.hedserch01serch.is-open .block-search input {
+    position: static !important;
+    left: auto !important;
+    margin: 0;
+}
+.hedserch01serch.is-open .block-search .action.search {
+    display: inline-block !important;
+}
+.hedserch01serch.is-open .block-search .label {
+    display: none;
+}
+</style>
+<script>
+require(['jquery'], function ($) {
+    'use strict';
 
+    // Single delegated handler (avoids double-bind open/close race)
+    $(document).off('click.ccSearchToggle').on('click.ccSearchToggle', '.hedserch01icon', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var $panel = $('.hedserch01serch').first();
+        var open = !$panel.hasClass('is-open');
+        $panel.toggleClass('is-open', open);
+        if (open) {
+            $panel.show();
+            $('.hedserch01icon a').attr('aria-expanded', 'true');
+            $panel.find('.block-search .label').addClass('active');
+            setTimeout(function () {
+                $('#search').trigger('focus');
+            }, 50);
+        } else {
+            $panel.hide();
+            $('.hedserch01icon a').attr('aria-expanded', 'false');
+            $panel.find('.block-search .label').removeClass('active');
+        }
+    });
+
+    // Click outside closes
+    $(document).off('click.ccSearchOutside').on('click.ccSearchOutside', function (e) {
+        if (!$(e.target).closest('.hedserch01').length) {
+            $('.hedserch01serch').removeClass('is-open').hide();
+            $('.hedserch01icon a').attr('aria-expanded', 'false');
+        }
+    });
+});
+</script>

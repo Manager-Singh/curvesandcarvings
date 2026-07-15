@@ -18,7 +18,7 @@ class UrlPlugin
     public function afterGetUrl(Category $subject, string $result): string
     {
         if ((int) $subject->getId() === self::GALLERY_CATEGORY_ID) {
-            return $this->urlBuilder->getUrl('gallery');
+            return $this->urlBuilder->getUrl('', ['_direct' => 'our-gallery']);
         }
 
         return $result;

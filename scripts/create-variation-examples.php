@@ -45,8 +45,10 @@ $examples = [
         'attribute_code' => 'bed_size',
         'variations' => [
             'SINGLE' => 'Single',
+            'DOUBLE' => 'Double',
             'QUEEN' => 'Queen',
             'KING' => 'King',
+            'CUSTOM' => 'Custom Size',
         ],
     ],
     [
@@ -57,6 +59,8 @@ $examples = [
             '4S' => '4 Seater',
             '6S' => '6 Seater',
             '8S' => '8 Seater',
+            '9PLUS' => '9+ Seater',
+            '10S' => '10 Seater',
         ],
     ],
     [
@@ -67,6 +71,8 @@ $examples = [
             '1S' => '1 Seater',
             '2S' => '2 Seater',
             '3S' => '3 Seater',
+            'FULL' => 'Full Sofa Set',
+            'LSHAPE' => 'L Shape',
         ],
     ],
     [

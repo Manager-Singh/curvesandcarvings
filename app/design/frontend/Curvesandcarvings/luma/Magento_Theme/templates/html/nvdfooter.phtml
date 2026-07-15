@@ -24,7 +24,77 @@ a.whatsapp_float i {
 
 <div class="contact-bottom"><p>NO OF VISITORS</p> <h2> 2195430</h2></div>
 
-<div class="section011"><a href="https://www.instagram.com/curvesandcarvings/" target="_blank"><img src="<?php echo $mediaUrl; ?>images/fotimstagram.jpg" /></a></div>
+<div class="section011 cc-instagram-feed" aria-label="Instagram feed">
+    <!-- Elfsight Instagram Feed -->
+    <script src="https://elfsightcdn.com/platform.js" async></script>
+    <div class="elfsight-app-e48e92bd-e3bf-42df-9981-6a03befbf8aa" data-elfsight-app-lazy></div>
+</div>
+<style>
+.cc-instagram-feed { width: 100%; max-width: 100%; margin: 0 auto; padding: 24px 0 8px; background: #fff; }
+.cc-instagram-feed .elfsight-app-e48e92bd-e3bf-42df-9981-6a03befbf8aa { min-height: 120px; }
+/* Hide Elfsight "#yummy" hashtag title (from widget storageSource) */
+.cc-instagram-feed a[href*="instagram.com/explore/tags/yummy"],
+.cc-instagram-feed a[href*="/explore/tags/yummy"],
+.cc-instagram-feed [class*="hashtag-title"],
+.cc-instagram-feed [class*="HashtagTitle"],
+.cc-instagram-feed [class*="eapps-instagram-feed-title"] {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+}
+/* Hide Elfsight free-plan badge when not in Shadow DOM */
+.cc-instagram-feed a[href*="elfsight.com"],
+.cc-instagram-feed [class*="eapps-widget-toolbar"],
+.cc-instagram-feed [class*="eapps-link"],
+.cc-instagram-feed a[aria-label*="Free Instagram"],
+.cc-instagram-feed a[title*="Free Instagram"],
+.cc-instagram-feed a[href*="elfsight.com/instagram-feed"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    opacity: 0 !important;
+}
+</style>
+<script>
+(function () {
+    function hideElfsightChrome(root) {
+        if (!root || !root.querySelectorAll) {
+            return;
+        }
+        root.querySelectorAll('a[href*="elfsight.com"], a[href*="explore/tags/yummy"]').forEach(function (el) {
+            el.style.setProperty('display', 'none', 'important');
+            el.style.setProperty('visibility', 'hidden', 'important');
+            el.setAttribute('aria-hidden', 'true');
+        });
+        root.querySelectorAll('[class*="Toolbar"], [class*="toolbar"], [class*="eapps-link"]').forEach(function (el) {
+            var text = (el.textContent || '').toLowerCase();
+            if (text.indexOf('free instagram') !== -1 || text.indexOf('elfsight') !== -1 || el.querySelector('a[href*="elfsight.com"]')) {
+                el.style.setProperty('display', 'none', 'important');
+            }
+        });
+        root.querySelectorAll('*').forEach(function (node) {
+            if (node.shadowRoot) {
+                hideElfsightChrome(node.shadowRoot);
+            }
+        });
+    }
+
+    function run() {
+        var wrap = document.querySelector('.cc-instagram-feed');
+        if (wrap) {
+            hideElfsightChrome(wrap);
+        }
+    }
+
+    run();
+    document.addEventListener('DOMContentLoaded', run);
+    window.addEventListener('load', run);
+    setInterval(run, 1000);
+})();
+</script>
 
 <div class="footer01">
 	<div class="container1">
@@ -151,54 +221,65 @@ Web Fonts ---->
 
 <script>
 require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min', 'js/owl.carousel', 'js/simple-lightbox'], function($,myPopup,readMore,mTab,Carousel,Lightbox){
-    $(".hedserch01icon").click(function(){
-        $(".hedserch01serch").toggle();
-    });
-    $('#isocertipop').popup({
-        transition: 'all 0.3s',
-        blur: true,
-        escape: true,
-        scrolllock: true,	
-        closebutton: false
-    });
-    $('#fadeandscale').popup({
-        transition: 'all 0.3s',
-        blur: true,
-        escape: true,
-        scrolllock: true,
-        closebutton: false
-    }); 
-    $('#AdvancePayment').popup({
-        transition: 'all 0.3s',
-        blur: true,
-        escape: true,
-        scrolllock: true,
-        closebutton: false
-    });
-    $('#tCard').popup({
-        transition: 'all 0.3s',
-        blur: true,
-        escape: true,
-        scrolllock: true,
-        closebutton: false
-    }); 
-    $(".read-more").readmore({
-        buttonClasses: "btn btn-primary",
-    });
-    $('.tabbing').mTab({
-        navigation: ".tabNav",
-        container: ".tabContainer",
-        activeTab: 1,
-        activeClass: "active",
-        scrollOffset: true,
-        accordScreen: 768,
-        toggleClose: true,
-        animation: false,
-        openWithUrl: true,
-        callbackonclick: function() {},
-        callback: function() {}
-    });
-    $('.testimonial').owlCarousel({
+    // Search box toggle lives in Magento_Search form.mini.phtml (do not re-bind here).
+    if ($('#isocertipop').length) {
+        $('#isocertipop').popup({
+            transition: 'all 0.3s',
+            blur: true,
+            escape: true,
+            scrolllock: true,
+            closebutton: false
+        });
+    }
+    if ($('#fadeandscale').length) {
+        $('#fadeandscale').popup({
+            transition: 'all 0.3s',
+            blur: true,
+            escape: true,
+            scrolllock: true,
+            closebutton: false
+        });
+    }
+    if ($('#AdvancePayment').length) {
+        $('#AdvancePayment').popup({
+            transition: 'all 0.3s',
+            blur: true,
+            escape: true,
+            scrolllock: true,
+            closebutton: false
+        });
+    }
+    if ($('#tCard').length) {
+        $('#tCard').popup({
+            transition: 'all 0.3s',
+            blur: true,
+            escape: true,
+            scrolllock: true,
+            closebutton: false
+        });
+    }
+    if ($(".read-more").length) {
+        $(".read-more").readmore({
+            buttonClasses: "btn btn-primary",
+        });
+    }
+    if ($('.tabbing').length) {
+        $('.tabbing').mTab({
+            navigation: ".tabNav",
+            container: ".tabContainer",
+            activeTab: 1,
+            activeClass: "active",
+            scrollOffset: true,
+            accordScreen: 768,
+            toggleClose: true,
+            animation: false,
+            openWithUrl: true,
+            callbackonclick: function() {},
+            callback: function() {}
+        });
+    }
+    if ($('.testimonial').length) {
+        $('.testimonial').owlCarousel({
 		loop: true,
 		autoplay:true,
 		autoplayTimeout:3000,
@@ -220,7 +301,9 @@ require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min'
 			margin: 20
 		  }
 		}
-    });
+        });
+    }
+    if ($('.homcaro').length) {
 	$('.homcaro').owlCarousel({
 		loop: true,
 		margin: 10,
@@ -244,7 +327,9 @@ require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min'
 			margin: 20
 		  }
 		}
-    });
+        });
+    }
+    if ($('.hmblog').length) {
     $('.hmblog').owlCarousel({
         loop: true,
 		autoplay:true,
@@ -268,6 +353,8 @@ require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min'
             }
         }
     });
+    }
+    if ($('.hbanner-slider').length) {
     $('.hbanner-slider').owlCarousel({
         loop: true,
         autoplay: true,
@@ -284,7 +371,9 @@ require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min'
             items: 1
             }
         }
-    });  
+    });
+    }
+    if ($('.gallery-1, .gallery-2, .gallery-3, .gallery-4, .gallery').length) {
     $(function(){
         // Init once per gallery container (gallery-1 also has class "gallery" — avoid double-binding)
         $('.gallery-1, .gallery-2, .gallery-3, .gallery-4').each(function () {
@@ -294,6 +383,7 @@ require(['jquery', 'js/jquery.popupoverlay', 'js/readmore', 'js/jquery-mTab-min'
             $('a', this).simpleLightbox();
         });
     });
+    }
     
 })
 </script>

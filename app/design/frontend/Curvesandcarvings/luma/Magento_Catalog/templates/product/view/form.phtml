@@ -17,10 +17,6 @@
 ?>
 <?php $_product = $block->getProduct(); ?>
 
-<div class="note-line">
-    <h2>(Amount inclusive of all applicable taxes &amp; delivery charges)</h2>
-</div>
-
 <div class="product-add-form">
     <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
           action="<?= $block->escapeUrl($block->getSubmitUrl($_product)) ?>" method="post"
@@ -35,12 +31,12 @@
             <?= $block->getChildHtml('product_info_form_content') ?>
         <?php else :?>
             <?php if ($_product->isSaleable() && $block->getOptionsContainer() == 'container1') :?>
-                <?= $block->getChildChildHtml('options_container') ?>
+                <?= $block->getChildHtml('options_container') ?>
             <?php endif;?>
         <?php endif; ?>
 
         <?php if ($_product->isSaleable() && $block->hasOptions() && $block->getOptionsContainer() == 'container2') :?>
-            <?= $block->getChildChildHtml('options_container') ?>
+            <?= $block->getChildHtml('options_container') ?>
         <?php endif;?>
         <?= $block->getChildHtml('form_bottom') ?>
     </form>
@@ -48,13 +44,22 @@
 
 <script type="text/x-magento-init">
     {
-        "[data-role=priceBox][data-price-box=product-id-<?= $block->escapeHtml($_product->getId()) ?>]": {
-            "priceBox": {
-                "priceConfig":  <?= /* @noEscape */ $block->getJsonConfig() ?>
-            }
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        },
+        "body.catalog-product-view": {
+            "js/pdp-loader-fix": {},
+            "js/pdp-figma-v4": {}
         }
     }
 </script>
+
+<?php
+/**
+ * Intentionally no second priceBox init here — Magento core already binds
+ * priceBox. A duplicate init + percent payment options caused Chrome freezes.
+ */
+?>
 
 <?php
 if ($_product->getSpecialPrice() <= $_product->getPrice() && $_product->getSpecialPrice() != 0):
@@ -105,7 +110,7 @@ endif;
 
 <?php if (!empty($arr)): ?>
 <?php $LowestemiArr = array(); ?>
-<div id="tCard" class="protabox">
+<div id="tCard" class="protabox" style="display:none" hidden aria-hidden="true">
 <div class="protaboxtab">
 <div class="tabbing protab01">
     <div class="protabtxt">
@@ -161,15 +166,20 @@ endif;
 <?php
 if (!empty($LowestemiArr)):
     sort($LowestemiArr);
-    $lowemifull = 'EMI on credit card starting at <strong>Rs. ' . number_format($LowestemiArr[0]) . '</strong>';
+    $lowestEmi = (int)$LowestemiArr[0];
+    if ($lowestEmi > 0):
+    $lowemifull = 'EMI on credit card starting at <strong>Rs. ' . number_format($lowestEmi) . '</strong>';
 ?>
 <script>
 require(['jquery'], function ($) {
     var el = document.getElementsByClassName('lowemishowin')[0];
     if (el) {
         el.innerHTML = '<?php echo $lowemifull; ?>';
+        $(el).data('cc-emi-set', true);
     }
 });
 </script>
-<?php endif; ?>
+<?php
+    endif;
+endif; ?>
 <?php endif; ?>

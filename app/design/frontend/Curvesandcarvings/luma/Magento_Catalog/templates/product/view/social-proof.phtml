@@ -1,0 +1,98 @@
+<?php
+/**
+ * PDP social proof under price (Figma).
+ * First visit: random views 20–100, purchases 10–19 (saved to localStorage).
+ * Later visits: localStorage values only — no flash of a different random number.
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ */
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$registry = $objectManager->get(\Magento\Framework\Registry::class);
+$product = $registry->registry('current_product');
+$productId = $product ? (int)$product->getId() : 0;
+
+$views = random_int(20, 100);
+$purchases = random_int(10, 19);
+?>
+<div class="cc-pdp-social-proof cc-pdp-social-proof--pending"
+     id="cc-pdp-social-proof"
+     data-role="cc-social-proof"
+     data-product-id="<?= (int)$productId ?>"
+     data-views="<?= (int)$views ?>"
+     data-purchases="<?= (int)$purchases ?>"
+     aria-label="<?= $block->escapeHtmlAttr(__('Product activity')) ?>">
+    <div class="cc-pdp-social-proof-item">
+        <span class="cc-pdp-social-icon cc-pdp-social-icon--view" aria-hidden="true"></span>
+        <span class="cc-pdp-social-copy">
+            <strong class="cc-pdp-social-title" data-role="cc-social-views">&nbsp;</strong>
+            <span class="cc-pdp-social-sub"><?= $block->escapeHtml(__('viewing this product')) ?></span>
+        </span>
+    </div>
+    <div class="cc-pdp-social-proof-item">
+        <span class="cc-pdp-social-icon cc-pdp-social-icon--cart" aria-hidden="true"></span>
+        <span class="cc-pdp-social-copy">
+            <strong class="cc-pdp-social-title" data-role="cc-social-purchases">&nbsp;</strong>
+            <span class="cc-pdp-social-sub"><?= $block->escapeHtml(__('this product in last 30 days')) ?></span>
+        </span>
+    </div>
+</div>
+<script>
+(function () {
+    var root = document.getElementById('cc-pdp-social-proof');
+    if (!root) {
+        return;
+    }
+
+    var productId = root.getAttribute('data-product-id') || '';
+    var key = 'cc_pdp_social_' + productId;
+    var views = parseInt(root.getAttribute('data-views'), 10) || 20;
+    var purchases = parseInt(root.getAttribute('data-purchases'), 10) || 10;
+
+    function clamp(n, min, max) {
+        n = parseInt(n, 10);
+        if (isNaN(n)) {
+            return min;
+        }
+        return Math.min(max, Math.max(min, n));
+    }
+
+    if (productId && productId !== '0') {
+        try {
+            var raw = window.localStorage.getItem(key);
+            if (raw) {
+                var data = JSON.parse(raw);
+                if (data && typeof data === 'object') {
+                    views = clamp(data.views, 20, 100);
+                    purchases = clamp(data.purchases, 10, 19);
+                }
+            } else {
+                views = clamp(views, 20, 100);
+                purchases = clamp(purchases, 10, 19);
+                window.localStorage.setItem(key, JSON.stringify({
+                    views: views,
+                    purchases: purchases,
+                    savedAt: Date.now()
+                }));
+            }
+        } catch (e) {
+            views = clamp(views, 20, 100);
+            purchases = clamp(purchases, 10, 19);
+        }
+    }
+
+    root.setAttribute('data-views', String(views));
+    root.setAttribute('data-purchases', String(purchases));
+
+    var viewsEl = root.querySelector('[data-role="cc-social-views"]');
+    var purchasesEl = root.querySelector('[data-role="cc-social-purchases"]');
+    if (viewsEl) {
+        viewsEl.textContent = views + ' people';
+    }
+    if (purchasesEl) {
+        purchasesEl.textContent = purchases + ' customers purchased';
+    }
+
+    root.classList.remove('cc-pdp-social-proof--pending');
+})();
+</script>

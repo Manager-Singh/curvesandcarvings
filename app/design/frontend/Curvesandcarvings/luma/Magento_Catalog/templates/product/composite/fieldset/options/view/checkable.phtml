@@ -1,13 +1,23 @@
 <?php
 /**
  * Custom option radios/checkboxes — Figma-style payment cards + standard options.
+ * Never call opConfig.reloadPrice() — percent payment options freeze Chrome.
  *
  * @var \Magento\Catalog\Block\Product\View\Options\View\Checkable $block
  */
 
 use Magento\Catalog\Model\Product\Option;
+use Magento\Framework\Registry;
 
 $option = $block->getOption();
+$registry = $block->getData('registry');
+if (!$registry instanceof Registry) {
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $registry = $objectManager->get(Registry::class);
+}
+$currentProduct = $registry->registry('current_product');
+$productPrice = $currentProduct ? (float)$currentProduct->getFinalPrice() : 0.0;
+$advancePrice = $productPrice > 0 ? round($productPrice * 0.5, 2) : 0;
 if ($option) :
     $configValue = $block->getPreconfiguredValue($option);
     $optionType = $option->getType();
@@ -26,7 +36,6 @@ if ($option) :
                class="radio admin__control-radio product-custom-option"
                name="options[<?= /* @noEscape */ $option->getId() ?>]"
                data-selector="options[<?= /* @noEscape */ $option->getId() ?>]"
-               onclick="<?= $block->getSkipJsReloadPrice() ? '' : 'opConfig.reloadPrice()' ?>"
                value=""
                checked="checked"
         />
@@ -36,6 +45,12 @@ if ($option) :
     </div>
     <?php endif; ?>
 
+    <?php
+    $needsDefault = $option->getIsRequire()
+        && empty($configValue)
+        && $optionType === Option::OPTION_TYPE_RADIO;
+    $defaultApplied = false;
+    ?>
     <?php foreach ($option->getValues() as $value) : ?>
         <?php
         $checked = '';
@@ -44,6 +59,10 @@ if ($option) :
             $checked = is_array($configValue) && in_array($value->getOptionTypeId(), $configValue) ? 'checked' : '';
         } else {
             $checked = $configValue == $value->getOptionTypeId() ? 'checked' : '';
+        }
+        if ($needsDefault && !$defaultApplied && $checked === '') {
+            $checked = 'checked';
+            $defaultApplied = true;
         }
         $dataSelector = 'options[' . $option->getId() . ']';
         if ($arraySign) {
@@ -59,44 +78,53 @@ if ($option) :
         <?php if ($isPayment) : ?>
         <div class="field choice cc-payment-card admin__field admin__field-option <?= /* @noEscape */ $option->getIsRequire() ? 'required' : '' ?> <?= $checked ? 'is-selected' : '' ?>">
             <input type="<?= /* @noEscape */ $optionType ?>"
-                   class="<?= /* @noEscape */ $optionType === Option::OPTION_TYPE_RADIO ? 'radio admin__control-radio' : 'checkbox admin__control-checkbox' ?> <?= /* @noEscape */ $option->getIsRequire() ? 'required' : '' ?> product-custom-option <?= $block->getSkipJsReloadPrice() ? '' : 'opConfig.reloadPrice()' ?>"
+                   class="<?= /* @noEscape */ $optionType === Option::OPTION_TYPE_RADIO ? 'radio admin__control-radio' : 'checkbox admin__control-checkbox' ?> <?= /* @noEscape */ $option->getIsRequire() ? 'required' : '' ?> product-custom-option"
                    name="options[<?= /* @noEscape */ $option->getId() ?>]<?= /* @noEscape */ $arraySign ?>"
                    id="options_<?= /* @noEscape */ $option->getId() . '_' . $count ?>"
                    value="<?= /* @noEscape */ $value->getOptionTypeId() ?>"
                 <?= /* @noEscape */ $checked ?>
                    data-selector="<?= /* @noEscape */ $dataSelector ?>"
-                   price="<?= /* @noEscape */ $block->getCurrencyByStore($value) ?>"/>
+                   price="0"/>
             <label class="label admin__field-label cc-payment-card-body"
                    for="options_<?= /* @noEscape */ $option->getId() . '_' . $count ?>">
-                <span class="cc-payment-title"><?= $block->escapeHtml($valueTitle) ?></span>
+                <span class="cc-payment-card-left">
+                    <span class="cc-payment-title">
+                        <?php if ($isEmi) : ?>
+                            <?= $block->escapeHtml(__('Flexible EMI Option')) ?>
+                        <?php else : ?>
+                            <?= $block->escapeHtml($valueTitle) ?>
+                        <?php endif; ?>
+                    </span>
+                    <?php if ($isEmi) : ?>
+                        <span class="cc-payment-hint-inline"><?= $block->escapeHtml(__('(Please select EMI option while making the payment)')) ?></span>
+                    <?php endif; ?>
+                    <?php if ($fclasst) : ?>
+                        <span class="<?= $block->escapeHtmlAttr($fclasst) ?>_open k-more"><?= $block->escapeHtml(__('Know More')) ?></span>
+                    <?php endif; ?>
+                </span>
                 <span class="cc-payment-card-right">
                     <span class="cc-payment-price">
                         <?php if ($isAdvance) : ?>
-                            <span class="cc-advance-price"><?= $block->escapeHtml(__('Calculating...')) ?></span>
+                            <span class="cc-advance-price"><?= $advancePrice > 0 ? '₹' . $block->escapeHtml(number_format($advancePrice, 2, '.', ',')) : $block->escapeHtml(__('Calculating...')) ?></span>
                         <?php elseif ($isEmi) : ?>
-                            <span class="lowemishowin cc-emi-monthly"><?= $block->escapeHtml(__('starting at Rs. 0')) ?></span>
+                            <span class="lowemishowin cc-emi-monthly"><?= $block->escapeHtml(__('Calculating...')) ?></span>
                         <?php else : ?>
                             <?= /* @noEscape */ $block->formatPrice($value) ?>
                         <?php endif; ?>
                     </span>
-                    <?php if ($fclasst) : ?>
-                        <span class="<?= $block->escapeHtmlAttr($fclasst) ?>_open k-more"><?= $block->escapeHtml(__('Know More')) ?></span>
-                    <?php endif; ?>
                 </span>
             </label>
         </div>
         <?php else : ?>
         <div class="field choice admin__field admin__field-option <?= /* @noEscape */ $option->getIsRequire() ? 'required' : '' ?>">
             <input type="<?= /* @noEscape */ $optionType ?>"
-                   class="<?= /* @noEscape */ $optionType === Option::OPTION_TYPE_RADIO ? 'radio admin__control-radio' : 'checkbox admin__control-checkbox' ?> <?= /* @noEscape */ $option->getIsRequire() ? 'required' : '' ?>
-                       product-custom-option
-                        <?= $block->getSkipJsReloadPrice() ? '' : 'opConfig.reloadPrice()' ?>"
+                   class="<?= /* @noEscape */ $optionType === Option::OPTION_TYPE_RADIO ? 'radio admin__control-radio' : 'checkbox admin__control-checkbox' ?> <?= /* @noEscape */ $option->getIsRequire() ? 'required' : '' ?> product-custom-option"
                    name="options[<?= /* @noEscape */ $option->getId() ?>]<?= /* @noEscape */ $arraySign ?>"
                    id="options_<?= /* @noEscape */ $option->getId() . '_' . $count ?>"
                    value="<?= /* @noEscape */ $value->getOptionTypeId() ?>"
                 <?= /* @noEscape */ $checked ?>
                    data-selector="<?= /* @noEscape */ $dataSelector ?>"
-                   price="<?= /* @noEscape */ $block->getCurrencyByStore($value) ?>"/>
+                   price="0"/>
             <?php
                 $fclasst = substr(str_replace(' ', '', $block->escapeHtml($value->getTitle())), 10);
             ?>
@@ -104,17 +132,13 @@ if ($option) :
                 <span class="<?php if ($fclasst == 'tCard') { echo 'lowemishowin'; } ?>">
                     <?= $block->escapeHtml($value->getTitle()) ?>
                 </span>
-                <?= /* @noEscape */ $block->formatPrice($value) ?>
             </label>
             <span class="<?= $block->escapeHtmlAttr($fclasst) ?>_open k-more"><?= $block->escapeHtml(__('Know More')) ?></span>
-            <h2 class="<?= $block->escapeHtmlAttr($value->getTitle()) ?>_open">OR</h2>
         </div>
         <?php endif; ?>
     <?php endforeach; ?>
     <?php if ($isPayment) : ?>
     <p class="cc-payment-hint"><?= $block->escapeHtml(__('(Please select EMI option while making the payment)')) ?></p>
-    <?php else : ?>
-    <p><?= $block->escapeHtml(__('(Please select EMI option while making the payment)')) ?></p>
     <?php endif; ?>
 </div>
 <?php endif; ?>

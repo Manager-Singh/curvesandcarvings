@@ -9,4 +9,12 @@
         <plugin name="curvesandcarvings_broaden_sku_search"
                 type="Curvesandcarvings\Theme\Plugin\CatalogSearch\Model\ResourceModel\Fulltext\BroadenSkuSearchCollectionPlugin"/>
     </type>
+    <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="curvesandcarvings_buy_now_redirect"
+                type="Curvesandcarvings\Theme\Plugin\Checkout\Cart\AddBuyNowRedirectPlugin"/>
+    </type>
+    <type name="Magento\PageBuilder\Block\GoogleMapsApi">
+        <plugin name="curvesandcarvings_google_maps_api_key_guard"
+                type="Curvesandcarvings\Theme\Plugin\PageBuilder\GoogleMapsApiKeyGuardPlugin"/>
+    </type>
 </config>

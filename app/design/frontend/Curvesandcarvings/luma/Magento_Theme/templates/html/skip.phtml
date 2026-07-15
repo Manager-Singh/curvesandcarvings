@@ -5,8 +5,16 @@
  * @var \Magento\Framework\View\Element\Template $block
  * @var \Curvesandcarvings\Theme\ViewModel\MediaUrl|null $mediaUrlViewModel
  */
+use Magento\Framework\UrlInterface;
+
 $mediaUrlViewModel = $block->getData('media_url');
-$mediaUrl = $mediaUrlViewModel ? $mediaUrlViewModel->getUrl() : '';
+$mediaUrl = '';
+if ($mediaUrlViewModel && method_exists($mediaUrlViewModel, 'getUrl')) {
+    $mediaUrl = (string)$mediaUrlViewModel->getUrl();
+}
+if ($mediaUrl === '') {
+    $mediaUrl = (string)$block->getUrl('', ['_type' => UrlInterface::URL_TYPE_MEDIA]);
+}
 ?>
 
 <div class="topleftcal01">

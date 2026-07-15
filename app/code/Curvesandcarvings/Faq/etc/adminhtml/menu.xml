@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Curvesandcarvings_Faq::faq"
+             title="FAQs"
+             module="Curvesandcarvings_Faq"
+             sortOrder="45"
+             parent="Magento_Backend::content"
+             resource="Curvesandcarvings_Faq::faq"/>
+        <add id="Curvesandcarvings_Faq::faq_manage"
+             title="Manage FAQs"
+             module="Curvesandcarvings_Faq"
+             sortOrder="10"
+             parent="Curvesandcarvings_Faq::faq"
+             action="cc_faq/faq"
+             resource="Curvesandcarvings_Faq::faq_manage"/>
+    </menu>
+</config>

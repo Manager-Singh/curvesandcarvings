@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- Magento Reviews tab last — keep as="reviews" so #reviews / #review-form links work -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="review_product_form_component"/>
+    <body>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Review\Block\Product\Review"
+                   name="reviews.tab"
+                   as="reviews"
+                   template="Magento_Review::review.phtml"
+                   group="detailed_info"
+                   ifconfig="catalog/review/active">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Reviews</argument>
+                    <argument name="sort_order" xsi:type="string">100</argument>
+                </arguments>
+                <block class="Magento\Review\Block\Form"
+                       name="product.review.form"
+                       as="review_form"
+                       ifconfig="catalog/review/active">
+                    <arguments>
+                        <argument name="button_lock_manager" xsi:type="object">Magento\Framework\View\Element\ButtonLockManager</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

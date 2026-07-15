@@ -1,0 +1,53 @@
+<?php
+/**
+ * Override Magento_PageBuilder::googlemaps.phtml
+ *
+ * Core always registers an empty googleMaps RequireJS path on the storefront and
+ * (due to shouldIncludeGoogleMapsLibrary) always shims map utils → googleMaps.
+ * That loads maps.googleapis.com with no key, hangs rjsResolver, and leaves
+ * checkout stuck on the spinner.
+ *
+ * Only emit Maps config when a non-empty API key is configured.
+ *
+ * @var Magento\PageBuilder\Block\GoogleMapsApi $block
+ * @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$rawApiKey = trim((string)$block->getApiKey());
+if ($rawApiKey === '') {
+    return;
+}
+
+$libraryUrl = $escaper->escapeJs($block->getLibraryUrl());
+$style = $escaper->escapeJs($block->getStyle());
+$apiKey = $escaper->escapeJs($rawApiKey);
+$invalidApiKeyMessage = $escaper->escapeJs($block->getInvalidApiKeyMessage());
+
+$script = <<<SCRIPT
+    require.config({
+        paths: {
+            googleMaps: '{$libraryUrl}'
+        },
+        config: {
+            'Magento_PageBuilder/js/utils/map': {
+                style: '{$style}',
+            },
+            'Magento_PageBuilder/js/content-type/map/preview': {
+                apiKey: '{$apiKey}',
+                apiKeyErrorMessage: '{$invalidApiKeyMessage}'
+            },
+            'Magento_PageBuilder/js/form/element/map': {
+                apiKey: '{$apiKey}',
+                apiKeyErrorMessage: '{$invalidApiKeyMessage}'
+            },
+        },
+        shim: {
+            'Magento_PageBuilder/js/utils/map': {
+                deps: ['googleMaps']
+            }
+        }
+    });
+SCRIPT;
+// phpcs:ignore
+echo /* @noEscape */ $secureRenderer->renderTag('script', [], $script, false);

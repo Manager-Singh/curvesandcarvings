@@ -1,12 +1,9 @@
 define(['jquery'], function ($) {
     'use strict';
 
-    $('.hedserch01icon').on('click', function (e) {
-        e.preventDefault();
-        $('.hedserch01serch').toggle();
-    });
+    // Search toggle is handled in Magento_Search::form.mini.phtml (single source).
+    // Keep only cart-button enablement here.
 
-    // Mage-OS ships listing buttons disabled until catalogAddToCart initializes; match live behavior.
     function enableAddToCartButtons() {
         $('form[data-role="tocart-form"] .action.tocart').prop('disabled', false);
         $('#product-addtocart-button').prop('disabled', false);

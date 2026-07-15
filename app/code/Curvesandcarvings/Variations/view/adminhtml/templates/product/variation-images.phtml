@@ -1,0 +1,745 @@
+<?php
+/**
+ * Compact Product Variations manager for configurable products.
+ *
+ * @var \Curvesandcarvings\Variations\Block\Adminhtml\Product\VariationImages $block
+ */
+if (!$block->isConfigurable()) {
+    return;
+}
+$rows = $block->getVariationRows();
+$max = $block->getMaxImages();
+$parent = $block->getProduct();
+$options = $block->getAttributeOptions();
+$usedOptionIds = $block->getUsedOptionIds();
+$attrLabel = $block->getAttributeLabel();
+$attributeEditUrl = $block->getAttributeEditUrl();
+$formKey = $block->getBlockHtml('formkey');
+$variationCount = count($rows);
+$currency = $block->getCurrencySymbol();
+?>
+<div class="cc-var"
+     id="cc-variation-manager"
+     data-save-url="<?= $block->escapeUrl($block->getSaveUrl()) ?>"
+     data-form-key="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>">
+<style>
+/* Force-hide Magento Current Variations grid + wizard buttons ONLY (keep Configurations group) */
+[data-index="configurable-matrix"],
+[data-index="configurable_products_button_set"],
+.admin__field[data-index="configurable-matrix"],
+.admin__field[data-index="configurable_products_button_set"],
+.cc-hide-magento-variations-matrix,
+.cc-hide-magento-variations-buttons{display:none!important;visibility:hidden!important;height:0!important;max-height:0!important;overflow:hidden!important;margin:0!important;padding:0!important;border:0!important}
+
+.cc-var{margin:0 0 1.5rem;font-family:Segoe UI,Helvetica Neue,Arial,sans-serif;color:#1c1917}
+.cc-var *,.cc-var *::before,.cc-var *::after{box-sizing:border-box}
+.cc-var .admin__field{float:none!important;width:auto!important;margin:0!important;padding:0!important;display:block}
+.cc-var .admin__field-label{float:none!important;width:auto!important;text-align:left!important;padding:0!important;margin:0 0 4px!important;position:static!important}
+.cc-var .admin__field-control{float:none!important;width:100%!important;margin:0!important;padding:0!important}
+.cc-var input.admin__control-text,.cc-var select.admin__control-select{width:100%!important;max-width:100%!important;min-height:32px;height:32px;padding:4px 8px;border:1px solid #d6d3d1;border-radius:6px;font-size:13px;line-height:1.3;background:#fff}
+.cc-var input.admin__control-text:focus,.cc-var select.admin__control-select:focus{border-color:#0f766e;outline:0;box-shadow:0 0 0 2px rgba(15,118,110,.18)}
+
+.cc-var__bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;margin:0 0 12px;border-radius:10px;background:linear-gradient(135deg,#0f766e,#134e4a);color:#fff;box-shadow:0 6px 18px rgba(15,118,110,.22)}
+.cc-var__title{display:flex;align-items:center;gap:8px;margin:0;font-size:16px;font-weight:700;color:#fff}
+.cc-var__count{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;padding:0 7px;border-radius:999px;background:rgba(255,255,255,.2);font-size:12px}
+.cc-var__hint{margin:4px 0 0;max-width:520px;font-size:12px;line-height:1.4;color:rgba(255,255,255,.85)}
+.cc-var__btns{display:flex;gap:8px;flex-wrap:wrap}
+.cc-var__btns .action-primary,.cc-var__btns .action-secondary{margin:0!important;border-radius:6px!important;font-size:13px!important}
+.cc-var__btns .action-primary{background:#fff!important;border-color:#fff!important;color:#0f766e!important}
+.cc-var__btns .action-secondary{background:transparent!important;border:1px solid rgba(255,255,255,.5)!important;color:#fff!important}
+
+.cc-var__note{margin:0 0 12px;padding:8px 12px;border-radius:8px;border-left:3px solid #0f766e;background:#f0fdfa;color:#134e4a;font-size:12px}
+
+.cc-var__table-wrap{border:1px solid #e7e5e4;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.cc-var__table{width:100%;border-collapse:collapse;table-layout:fixed}
+.cc-var__table thead th{background:#f5f5f4;color:#57534e;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:10px 10px;text-align:left;border-bottom:1px solid #e7e5e4}
+.cc-var__table tbody td{padding:10px;border-bottom:1px solid #f0eeec;vertical-align:middle;font-size:13px}
+.cc-var__table tbody tr.cc-var__row:hover{background:#fafaf9}
+.cc-var__table tbody tr.cc-var__row.is-open{background:#f0fdfa}
+.cc-var__col-thumb{width:56px}
+.cc-var__col-option{width:140px}
+.cc-var__col-sku{width:18%}
+.cc-var__col-name{width:28%}
+.cc-var__col-price{width:110px}
+.cc-var__col-imgs{width:70px}
+.cc-var__col-actions{width:150px}
+
+.cc-var__thumb{width:40px;height:40px;border-radius:8px;object-fit:cover;border:1px solid #e7e5e4;background:#f5f5f4;display:block}
+.cc-var__thumb-empty{width:40px;height:40px;border-radius:8px;border:1px dashed #d6d3d1;background:#fafaf9;display:flex;align-items:center;justify-content:center;color:#a8a29e;font-size:14px}
+.cc-var__badge{display:inline-block;max-width:100%;padding:3px 8px;border-radius:999px;background:#ccfbf1;color:#0f766e;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cc-var__imgs{color:#78716c;font-size:12px;font-weight:600}
+.cc-var__actions{display:flex;gap:6px;justify-content:flex-end;align-items:center}
+.cc-var__btn{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 10px;margin:0;border:1px solid #d6d3d1;border-radius:6px;background:#fff;color:#1c1917;font-size:12px;font-weight:600;cursor:pointer;line-height:1}
+.cc-var__btn:hover{background:#f5f5f4}
+.cc-var__btn--danger{border-color:#fecaca;color:#b91c1c}
+.cc-var__btn--danger:hover{background:#fef2f2}
+.cc-var__btn--ghost{background:#fff}
+
+.cc-var__detail td{padding:0!important;border-bottom:1px solid #e7e5e4;background:#fafaf9}
+.cc-var__detail-inner{display:none;padding:12px 14px 16px}
+.cc-var__row.is-open + .cc-var__detail .cc-var__detail-inner{display:block}
+.cc-var__detail-title{margin:0 0 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#78716c}
+.cc-var__slots{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.cc-var__slot{border:1px dashed #d6d3d1;border-radius:8px;padding:8px;background:#fff;min-height:120px}
+.cc-var__slot.is-filled{border-style:solid;border-color:#a8a29e}
+.cc-var__slot.is-main{border-color:#0f766e;background:#f0fdfa}
+.cc-var__slot-label{font-size:11px;font-weight:700;color:#78716c;margin-bottom:6px}
+.cc-var__slot img{width:100%;height:70px;object-fit:cover;border-radius:6px;display:block;background:#eee}
+.cc-var__slot-remove{display:flex;align-items:center;gap:4px;margin:6px 0 4px;font-size:11px;color:#b91c1c;cursor:pointer}
+.cc-var__slot input[type=file]{width:100%;font-size:11px}
+.cc-var__main-badge{display:inline-block;margin-top:4px;padding:1px 6px;border-radius:999px;background:#0f766e;color:#fff;font-size:10px;font-weight:700}
+
+.cc-var__add{margin-top:12px;border:2px dashed #5eead4;border-radius:10px;background:linear-gradient(180deg,#f0fdfa,#fff);padding:14px}
+.cc-var__add-title{margin:0 0 10px;font-size:14px;font-weight:700;color:#0f766e}
+.cc-var__add-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:12px}
+.cc-var__add-grid .cc-var__field--wide{grid-column:span 2}
+.cc-var__label{display:block;margin:0 0 4px;font-size:12px;font-weight:600;color:#44403c}
+.cc-var__currency{display:flex;align-items:center;gap:6px}
+.cc-var__currency span{font-weight:700;color:#b45309;font-size:13px}
+.cc-var__help{margin:4px 0 0;font-size:11px;color:#78716c}
+
+.cc-var__footer{position:sticky;bottom:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:12px;padding:12px 14px;border:1px solid #e7e5e4;border-radius:10px;background:rgba(255,255,255,.96);box-shadow:0 -6px 18px rgba(0,0,0,.06)}
+.cc-var__footer .action-default.primary{margin:0!important;border-radius:6px!important;background:#0f766e!important;border-color:#0f766e!important;font-weight:700}
+.cc-var__status{font-size:13px;color:#78716c}
+.cc-var__status.is-error{color:#b91c1c;font-weight:600}
+.cc-var__status.is-ok{color:#047857;font-weight:600}
+.cc-var .cc-has-error{border-color:#b91c1c!important;box-shadow:0 0 0 2px rgba(185,28,28,.15)!important}
+.cc-var .cc-field-error{margin-top:3px;color:#b91c1c;font-size:11px}
+
+#cc-variation-loader-global{position:fixed!important;inset:0;z-index:1000000!important;display:none;align-items:center;justify-content:center;background:rgba(28,25,23,.4)!important}
+#cc-variation-loader-global .cc-variation-loader__box{min-width:240px;padding:22px 28px;background:#fff;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.25);text-align:center}
+#cc-variation-loader-global .cc-variation-loader__spinner{width:40px;height:40px;margin:0 auto 10px;border:4px solid #e7e5e4;border-top-color:#0f766e;border-radius:50%;animation:cc-var-spin .75s linear infinite}
+#cc-variation-loader-global .cc-variation-loader__text{font-size:14px;font-weight:600}
+@keyframes cc-var-spin{to{transform:rotate(360deg)}}
+body.cc-variation-saving{cursor:wait!important}
+
+.cc-var__empty{padding:18px;text-align:center;color:#78716c;font-size:13px;background:#fafaf9}
+
+@media (max-width:1100px){
+  .cc-var__col-name{width:22%}
+  .cc-var__add-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cc-var__slots{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:768px){
+  .cc-var__table{display:block}
+  .cc-var__table thead{display:none}
+  .cc-var__table tbody,.cc-var__table tr,.cc-var__table td{display:block;width:100%}
+  .cc-var__table tbody td{border-bottom:0;padding:6px 10px}
+  .cc-var__row{border-bottom:1px solid #e7e5e4;padding:8px 0}
+  .cc-var__slots{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cc-var__add-grid{grid-template-columns:1fr}
+  .cc-var__add-grid .cc-var__field--wide{grid-column:span 1}
+}
+</style>
+
+    <div class="cc-var__bar">
+        <div>
+            <h3 class="cc-var__title">
+                <?= $block->escapeHtml(__('Product Variations')) ?>
+                <span class="cc-var__count"><?= (int)$variationCount ?></span>
+            </h3>
+            <p class="cc-var__hint">
+                <?= $block->escapeHtml(__(
+                    'Compact editor for SKU, price, %1 and up to %2 images. Magento’s default grid is hidden.',
+                    $attrLabel,
+                    $max
+                )) ?>
+            </p>
+        </div>
+        <div class="cc-var__btns">
+            <?php if ($attributeEditUrl !== ''): ?>
+                <a class="action-secondary"
+                   href="<?= $block->escapeUrl($attributeEditUrl) ?>"
+                   target="_blank"
+                   rel="noopener">
+                    <span><?= $block->escapeHtml(__('Manage Options')) ?></span>
+                </a>
+            <?php endif; ?>
+            <button type="button" class="action-primary" id="cc-scroll-add-variation">
+                <span><?= $block->escapeHtml(__('+ Add Variation')) ?></span>
+            </button>
+        </div>
+    </div>
+
+    <div class="cc-var__note">
+        <?= $block->escapeHtml(__(
+            'Edit values in the table, open Images only when needed, then click Save all variations.'
+        )) ?>
+    </div>
+
+    <div id="cc-variation-form">
+        <input type="hidden" name="parent_id" value="<?= (int)$parent->getId() ?>"/>
+        <?= /* @noEscape */ $formKey ?>
+
+        <div class="cc-var__table-wrap">
+            <?php if (!$rows): ?>
+                <div class="cc-var__empty">
+                    <?= $block->escapeHtml(__('No variations yet. Use Add Variation below.')) ?>
+                </div>
+            <?php else: ?>
+                <table class="cc-var__table">
+                    <thead>
+                    <tr>
+                        <th class="cc-var__col-thumb"></th>
+                        <th class="cc-var__col-option"><?= $block->escapeHtml($attrLabel) ?></th>
+                        <th class="cc-var__col-sku"><?= $block->escapeHtml(__('SKU')) ?></th>
+                        <th class="cc-var__col-name"><?= $block->escapeHtml(__('Name')) ?></th>
+                        <th class="cc-var__col-price"><?= $block->escapeHtml(__('Price')) ?></th>
+                        <th class="cc-var__col-imgs"><?= $block->escapeHtml(__('Imgs')) ?></th>
+                        <th class="cc-var__col-actions"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($rows as $row): ?>
+                        <?php
+                        $id = (int)$row['id'];
+                        $optionLabel = (string)($row['option_label'] ?? '');
+                        $thumbUrl = (string)($row['thumb_url'] ?? '');
+                        ?>
+                        <tr class="cc-var__row" data-child-id="<?= $id ?>">
+                            <td class="cc-var__col-thumb">
+                                <?php if ($thumbUrl !== ''): ?>
+                                    <img class="cc-var__thumb" src="<?= $block->escapeUrl($thumbUrl) ?>"
+                                         alt="<?= $block->escapeHtmlAttr($row['sku']) ?>"/>
+                                <?php else: ?>
+                                    <div class="cc-var__thumb-empty">—</div>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <select id="variation_option_<?= $id ?>"
+                                        name="variation_option_<?= $id ?>"
+                                        class="admin__control-select"
+                                        title="<?= $block->escapeHtmlAttr($attrLabel) ?>">
+                                    <option value=""><?= $block->escapeHtml(__('-- Select --')) ?></option>
+                                    <?php foreach ($options as $opt): ?>
+                                        <option value="<?= (int)$opt['value'] ?>"
+                                            <?= ((int)$row['option_id'] === (int)$opt['value']) ? 'selected' : '' ?>>
+                                            <?= $block->escapeHtml($opt['label']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <?php if ($optionLabel !== ''): ?>
+                                    <div style="margin-top:4px">
+                                        <span class="cc-var__badge"><?= $block->escapeHtml($optionLabel) ?></span>
+                                    </div>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <input type="text"
+                                       id="variation_sku_<?= $id ?>"
+                                       name="variation_sku_<?= $id ?>"
+                                       class="admin__control-text"
+                                       value="<?= $block->escapeHtmlAttr($row['sku']) ?>"
+                                       required/>
+                            </td>
+                            <td>
+                                <input type="text"
+                                       id="variation_name_<?= $id ?>"
+                                       name="variation_name_<?= $id ?>"
+                                       class="admin__control-text"
+                                       value="<?= $block->escapeHtmlAttr($row['name']) ?>"/>
+                            </td>
+                            <td>
+                                <div class="cc-var__currency">
+                                    <input type="text"
+                                           id="variation_price_<?= $id ?>"
+                                           name="variation_price_<?= $id ?>"
+                                           class="admin__control-text validate-zero-or-greater"
+                                           value="<?= $block->escapeHtmlAttr($row['price']) ?>"/>
+                                    <span><?= $block->escapeHtml($currency) ?></span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="cc-var__imgs"><?= (int)$row['count'] ?>/<?= (int)$max ?></span>
+                            </td>
+                            <td>
+                                <div class="cc-var__actions">
+                                    <button type="button" class="cc-var__btn cc-var__btn--ghost" data-cc-toggle-images>
+                                        <?= $block->escapeHtml(__('Images')) ?>
+                                    </button>
+                                    <button type="button"
+                                            class="cc-var__btn cc-var__btn--danger cc-variation-delete-btn"
+                                            data-delete-url="<?= $block->escapeUrl($row['delete_url']) ?>"
+                                            data-sku="<?= $block->escapeHtmlAttr($row['sku']) ?>">
+                                        <?= $block->escapeHtml(__('Delete')) ?>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="cc-var__detail">
+                            <td colspan="7">
+                                <div class="cc-var__detail-inner">
+                                    <div class="cc-var__detail-title">
+                                        <?= $block->escapeHtml(__('Images — main + slider (max %1)', $max)) ?>
+                                    </div>
+                                    <div class="cc-var__slots">
+                                        <?php foreach ($row['slots'] as $slotIndex => $slot): ?>
+                                            <?php $slotNum = $slotIndex + 1; ?>
+                                            <div class="cc-var__slot<?= $slot ? ' is-filled' : '' ?><?= $slotNum === 1 ? ' is-main' : '' ?>">
+                                                <div class="cc-var__slot-label">
+                                                    <?= $slotNum === 1
+                                                        ? $block->escapeHtml(__('Main'))
+                                                        : $block->escapeHtml(__('Slider %1', $slotNum - 1)) ?>
+                                                </div>
+                                                <?php if ($slot): ?>
+                                                    <input type="hidden"
+                                                           name="variation_file_<?= $id ?>_<?= $slotNum ?>"
+                                                           value="<?= $block->escapeHtmlAttr($slot['file']) ?>"/>
+                                                    <img src="<?= $block->escapeUrl($slot['url']) ?>"
+                                                         alt="<?= $block->escapeHtmlAttr(__('Image %1', $slotNum)) ?>"/>
+                                                    <?php if (!empty($slot['is_main'])): ?>
+                                                        <span class="cc-var__main-badge"><?= $block->escapeHtml(__('Main')) ?></span>
+                                                    <?php endif; ?>
+                                                    <label class="cc-var__slot-remove">
+                                                        <input type="checkbox"
+                                                               name="variation_remove_<?= $id ?>_<?= $slotNum ?>"
+                                                               value="1"/>
+                                                        <span><?= $block->escapeHtml(__('Remove')) ?></span>
+                                                    </label>
+                                                    <input type="file"
+                                                           name="variation_<?= $id ?>_<?= $slotNum ?>"
+                                                           accept="image/jpeg,image/png,image/gif,image/webp"/>
+                                                <?php else: ?>
+                                                    <input type="file"
+                                                           name="variation_<?= $id ?>_<?= $slotNum ?>"
+                                                           accept="image/jpeg,image/png,image/gif,image/webp"/>
+                                                <?php endif; ?>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
+        </div>
+
+        <div class="cc-var__add" id="cc-add-variation-panel">
+            <h4 class="cc-var__add-title"><?= $block->escapeHtml(__('Add New Variation')) ?></h4>
+            <div class="cc-var__add-grid">
+                <div>
+                    <label class="cc-var__label" for="new_sku"><?= $block->escapeHtml(__('SKU')) ?> *</label>
+                    <input type="text" id="new_sku" name="new_sku" class="admin__control-text"
+                           value="<?= $block->escapeHtmlAttr($block->getSuggestedNewSku()) ?>"/>
+                </div>
+                <div class="cc-var__field--wide">
+                    <label class="cc-var__label" for="new_name"><?= $block->escapeHtml(__('Name')) ?> *</label>
+                    <input type="text" id="new_name" name="new_name" class="admin__control-text"
+                           placeholder="<?= $block->escapeHtmlAttr(__('Product name - option')) ?>"/>
+                </div>
+                <div>
+                    <label class="cc-var__label" for="new_price"><?= $block->escapeHtml(__('Price')) ?> *</label>
+                    <div class="cc-var__currency">
+                        <input type="text" id="new_price" name="new_price" class="admin__control-text" placeholder="0"/>
+                        <span><?= $block->escapeHtml($currency) ?></span>
+                    </div>
+                </div>
+                <div>
+                    <label class="cc-var__label" for="new_option_id"><?= $block->escapeHtml($attrLabel) ?> *</label>
+                    <select id="new_option_id" name="new_option_id" class="admin__control-select">
+                        <option value=""><?= $block->escapeHtml(__('-- Select existing --')) ?></option>
+                        <?php foreach ($options as $opt): ?>
+                            <?php $isUsed = in_array((int)$opt['value'], $usedOptionIds, true); ?>
+                            <option value="<?= (int)$opt['value'] ?>" <?= $isUsed ? 'disabled' : '' ?>>
+                                <?= $block->escapeHtml($opt['label']) ?>
+                                <?= $isUsed ? $block->escapeHtml(' (' . __('used') . ')') : '' ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="cc-var__field--wide">
+                    <label class="cc-var__label" for="new_option_label"><?= $block->escapeHtml(__('Or create new option')) ?></label>
+                    <input type="text" id="new_option_label" name="new_option_label" class="admin__control-text"
+                           placeholder="<?= $block->escapeHtmlAttr(__('e.g. Extra Large')) ?>"/>
+                    <p class="cc-var__help"><?= $block->escapeHtml(__('Leave blank if you selected an existing option.')) ?></p>
+                </div>
+                <div>
+                    <label class="cc-var__label" for="new_qty"><?= $block->escapeHtml(__('Qty')) ?></label>
+                    <input type="text" id="new_qty" name="new_qty" class="admin__control-text" value="100"/>
+                </div>
+            </div>
+            <div class="cc-var__detail-title"><?= $block->escapeHtml(__('Images (optional)')) ?></div>
+            <div class="cc-var__slots">
+                <?php for ($slotNum = 1; $slotNum <= $max; $slotNum++): ?>
+                    <div class="cc-var__slot<?= $slotNum === 1 ? ' is-main' : '' ?>">
+                        <div class="cc-var__slot-label">
+                            <?= $slotNum === 1
+                                ? $block->escapeHtml(__('Main'))
+                                : $block->escapeHtml(__('Slider %1', $slotNum - 1)) ?>
+                        </div>
+                        <input type="file"
+                               name="new_variation_<?= (int)$slotNum ?>"
+                               accept="image/jpeg,image/png,image/gif,image/webp"/>
+                    </div>
+                <?php endfor; ?>
+            </div>
+        </div>
+
+        <div class="cc-var__footer">
+            <button type="button" id="cc-save-variations-btn" class="action-default scalable save primary">
+                <span class="cc-save-btn-label"><?= $block->escapeHtml(__('Save all variations')) ?></span>
+            </button>
+            <?php if ($attributeEditUrl !== ''): ?>
+                <a class="action-secondary"
+                   href="<?= $block->escapeUrl($attributeEditUrl) ?>"
+                   target="_blank"
+                   rel="noopener">
+                    <span><?= $block->escapeHtml(__('Manage Options / Attributes')) ?></span>
+                </a>
+            <?php endif; ?>
+            <span class="cc-var__status cc-variation-save-status" id="cc-variation-save-status" aria-live="polite"></span>
+        </div>
+    </div>
+</div>
+<script>
+require(['jquery', 'mage/translate', 'domReady!'], function ($, $t) {
+    var $root = $('#cc-variation-manager');
+    if (!$root.length) {
+        return;
+    }
+
+    var saveUrl = $root.data('save-url');
+    var formKey = $root.data('form-key');
+    var $status = $('#cc-variation-save-status');
+    var $saveBtn = $('#cc-save-variations-btn');
+    var $btnLabel = $saveBtn.find('.cc-save-btn-label');
+    var btnDefaultText = $btnLabel.text();
+    var loadingCount = 0;
+    var maxImages = <?= (int)$max ?>;
+
+    function hideMagentoMatrix() {
+        var selectors = [
+            '[data-index="configurable-matrix"]',
+            '[data-index="configurable_products_button_set"]',
+            '.admin__field[data-index="configurable-matrix"]',
+            '.admin__field[data-index="configurable_products_button_set"]'
+        ];
+        $(selectors.join(',')).each(function () {
+            $(this).hide().addClass('cc-hide-magento-variations-matrix');
+        });
+        // Hide "Edit Configurations" button text nodes in configurations fieldset
+        $('[data-index="configurable"] button, [data-index="configurable"] .action-secondary').each(function () {
+            var t = (($(this).text() || '') + '').toLowerCase();
+            if (t.indexOf('edit configurations') !== -1 || t.indexOf('create configurations') !== -1 ||
+                t.indexOf('add products manually') !== -1) {
+                $(this).closest('.admin__field, .admin__control-fields, div').first().hide();
+                $(this).hide();
+            }
+        });
+    }
+    hideMagentoMatrix();
+    setInterval(hideMagentoMatrix, 800);
+
+    var $loader = $('#cc-variation-loader-global');
+    if (!$loader.length) {
+        $loader = $(
+            '<div id="cc-variation-loader-global" style="display:none;">' +
+                '<div class="cc-variation-loader__box">' +
+                    '<div class="cc-variation-loader__spinner"></div>' +
+                    '<div class="cc-variation-loader__text"></div>' +
+                '</div>' +
+            '</div>'
+        );
+        $('body').append($loader);
+    }
+    $loader.find('.cc-variation-loader__text').text($t('Saving variations… Please wait.'));
+
+    $root.on('click', '[data-cc-toggle-images]', function (e) {
+        e.preventDefault();
+        var $row = $(this).closest('tr.cc-var__row');
+        $row.toggleClass('is-open');
+        $(this).text($row.hasClass('is-open') ? $t('Hide images') : $t('Images'));
+    });
+
+    function showLoader(on, message) {
+        if (on) {
+            loadingCount++;
+            try { $('body').trigger('processStart'); } catch (e) {}
+            $loader.stop(true, true).css('display', 'flex');
+            if (message) {
+                $loader.find('.cc-variation-loader__text').text(message);
+            }
+            $('body').addClass('cc-variation-saving');
+            $saveBtn.prop('disabled', true).addClass('disabled');
+            $btnLabel.text($t('Saving…'));
+            $status.text($t('Saving…')).removeClass('is-error is-ok');
+        } else {
+            loadingCount = Math.max(0, loadingCount - 1);
+            if (loadingCount === 0) {
+                try { $('body').trigger('processStop'); } catch (e) {}
+                $loader.hide();
+                $('body').removeClass('cc-variation-saving');
+                $saveBtn.prop('disabled', false).removeClass('disabled');
+                $btnLabel.text(btnDefaultText);
+            }
+        }
+    }
+
+    function clearFieldErrors() {
+        $root.find('.cc-field-error').remove();
+        $root.find('.cc-has-error').removeClass('cc-has-error');
+        $status.text('').removeClass('is-error is-ok');
+    }
+
+    function markError($input, message) {
+        if (!$input || !$input.length) {
+            return;
+        }
+        $input.addClass('cc-has-error');
+        $input.parent().find('.cc-field-error').remove();
+        $input.parent().append($('<div class="cc-field-error"/>').text(message));
+    }
+
+    function isFilled(val) {
+        return $.trim(String(val == null ? '' : val)) !== '';
+    }
+
+    function isValidPrice(val) {
+        if (!isFilled(val)) {
+            return false;
+        }
+        var n = parseFloat(String(val).replace(/,/g, ''));
+        return !isNaN(n) && n >= 0;
+    }
+
+    function isValidQty(val) {
+        if (!isFilled(val)) {
+            return true;
+        }
+        var n = parseFloat(String(val).replace(/,/g, ''));
+        return !isNaN(n) && n >= 0;
+    }
+
+    function validateForm() {
+        clearFieldErrors();
+        var errors = [];
+        var $firstError = null;
+
+        $root.find('tr.cc-var__row[data-child-id]').each(function () {
+            var $row = $(this);
+            var id = $row.data('child-id');
+            var $sku = $row.find('[name="variation_sku_' + id + '"]');
+            var $name = $row.find('[name="variation_name_' + id + '"]');
+            var $price = $row.find('[name="variation_price_' + id + '"]');
+            var $option = $row.find('[name="variation_option_' + id + '"]');
+
+            if (!isFilled($sku.val())) {
+                markError($sku, $t('SKU is required.'));
+                errors.push('sku');
+                $firstError = $firstError || $sku;
+            }
+            if (!isFilled($name.val())) {
+                markError($name, $t('Name is required.'));
+                errors.push('name');
+                $firstError = $firstError || $name;
+            }
+            if (!isValidPrice($price.val())) {
+                markError($price, $t('Enter a valid price.'));
+                errors.push('price');
+                $firstError = $firstError || $price;
+            }
+            if (!isFilled($option.val())) {
+                markError($option, $t('Select an option.'));
+                errors.push('option');
+                $firstError = $firstError || $option;
+            }
+        });
+
+        var newSku = $.trim($root.find('[name="new_sku"]').val() || '');
+        var newName = $.trim($root.find('[name="new_name"]').val() || '');
+        var newPrice = $.trim($root.find('[name="new_price"]').val() || '');
+        var newOptionId = $.trim($root.find('[name="new_option_id"]').val() || '');
+        var newOptionLabel = $.trim($root.find('[name="new_option_label"]').val() || '');
+        var newQty = $.trim($root.find('[name="new_qty"]').val() || '');
+        var hasNewImage = false;
+        for (var s = 1; s <= maxImages; s++) {
+            var ni = $root.find('[name="new_variation_' + s + '"]')[0];
+            if (ni && ni.files && ni.files[0]) {
+                hasNewImage = true;
+                break;
+            }
+        }
+        var creatingNew = !!(newSku || newName || newPrice || newOptionId || newOptionLabel || hasNewImage);
+
+        if (creatingNew) {
+            if (!newSku) {
+                markError($root.find('[name="new_sku"]'), $t('SKU is required.'));
+                errors.push('new sku');
+                $firstError = $firstError || $root.find('[name="new_sku"]');
+            }
+            if (!newName) {
+                markError($root.find('[name="new_name"]'), $t('Name is required.'));
+                errors.push('new name');
+                $firstError = $firstError || $root.find('[name="new_name"]');
+            }
+            if (!isValidPrice(newPrice)) {
+                markError($root.find('[name="new_price"]'), $t('Enter a valid price.'));
+                errors.push('new price');
+                $firstError = $firstError || $root.find('[name="new_price"]');
+            }
+            if (!newOptionId && !newOptionLabel) {
+                markError($root.find('[name="new_option_id"]'), $t('Select or create an option.'));
+                errors.push('new option');
+                $firstError = $firstError || $root.find('[name="new_option_id"]');
+            }
+            if (newOptionId && newOptionLabel) {
+                markError($root.find('[name="new_option_label"]'), $t('Use existing OR new option, not both.'));
+                errors.push('both options');
+                $firstError = $firstError || $root.find('[name="new_option_label"]');
+            }
+            if (!isValidQty(newQty)) {
+                markError($root.find('[name="new_qty"]'), $t('Invalid qty.'));
+                errors.push('qty');
+                $firstError = $firstError || $root.find('[name="new_qty"]');
+            }
+        }
+
+        if (!creatingNew && !$root.find('tr.cc-var__row[data-child-id]').length) {
+            errors.push('empty');
+        }
+
+        if (errors.length) {
+            $status.text($t('Please fix the highlighted fields.')).addClass('is-error');
+            if ($firstError && $firstError.length) {
+                $('html, body').animate({scrollTop: $firstError.offset().top - 120}, 200);
+                $firstError.trigger('focus');
+            }
+            return false;
+        }
+        return true;
+    }
+
+    $('#cc-scroll-add-variation').on('click', function (e) {
+        e.preventDefault();
+        var el = document.getElementById('cc-add-variation-panel');
+        if (el) {
+            el.scrollIntoView({behavior: 'smooth', block: 'start'});
+            $('#new_sku').trigger('focus');
+        }
+    });
+
+    $root.on('input change', '.cc-has-error', function () {
+        $(this).removeClass('cc-has-error');
+        $(this).parent().find('.cc-field-error').remove();
+    });
+
+    function buildFormData() {
+        var fd = new FormData();
+        fd.append('form_key', formKey);
+        fd.append('parent_id', $root.find('input[name="parent_id"]').val());
+
+        $root.find('tr.cc-var__row[data-child-id]').each(function () {
+            var $row = $(this);
+            var id = $row.data('child-id');
+            var $detail = $row.next('.cc-var__detail');
+            ['sku', 'name', 'price', 'option'].forEach(function (field) {
+                var name = 'variation_' + field + '_' + id;
+                var $input = $row.find('[name="' + name + '"]');
+                if ($input.length) {
+                    fd.append(name, $input.val());
+                }
+            });
+            for (var slot = 1; slot <= maxImages; slot++) {
+                var fileHidden = $detail.find('[name="variation_file_' + id + '_' + slot + '"]');
+                if (fileHidden.length) {
+                    fd.append('variation_file_' + id + '_' + slot, fileHidden.val());
+                }
+                var remove = $detail.find('[name="variation_remove_' + id + '_' + slot + '"]');
+                if (remove.length && remove.is(':checked')) {
+                    fd.append('variation_remove_' + id + '_' + slot, '1');
+                }
+                var fileInput = $detail.find('[name="variation_' + id + '_' + slot + '"]')[0];
+                if (fileInput && fileInput.files && fileInput.files[0]) {
+                    fd.append('variation_' + id + '_' + slot, fileInput.files[0]);
+                }
+            }
+        });
+
+        ['new_sku', 'new_name', 'new_price', 'new_option_id', 'new_option_label', 'new_qty'].forEach(function (name) {
+            var $el = $root.find('[name="' + name + '"]');
+            if ($el.length) {
+                fd.append(name, $el.val());
+            }
+        });
+        for (var s = 1; s <= maxImages; s++) {
+            var ni = $root.find('[name="new_variation_' + s + '"]')[0];
+            if (ni && ni.files && ni.files[0]) {
+                fd.append('new_variation_' + s, ni.files[0]);
+            }
+        }
+        return fd;
+    }
+
+    $saveBtn.on('click', function (e) {
+        e.preventDefault();
+        if (!validateForm()) {
+            return;
+        }
+        showLoader(true);
+        $.ajax({
+            url: saveUrl,
+            type: 'POST',
+            data: buildFormData(),
+            processData: false,
+            contentType: false,
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            success: function (resp) {
+                if (resp && resp.success === false) {
+                    showLoader(false);
+                    $status.text(resp.message || $t('Could not save variations.')).addClass('is-error');
+                    alert(resp.message || $t('Could not save variations.'));
+                    return;
+                }
+                $status.text($t('Saved. Reloading…')).removeClass('is-error').addClass('is-ok');
+                window.location.reload();
+            },
+            error: function (xhr) {
+                showLoader(false);
+                var msg = (xhr.responseJSON && xhr.responseJSON.message)
+                    ? xhr.responseJSON.message
+                    : $t('Could not save variations. Please try again.');
+                $status.text(msg).addClass('is-error');
+                alert(msg);
+            }
+        });
+    });
+
+    $root.on('click', '.cc-variation-delete-btn', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $btn = $(this);
+        var sku = $btn.data('sku');
+        if (!window.confirm($t('Delete variation "%1"? This removes the simple product.').replace('%1', sku))) {
+            return;
+        }
+        showLoader(true);
+        var fd = new FormData();
+        fd.append('form_key', formKey);
+        $.ajax({
+            url: $btn.data('delete-url'),
+            type: 'POST',
+            data: fd,
+            processData: false,
+            contentType: false,
+            headers: {'X-Requested-With': 'XMLHttpRequest'},
+            success: function (resp) {
+                if (resp && resp.success === false) {
+                    showLoader(false);
+                    alert(resp.message || $t('Could not delete variation.'));
+                    return;
+                }
+                window.location.reload();
+            },
+            error: function (xhr) {
+                showLoader(false);
+                var msg = (xhr.responseJSON && xhr.responseJSON.message)
+                    ? xhr.responseJSON.message
+                    : $t('Could not delete variation.');
+                alert(msg);
+            }
+        });
+    });
+});
+</script>

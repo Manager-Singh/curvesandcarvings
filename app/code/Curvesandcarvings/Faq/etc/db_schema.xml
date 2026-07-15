@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cc_faq" resource="default" engine="innodb" comment="Curves and Carvings FAQ">
+        <column xsi:type="int" name="faq_id" unsigned="true" nullable="false" identity="true" comment="FAQ ID"/>
+        <column xsi:type="text" name="question" nullable="false" comment="Question"/>
+        <column xsi:type="mediumtext" name="answer" nullable="false" comment="Answer"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false" default="0" comment="Sort Order"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="smallint" name="show_on_product" unsigned="true" nullable="false" default="0" comment="Show on Product Page"/>
+        <column xsi:type="smallint" name="show_on_about" unsigned="true" nullable="false" default="0" comment="Show on About Us"/>
+        <column xsi:type="smallint" name="show_on_contact" unsigned="true" nullable="false" default="0" comment="Show on Contact Us"/>
+        <column xsi:type="smallint" name="show_on_home" unsigned="true" nullable="false" default="0" comment="Show on Home Above Footer"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="faq_id"/>
+        </constraint>
+        <index referenceId="CC_FAQ_IS_ACTIVE_SORT" indexType="btree">
+            <column name="is_active"/>
+            <column name="sort_order"/>
+        </index>
+    </table>
+</schema>

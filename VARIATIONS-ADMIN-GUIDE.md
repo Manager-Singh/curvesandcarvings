@@ -6,6 +6,25 @@ The module creates **7 variation attributes** and **7 attribute sets** (one per 
 
 ---
 
+## Who owns what (important)
+
+| Job | Owner | Where |
+|-----|--------|--------|
+| Create / edit variation **structure** (attributes, option values, associate children) | **Magento only** | Configurations → **Edit Configurations** / **Add Products Manually** |
+| Per-child **price + up to 5 images** | **Curvesandcarvings panel** | Configurations → **Variation Images & Prices** |
+| Storefront variation cards | Theme PDP | Reads Magento `jsonConfig` (child price + gallery) |
+
+Do **not** expect Step 3 of the Magento wizard to be a custom image/price form. Day-to-day media and price edits stay on the product form panel.
+
+**Typical workflow for a new option (e.g. a 4th chest config):**
+
+1. On the configurable parent → **Add New Variation** (or Magento **Edit Configurations**).
+2. Magento wizard → Step 2 add the new attribute value → finish associating products.
+3. Back on the product form → find the new card under **Variation Images & Prices**.
+4. Set price / upload images (empty slot = add, filled slot = replace, check **Remove** to delete) → **Save variation images and prices**.
+
+---
+
 ## Category → Attribute set mapping
 
 | Magento category (examples) | Attribute set | Variation attribute | Customer sees |
@@ -28,9 +47,9 @@ After running `php scripts/create-variation-examples.php`, these products are co
 | Family | Parent SKU | Child SKU suffixes |
 |--------|------------|-------------------|
 | Bedroom Set | `C&C BED0222-IND` | `-BED`, `-DRESSING`, `-SIDE`, `-FULL` |
-| Bed | `C&C BED0001-IND` | `-SINGLE`, `-QUEEN`, `-KING` |
-| Dining Table | `C&C DTC0005-IND` | `-4S`, `-6S`, `-8S` |
-| Sofa | `C&C SOF0002-IND` | `-1S`, `-2S`, `-3S` |
+| Bed | `C&C BED0001-IND` | `-SINGLE`, `-DOUBLE`, `-QUEEN`, `-KING`, `-CUSTOM` (5) |
+| Dining Table | `C&C DTC0005-IND` | `-4S`, `-6S`, `-8S`, `-9PLUS`, `-10S` (5) |
+| Sofa (Living) | `C&C SOF0002-IND` | `-1S`, `-2S`, `-3S`, `-FULL`, `-LSHAPE` (5) |
 | Wardrobe | `C&C WAR0003-IND` | `-2D`, `-4D` |
 | Chest | `C&C CAB0001-IND` | `-STD`, `-LARGE`, `-MIRROR` |
 
@@ -93,7 +112,56 @@ Or **System → Index Management → Update on Save** (if indexers are invalid).
 
 ---
 
-## SKU naming rules
+## Assigning multiple images per variation (main + slider, up to 5)
+
+Each **child product** supports **up to 5 images**:
+
+| # | Role in admin | On the website |
+|---|---------------|----------------|
+| 1 | **Base**, **Small**, **Thumbnail** | Main hero image + variation card thumbnail |
+| 2–5 | Gallery only (no roles) | Thumbnail slider below the main image |
+
+### Option A — Parent product panel (recommended)
+
+1. Open the **configurable parent** (e.g. chest `C&C CAB0001-IND`).
+2. Scroll to **Configurations** → **Variation Images & Prices**.
+3. Per child card: edit **Price**, then for each slot:
+   - Empty slot → choose a file to **add**
+   - Filled slot → choose a file to **replace**, or check **Remove**
+4. Click **Save variation images and prices** (does not require opening each child).
+
+The panel’s **Add New Variation** / **Add Products Manually** buttons only click Magento’s real buttons — they do not replace Magento’s associated-product modal.
+
+### Option B — Open child product
+
+1. Open child product (e.g. `C&C CAB0001-IND-LARGE`) or use **Open child product** from the panel.
+2. **Images and Videos** → upload **up to 5 images**
+3. Image 1 = main (set Base, Small, Thumbnail). Images 2–5 = slider only.
+4. Save child → reindex → flush cache
+
+### Option C — Map file + script
+
+Edit `scripts/variation-image-map.json` (up to 5 paths per child SKU):
+
+```json
+{
+  "C&C CAB0001-IND-STD": [
+    "/c/_/image1.jpg",
+    "/c/_/image2.jpg",
+    "/c/_/image3.jpg",
+    "/c/_/image4.jpg",
+    "/c/_/image5.jpg"
+  ]
+}
+```
+
+Paths are relative to `pub/media/catalog/product/`.
+
+```bash
+php scripts/assign-variation-images.php --force --max-images=5 --sku="C&C CAB0001-IND"
+```
+
+---
 
 ```
 Parent (configurable, visible):     C&C BED0222-IND
@@ -162,10 +230,16 @@ Do **not** convert to configurable if:
 app/code/Curvesandcarvings/Variations/
 ├── registration.php
 ├── etc/module.xml
+├── Controller/Adminhtml/Product/SaveImages.php   # panel save (price + images)
+├── Block/Adminhtml/Product/VariationImages.php
+├── Ui/.../Modifier/VariationImagesPanel.php      # injects panel under Configurations
+├── view/adminhtml/templates/product/variation-images.phtml
 └── Setup/Patch/Data/
     ├── CreateVariationAttributes.php
     └── CreateVariationAttributeSets.php
 ```
+
+Magento’s Configurations wizard is **not** overridden (no Step 3 template mixins). Structure stays Magento-native.
 
 Example script (optional, not part of module):
 

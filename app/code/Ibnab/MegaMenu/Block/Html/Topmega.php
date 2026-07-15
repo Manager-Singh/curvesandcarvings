@@ -378,7 +378,8 @@ class Topmega extends Topmenu {
                     $html .= '</ul></li><li><ul>';
                 }
                 }
-                $html .= '<li>';
+                $liClass = ($childLevel === 0 && $child->hasChildren()) ? ' class="menu-dropdown-icon"' : '';
+                $html .= '<li' . $liClass . '>';
 
                 if ($childLevel == 0) {
                     $name = $child->getName();

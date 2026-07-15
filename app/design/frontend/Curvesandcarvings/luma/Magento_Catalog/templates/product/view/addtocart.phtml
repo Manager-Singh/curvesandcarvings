@@ -8,49 +8,48 @@ $buttonTitle = __('Add to Cart');
 ?>
 <?php if ($_product->isSaleable()): ?>
 <div class="box-tocart">
-    <div class="fieldset">
+    <div class="fieldset cc-pdp-actions">
         <?php if ($block->shouldRenderQuantity()): ?>
         <div class="field qty">
-            <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
-            <div class="control">
+            <label class="label" for="qty">
+                <span><?= $block->escapeHtml(__('Quantity')) ?></span>
+            </label>
+            <div class="control cc-qty-stepper">
+                <button type="button" class="cc-qty-btn cc-qty-minus" aria-label="<?= $block->escapeHtmlAttr(__('Decrease quantity')) ?>">−</button>
                 <input type="number"
                        name="qty"
                        id="qty"
-                       min="0"
+                       min="1"
                        value="<?= $block->getProductDefaultQty() * 1 ?>"
                        title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
                        class="input-text qty"
                        data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+                <button type="button" class="cc-qty-btn cc-qty-plus" aria-label="<?= $block->escapeHtmlAttr(__('Increase quantity')) ?>">+</button>
             </div>
         </div>
         <?php endif; ?>
-        <div class="actions">
+        <div class="actions cc-pdp-primary-actions">
             <button type="submit"
                     title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
                     class="action primary tocart"
                     id="product-addtocart-button">
                 <span><?= $block->escapeHtml($buttonTitle) ?></span>
             </button>
+            <div class="cc-pdp-wishlist">
+                <?= $block->getChildHtml('view.addto.wishlist.cart') ?>
+                <?= $block->getChildHtml('view.addto.wishlist.cart.additional') ?>
+            </div>
+        </div>
+        <div class="cc-pdp-buy-now-row">
             <button type="button"
                     title="<?= $block->escapeHtmlAttr(__('Buy Now')) ?>"
                     class="action primary buy-now"
                     id="product-buy-now-button">
                 <span><?= $block->escapeHtml(__('Buy Now')) ?></span>
             </button>
-            <div class="cc-pdp-wishlist">
-                <?= $block->getChildHtml('view.addto.wishlist.cart') ?>
-            </div>
         </div>
+        <?= $block->getLayout()->createBlock(\Magento\Framework\View\Element\Template::class)
+            ->setTemplate('Magento_Catalog::product/view/trust-badges.phtml')->toHtml() ?>
     </div>
 </div>
 <?php endif; ?>
-<script type="text/x-magento-init">
-    {
-        "#product_addtocart_form": {
-            "Magento_Catalog/js/validate-product": {}
-        },
-        "body.catalog-product-view": {
-            "js/pdp-figma": {}
-        }
-    }
-</script>

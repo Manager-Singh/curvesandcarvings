@@ -130,6 +130,8 @@
             </container>
         </referenceContainer>
         <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="curvesandcarvings.form.key.init"
+                   template="Magento_Theme::html/form-key-init.phtml"/>
             <block class="Magento\Framework\View\Element\Template" name="curvesandcarvings.header.init"
                    template="Magento_Theme::html/header-init.phtml"/>
             <block class="Magento\Theme\Block\Html\Footer" name="absolute_footer" template="Magento_Theme::html/absolute_footer.phtml" />

@@ -1,0 +1,21 @@
+/* Fallback stylesheet — primary styles are inlined in variation-images.phtml for reliability */
+
+[data-index="configurable-matrix"],
+[data-index="configurable_products_button_set"],
+.admin__field[data-index="configurable-matrix"],
+.admin__field[data-index="configurable_products_button_set"],
+.cc-hide-magento-variations-matrix,
+.cc-hide-magento-variations-buttons {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+}
+
+.cc-var {
+    margin: 0 0 1.5rem;
+}

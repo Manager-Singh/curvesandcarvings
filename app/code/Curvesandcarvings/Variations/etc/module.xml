@@ -3,10 +3,12 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Curvesandcarvings_Variations">
         <sequence>
+            <module name="Magento_Backend"/>
             <module name="Magento_Catalog"/>
             <module name="Magento_Eav"/>
             <module name="Magento_Swatches"/>
             <module name="Magento_ConfigurableProduct"/>
+            <module name="Magento_Checkout"/>
         </sequence>
     </module>
 </config>

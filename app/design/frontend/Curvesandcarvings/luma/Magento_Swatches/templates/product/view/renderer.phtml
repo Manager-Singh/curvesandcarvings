@@ -1,0 +1,366 @@
+<?php
+/**
+ * Figma-style configurable variation cards (server-rendered).
+ *
+ * @var $block \Magento\Swatches\Block\Product\Renderer\Configurable
+ */
+$config = json_decode((string)$block->getJsonConfig(), true) ?: [];
+$attributes = $config['attributes'] ?? [];
+$images = $config['images'] ?? [];
+$optionPrices = $config['optionPrices'] ?? [];
+$firstOptionId = '';
+$firstChildId = '';
+$firstAttrId = '';
+?>
+<?php if (!empty($attributes)): ?>
+    <?php foreach ($attributes as $attribute): ?>
+        <?php
+        $attrId = (string)($attribute['id'] ?? '');
+        $options = $attribute['options'] ?? [];
+        if ($attrId === '' || empty($options)) {
+            continue;
+        }
+        foreach ($options as $option) {
+            if (!empty($option['products'])) {
+                $firstAttrId = $attrId;
+                $firstOptionId = (string)($option['id'] ?? '');
+                $firstChildId = (string)$option['products'][0];
+                break 2;
+            }
+        }
+        ?>
+    <?php endforeach; ?>
+
+<div class="cc-pdp-variations" data-role="cc-variation-cards">
+    <?php foreach ($attributes as $attribute): ?>
+        <?php
+        $attrId = (string)($attribute['id'] ?? '');
+        $options = $attribute['options'] ?? [];
+        if ($attrId === '' || empty($options)) {
+            continue;
+        }
+        ?>
+        <div class="cc-pdp-variation-group cc-variation-attribute"
+             data-attribute-id="<?= $block->escapeHtmlAttr($attrId) ?>"
+             data-attribute-code="<?= $block->escapeHtmlAttr((string)($attribute['code'] ?? '')) ?>">
+            <div class="swatch-attribute-label"><?= $block->escapeHtml(__('Choose option:')) ?></div>
+            <div class="swatch-attribute-options clearfix">
+                <?php foreach ($options as $option): ?>
+                    <?php
+                    $optionId = (string)($option['id'] ?? '');
+                    $productIds = $option['products'] ?? [];
+                    if ($optionId === '' || empty($productIds)) {
+                        continue;
+                    }
+                    $childId = (string)$productIds[0];
+                    $label = (string)($option['label'] ?? '');
+                    $childImages = $images[$childId] ?? [];
+                    $thumb = '';
+                    foreach ($childImages as $imageRow) {
+                        if (!empty($imageRow['isMain'])) {
+                            $thumb = (string)($imageRow['thumb'] ?? $imageRow['img'] ?? $imageRow['full'] ?? '');
+                            break;
+                        }
+                    }
+                    if ($thumb === '' && !empty($childImages[0])) {
+                        $thumb = (string)($childImages[0]['thumb'] ?? $childImages[0]['img'] ?? $childImages[0]['full'] ?? '');
+                    }
+                    $priceAmount = 0.0;
+                    if (!empty($optionPrices[$childId]['finalPrice']['amount'])) {
+                        $priceAmount = (float)$optionPrices[$childId]['finalPrice']['amount'];
+                    }
+                    $isSelected = ($optionId === $firstOptionId);
+                    ?>
+                    <button type="button"
+                            class="swatch-option text cc-variation-card<?= $isSelected ? ' selected' : '' ?>"
+                            data-option-id="<?= $block->escapeHtmlAttr($optionId) ?>"
+                            data-option-label="<?= $block->escapeHtmlAttr($label) ?>"
+                            data-child-id="<?= $block->escapeHtmlAttr($childId) ?>"
+                            data-attribute-id="<?= $block->escapeHtmlAttr($attrId) ?>"
+                            aria-label="<?= $block->escapeHtmlAttr($label) ?>"
+                            aria-pressed="<?= $isSelected ? 'true' : 'false' ?>">
+                        <span class="cc-variation-card-inner">
+                            <span class="cc-variation-card-img">
+                                <?php if ($thumb !== ''): ?>
+                                    <img src="<?= $block->escapeUrl($thumb) ?>"
+                                         alt="<?= $block->escapeHtmlAttr($label) ?>"
+                                         loading="lazy"/>
+                                <?php else: ?>
+                                    <span class="cc-variation-card-placeholder" aria-hidden="true"></span>
+                                <?php endif; ?>
+                            </span>
+                            <span class="cc-variation-card-label"><?= $block->escapeHtml($label) ?></span>
+                            <?php if ($priceAmount > 0): ?>
+                                <span class="cc-variation-card-price">₹<?= $block->escapeHtml(number_format($priceAmount, 0, '.', ',')) ?></span>
+                            <?php endif; ?>
+                        </span>
+                    </button>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<?php foreach ($attributes as $attribute): ?>
+    <?php $attrId = (string)($attribute['id'] ?? ''); ?>
+    <?php if ($attrId !== ''): ?>
+<input type="hidden"
+       class="swatch-input super-attribute-select cc-super-attribute"
+       name="super_attribute[<?= $block->escapeHtmlAttr($attrId) ?>]"
+       data-selector="super_attribute[<?= $block->escapeHtmlAttr($attrId) ?>]"
+       data-attribute-id="<?= $block->escapeHtmlAttr($attrId) ?>"
+       data-attr-code="<?= $block->escapeHtmlAttr((string)($attribute['code'] ?? '')) ?>"
+       value="<?= $block->escapeHtmlAttr($firstAttrId === $attrId ? $firstOptionId : '') ?>"/>
+    <?php endif; ?>
+<?php endforeach; ?>
+
+<script type="application/json" id="cc-variation-json-config"><?= /* @noEscape */ $block->getJsonConfig() ?></script>
+<script>
+(function () {
+    'use strict';
+
+    function parseConfig() {
+        var node = document.getElementById('cc-variation-json-config');
+        if (!node) {
+            return null;
+        }
+        try {
+            return JSON.parse(node.textContent || node.innerText || '{}');
+        } catch (e) {
+            return null;
+        }
+    }
+
+    function formatInr(amount) {
+        return '₹' + Math.round(amount).toLocaleString('en-IN');
+    }
+
+    function formatInrDetailed(amount) {
+        return '₹' + Number(amount).toLocaleString('en-IN', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+    }
+
+    function updateHeaderPrices(prices) {
+        if (!prices || !prices.finalPrice) {
+            return;
+        }
+
+        var finalAmount = parseFloat(prices.finalPrice.amount) || 0;
+        var oldAmount = prices.oldPrice ? parseFloat(prices.oldPrice.amount) || 0 : 0;
+        if (!finalAmount) {
+            return;
+        }
+
+        var finalEl = document.querySelector('.cc-pdp-price-header [data-price-type="finalPrice"] .price') ||
+            document.querySelector('[data-price-type="finalPrice"] .price');
+        if (finalEl) {
+            finalEl.textContent = formatInrDetailed(finalAmount);
+        }
+
+        var finalWrap = document.querySelector('.cc-pdp-price-header [data-price-type="finalPrice"]') ||
+            document.querySelector('[data-price-type="finalPrice"]');
+        if (finalWrap) {
+            finalWrap.setAttribute('data-price-amount', String(finalAmount));
+        }
+
+        var oldEl = document.querySelector('.cc-pdp-price-header [data-price-type="oldPrice"] .price') ||
+            document.querySelector('[data-price-type="oldPrice"] .price');
+        var oldWrap = document.querySelector('.cc-pdp-price-header .old-price') ||
+            document.querySelector('.product-info-main .old-price');
+        if (oldEl && oldAmount > finalAmount) {
+            oldEl.textContent = formatInrDetailed(oldAmount);
+            if (oldWrap) {
+                oldWrap.classList.remove('no-display');
+                oldWrap.style.display = '';
+            }
+        } else if (oldWrap && oldAmount <= finalAmount) {
+            oldWrap.classList.add('no-display');
+        }
+
+        var badge = document.querySelector('[data-role="cc-discount-badge"]');
+        if (badge) {
+            if (oldAmount > finalAmount && finalAmount > 0) {
+                var pct = Math.round(((oldAmount - finalAmount) / oldAmount) * 100);
+                var text = badge.querySelector('.cc-discount-badge-text');
+                if (text && pct > 0) {
+                    text.textContent = pct + '% off';
+                    badge.hidden = false;
+                    badge.removeAttribute('hidden');
+                }
+            } else {
+                badge.hidden = true;
+                badge.setAttribute('hidden', 'hidden');
+            }
+        }
+
+        document.dispatchEvent(new CustomEvent('cc:priceUpdated', {
+            detail: { final: finalAmount, old: oldAmount }
+        }));
+    }
+
+    function getForm() {
+        return document.getElementById('product_addtocart_form');
+    }
+
+    function normalizeGalleryImages(images) {
+        if (!images || !images.length) {
+            return [];
+        }
+
+        var copy = JSON.parse(JSON.stringify(images));
+        copy.sort(function (a, b) {
+            if (a.isMain && !b.isMain) {
+                return -1;
+            }
+            if (!a.isMain && b.isMain) {
+                return 1;
+            }
+            return (parseInt(a.position, 10) || 0) - (parseInt(b.position, 10) || 0);
+        });
+
+        copy = copy.slice(0, 5);
+
+        copy.forEach(function (image, index) {
+            image.i = index + 1;
+            image.isMain = index === 0;
+        });
+
+        return copy;
+    }
+
+    function updateGallery(childId, config) {
+        var images = config.images && config.images[childId];
+        if (!images || !images.length) {
+            return;
+        }
+
+        var normalized = normalizeGalleryImages(images);
+
+        function applyGallery($) {
+            var $gallery = $('[data-gallery-role=gallery-placeholder]');
+            if (!$gallery.length) {
+                return;
+            }
+
+            var gallery = $gallery.data('gallery');
+            if (!gallery) {
+                $gallery.one('gallery:loaded', function () {
+                    applyGallery($);
+                });
+                return;
+            }
+
+            gallery.updateData(normalized);
+
+            setTimeout(function () {
+                var $fotoramaEl = $gallery.find('.fotorama');
+                var fotoramaApi = $fotoramaEl.data('fotorama');
+                if (fotoramaApi && typeof fotoramaApi.show === 'function') {
+                    fotoramaApi.show(0);
+                }
+            }, 80);
+        }
+
+        if (window.require) {
+            window.require(['jquery'], applyGallery);
+        }
+    }
+
+    function selectCard(card, config, skipGallery) {
+        if (!card || !config) {
+            return;
+        }
+
+        var optionId = card.getAttribute('data-option-id') || '';
+        var childId = card.getAttribute('data-child-id') || '';
+        var attrId = card.getAttribute('data-attribute-id') || '';
+        var form = getForm();
+
+        if (!optionId || !childId || !attrId || !form) {
+            return;
+        }
+
+        var cards = document.querySelectorAll('.cc-pdp-variations .cc-variation-card');
+        cards.forEach(function (el) {
+            el.classList.remove('selected');
+            el.setAttribute('aria-pressed', 'false');
+        });
+        card.classList.add('selected');
+        card.setAttribute('aria-pressed', 'true');
+
+        var attrInput = form.querySelector('input[name="super_attribute[' + attrId + ']"]');
+        if (attrInput) {
+            attrInput.value = optionId;
+            if (!skipGallery) {
+                attrInput.dispatchEvent(new Event('change', { bubbles: true }));
+            }
+        }
+
+        var childInput = form.querySelector('input[name="selected_configurable_option"]');
+        if (childInput) {
+            childInput.value = childId;
+        }
+
+        var prices = config.optionPrices && config.optionPrices[childId];
+        if (prices) {
+            updateHeaderPrices(prices);
+        }
+
+        if (!skipGallery) {
+            updateGallery(childId, config);
+        }
+
+        document.dispatchEvent(new CustomEvent('cc:variationSelected', {
+            detail: { childId: childId, optionId: optionId, attrId: attrId }
+        }));
+    }
+
+    function bind() {
+        var config = parseConfig();
+        var container = document.querySelector('.cc-pdp-variations');
+        if (!config || !container) {
+            return;
+        }
+
+        container.addEventListener('click', function (event) {
+            var card = event.target.closest('.cc-variation-card');
+            if (!card || !container.contains(card)) {
+                return;
+            }
+            event.preventDefault();
+            selectCard(card, config);
+        });
+
+        var selected = container.querySelector('.cc-variation-card.selected') ||
+            container.querySelector('.cc-variation-card');
+        if (selected) {
+            selectCard(selected, config, true);
+            if (window.require) {
+                window.require(['jquery'], function ($) {
+                    var $gallery = $('[data-gallery-role=gallery-placeholder]');
+                    var childId = selected.getAttribute('data-child-id') || '';
+                    function syncGallery() {
+                        if (childId) {
+                            updateGallery(childId, config);
+                        }
+                    }
+                    if ($gallery.data('gallery')) {
+                        syncGallery();
+                    } else {
+                        $gallery.one('gallery:loaded', syncGallery);
+                    }
+                });
+            }
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bind);
+    } else {
+        bind();
+    }
+})();
+</script>
+<?php endif; ?>
